@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.scheme-toggle {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-elev) 82%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.scheme-toggle:hover {
+  background: var(--bg-elev-2);
+}
+.scheme-toggle:active {
+  transform: scale(0.92);
+}
+
+/* view-transition page animation */
+::view-transition-old(root) {
+  animation: fade-out 220ms both;
+}
+::view-transition-new(root) {
+  animation: fade-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.99);
+  }
+}

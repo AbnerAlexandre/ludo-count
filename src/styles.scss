@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   LudoCount — design tokens
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  /* base surfaces (dark-first, table-friendly) */
+  --bg: #0b1220;
+  --bg-elev: #121b2e;
+  --bg-elev-2: #1a2740;
+  --surface: #16223a;
+  --line: #26344f;
+  --line-soft: #1e2c47;
+
+  /* text */
+  --text: #eef3fb;
+  --text-dim: #a9b6cf;
+  --text-faint: #6f7f9e;
+
+  /* brand accents */
+  --accent: #6ea8ff;
+  --accent-2: #b78bff;
+  --good: #47d18a;
+  --bad: #ff6b6b;
+  --warn: #ffcf5c;
+
+  /* azul tile colors (from provided assets) */
+  --azul-blue: #007ecc;
+  --azul-yellow: #fcbc1e;
+  --azul-red: #e82624;
+  --azul-black: #1c2426;
+  --azul-white: #00c4f9; /* "branco" -> turquoise asset */
+  --azul-negative: #043369;
+
+  /* ttr */
+  --ttr-rail: #d9b46a;
+  --ttr-rail-dark: #8a6a2f;
+
+  /* geometry */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 28px;
+  --tap: 48px;
+  --shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.55);
+  --shadow-soft: 0 6px 24px -14px rgba(0, 0, 0, 0.5);
+
+  /* per-game theme (overridden by [data-theme]) */
+  --game: var(--accent);
+  --game-2: var(--accent-2);
+}
+
+:root[data-theme='azul'] {
+  --game: #2e9be0;
+  --game-2: #00c4f9;
+}
+:root[data-theme='ttr'] {
+  --game: #d9b46a;
+  --game-2: #e6a15a;
+}
+
+/* light theme opt-in */
+:root[data-scheme='light'] {
+  color-scheme: light;
+  --bg: #eef2f9;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #f4f7fd;
+  --surface: #ffffff;
+  --line: #d8e0ee;
+  --line-soft: #e6ecf6;
+  --text: #16223a;
+  --text-dim: #4a5a76;
+  --text-faint: #8494af;
+  --shadow: 0 12px 40px -16px rgba(23, 34, 58, 0.28);
+  --shadow-soft: 0 6px 20px -12px rgba(23, 34, 58, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(1200px 800px at 80% -10%, color-mix(in srgb, var(--game) 12%, transparent), transparent 60%),
+    radial-gradient(1000px 700px at -10% 110%, color-mix(in srgb, var(--game-2) 10%, transparent), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 500ms ease;
+}
+
+.display {
+  font-family: 'Fraunces', 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* focus visibility */
+:where(button, a, input, [tabindex]):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--game) 70%, white);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+button {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

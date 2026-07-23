@@ -1,0 +1,55 @@
+<main class="wrap">
+  <header class="top">
+    <a routerLink="/" class="back" aria-label="Voltar ao início">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <div class="title">
+      <span class="logo" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
+      <div>
+        <h1 class="display">Ticket to Ride</h1>
+        <p>Escolha a edição que você está jogando</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="rail-divider" aria-hidden="true">
+    <app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail>
+  </div>
+
+  @if (activeId(); as active) {
+    <p class="resume">
+      Você tem uma partida de <strong>{{ match.variant()?.name }}</strong> em andamento.
+      Escolher outra edição começa uma nova.
+    </p>
+  }
+
+  <ul class="grid" role="list">
+    @for (v of variants; track v.id) {
+      <li>
+        <button
+          type="button"
+          class="variant"
+          [class.active]="v.id === activeId()"
+          (click)="choose(v.id)"
+          [attr.aria-pressed]="v.id === activeId()"
+        >
+          <div class="v-head">
+            <h2 class="display">{{ v.name }}</h2>
+            <span class="tag">{{ v.tag }}</span>
+          </div>
+          <p class="note">{{ v.note }}</p>
+          <div class="meta">
+            <span class="chip">{{ v.playersMin }}–{{ v.playersMax }} jog.</span>
+            <span class="chip">{{ v.cars }} vagões</span>
+            <span class="chip">rotas {{ lengths(v.routeTable).join('/') }}</span>
+          </div>
+          <div class="bonus-row">
+            @for (b of v.bonuses; track b.id) {
+              <span class="bonus">{{ b.label }}</span>
+            }
+          </div>
+        </button>
+      </li>
+    }
+  </ul>
+</main>

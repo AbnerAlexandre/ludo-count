@@ -1,0 +1,53 @@
+<main class="landing" #stage>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <header class="hero">
+    <span class="eyebrow" data-anim>Contador &amp; auditoria de pontos</span>
+    <h1 class="display" data-anim>
+      Ludo<span class="accent">Count</span>
+    </h1>
+    <p class="lede" data-anim>
+      Some cada ponto sem erro de conta. Registre as jogadas, e o app rastreia de onde vem cada
+      ponto do seu total — até o fim da partida.
+    </p>
+  </header>
+
+  <section class="cards" aria-label="Escolha um jogo">
+    <a class="card azul" routerLink="/azul" data-anim aria-label="Jogar Azul">
+      <div class="card-art" aria-hidden="true">
+        <span class="pip pip-blue"></span>
+        <span class="pip pip-yellow"></span>
+        <span class="pip pip-red"></span>
+        <span class="pip pip-black"></span>
+        <span class="pip pip-white"></span>
+      </div>
+      <div class="card-body">
+        <h2 class="display">Azul</h2>
+        <p>Parede 5×5, pontuação por ligação e penalidades da linha do chão.</p>
+      </div>
+      <span class="go" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+
+    <a class="card ttr" routerLink="/ticket-to-ride" data-anim aria-label="Jogar Ticket to Ride">
+      <div class="card-art rail" aria-hidden="true">
+        <app-ttr-rail></app-ttr-rail>
+        <app-ttr-rail></app-ttr-rail>
+        <app-ttr-rail></app-ttr-rail>
+      </div>
+      <div class="card-body">
+        <h2 class="display">Ticket to Ride</h2>
+        <p>Escolha a edição — cada mapa tem sua tabela de rotas e bônus próprios.</p>
+      </div>
+      <span class="go" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+  </section>
+
+  <footer class="foot" data-anim>
+    <span>Roda no navegador · sem contas · progresso salvo automaticamente</span>
+  </footer>
+</main>
