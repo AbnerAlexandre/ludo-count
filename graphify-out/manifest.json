@@ -1,0 +1,292 @@
+{
+  ".claude/launch.json": {
+    "mtime": 1784783260.5084307,
+    "ast_hash": "ed667b76f3120e03cc4a12c1ebb34a70",
+    "semantic_hash": ""
+  },
+  ".postcssrc.json": {
+    "mtime": 1784782336.7567823,
+    "ast_hash": "0910552d06a7988426456203a1d9357e",
+    "semantic_hash": ""
+  },
+  ".vscode/extensions.json": {
+    "mtime": 1784782084.474694,
+    "ast_hash": "66fd9e60d4633b6099fe02e06a7075ea",
+    "semantic_hash": ""
+  },
+  ".vscode/launch.json": {
+    "mtime": 1784782084.4736888,
+    "ast_hash": "430386a2f03e9d559664c196344c121b",
+    "semantic_hash": ""
+  },
+  ".vscode/tasks.json": {
+    "mtime": 1784782084.474195,
+    "ast_hash": "cb7ed9a56930402d9059ea5a9773d60e",
+    "semantic_hash": ""
+  },
+  "angular.json": {
+    "mtime": 1784783241.868598,
+    "ast_hash": "52be5f440322d73547c26c73e8822905",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1784783207.868582,
+    "ast_hash": "412bd7c26d95b247d7ef5013c17685de",
+    "semantic_hash": ""
+  },
+  "src/app/app.config.ts": {
+    "mtime": 1784782393.9025722,
+    "ast_hash": "b618db8ce9dd2b6347411ad4dfdd05e8",
+    "semantic_hash": ""
+  },
+  "src/app/app.routes.ts": {
+    "mtime": 1784782408.1342127,
+    "ast_hash": "7521731adf921b3b3293b60ae0de1661",
+    "semantic_hash": ""
+  },
+  "src/app/app.spec.ts": {
+    "mtime": 1784782852.8937871,
+    "ast_hash": "f4414090e5d2a98f86a1a5106d67ed98",
+    "semantic_hash": ""
+  },
+  "src/app/app.ts": {
+    "mtime": 1784782814.908913,
+    "ast_hash": "2b9fff074e557e14a4ff8ca381ad486d",
+    "semantic_hash": ""
+  },
+  "src/app/core/models/audit.models.ts": {
+    "mtime": 1784782417.756708,
+    "ast_hash": "7f39239dc3d75816c3eec0ee33886036",
+    "semantic_hash": ""
+  },
+  "src/app/core/services/azul-match.ts": {
+    "mtime": 1784782644.6413975,
+    "ast_hash": "abdaa0f74d9e93cd0f17d3b571ced4e2",
+    "semantic_hash": ""
+  },
+  "src/app/core/services/persistence.ts": {
+    "mtime": 1784782616.0416956,
+    "ast_hash": "147b3f59001ef16a9d6cff1d139b83f1",
+    "semantic_hash": ""
+  },
+  "src/app/core/services/ttr-match.ts": {
+    "mtime": 1784782668.184098,
+    "ast_hash": "8627f459ac4f977a3762220bdef36ce6",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/azul-page.ts": {
+    "mtime": 1784783130.6337497,
+    "ast_hash": "39732573e55b0a68d5055941d449210b",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/round-history/round-history.ts": {
+    "mtime": 1784783088.5524654,
+    "ast_hash": "1fa2e921e16446fd15e478465b35a7a2",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/scoring/azul-scoring.spec.ts": {
+    "mtime": 1784782469.1795354,
+    "ast_hash": "8fe88423994ad3d21a2b1332d4bffa2c",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/scoring/azul-scoring.ts": {
+    "mtime": 1784782441.6613424,
+    "ast_hash": "ac6354004b30b9a5ebaa7e9d4d0d4d6b",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/wall/azul-wall.ts": {
+    "mtime": 1784783063.5113385,
+    "ast_hash": "d55147dbba23749ab0ca3266758353d6",
+    "semantic_hash": ""
+  },
+  "src/app/features/landing/landing.ts": {
+    "mtime": 1784782867.08399,
+    "ast_hash": "a403a64090bb188e9917c9506a7f8b43",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/counter/ttr-counter.ts": {
+    "mtime": 1784782957.878829,
+    "ast_hash": "1adf531a22277cd0b465dc1f6d45b8f4",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/scoring/ttr-scoring.spec.ts": {
+    "mtime": 1784782546.4450684,
+    "ast_hash": "d129f2a0d22b49f616ca999be4d73be7",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/scoring/ttr-scoring.ts": {
+    "mtime": 1784782529.2641075,
+    "ast_hash": "8bbee7c0175a2ded38223b4efb33db09",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/scoring/ttr-variants.ts": {
+    "mtime": 1784782512.0651772,
+    "ast_hash": "e2fabad73b7b241098356d20f4b08901",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/variant-select/variant-select.ts": {
+    "mtime": 1784783225.0376446,
+    "ast_hash": "9aa905c8eac71d3525cc2dfd70228625",
+    "semantic_hash": ""
+  },
+  "src/app/shared/svg/azul-tile.ts": {
+    "mtime": 1784782761.9165328,
+    "ast_hash": "a3a0696fcaded9a74aa40868649dfc00",
+    "semantic_hash": ""
+  },
+  "src/app/shared/svg/ttr-icons.ts": {
+    "mtime": 1784782797.5154953,
+    "ast_hash": "9602481b73c322a0a09c1d7b7a382d81",
+    "semantic_hash": ""
+  },
+  "src/app/shared/ui/audit-sheet.ts": {
+    "mtime": 1784782736.533655,
+    "ast_hash": "9afd7533f0386b3ec02bf3c8d661e522",
+    "semantic_hash": ""
+  },
+  "src/app/shared/ui/confirm-dialog.ts": {
+    "mtime": 1784782707.6241567,
+    "ast_hash": "58064d86f6c0ca15aaa5ccd875435722",
+    "semantic_hash": ""
+  },
+  "src/app/shared/ui/stepper.ts": {
+    "mtime": 1784782688.402441,
+    "ast_hash": "71de277fa2f3f87c0fa80b618329c0d1",
+    "semantic_hash": ""
+  },
+  "src/main.ts": {
+    "mtime": 1784782084.4452167,
+    "ast_hash": "1289536d6d8f94242a4ffc598d094633",
+    "semantic_hash": ""
+  },
+  "tsconfig.app.json": {
+    "mtime": 1784782084.3079095,
+    "ast_hash": "e36d55dc3a81c35d0328a257103d6d3d",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1784782084.2810147,
+    "ast_hash": "53bc94dc8fdca030fe291132353484a9",
+    "semantic_hash": ""
+  },
+  "tsconfig.spec.json": {
+    "mtime": 1784782084.3369548,
+    "ast_hash": "bd7d8d4dcf7261c37c6a35a892af2f35",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1784783734.401859,
+    "ast_hash": "84e83b7c20c349437d92ed0f5de78fbc",
+    "semantic_hash": ""
+  },
+  "regras/azul/contagem-azul.md": {
+    "mtime": 1784774428.3264363,
+    "ast_hash": "27147ccac74637fd2190387f368fca92",
+    "semantic_hash": ""
+  },
+  "regras/ticket-to-ride/contagem-ticket-to-ride.md": {
+    "mtime": 1784779894.8209188,
+    "ast_hash": "06c1e18bd9269cc2efa899fc928d956f",
+    "semantic_hash": ""
+  },
+  "sistema.md": {
+    "mtime": 1784781721.0126963,
+    "ast_hash": "8b016aab6ef62ccdcb104cc766cebebc",
+    "semantic_hash": ""
+  },
+  "src/app/app.html": {
+    "mtime": 1784782825.422618,
+    "ast_hash": "f938a5a435a3bae3b94169cea0c84eb2",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/azul-page.html": {
+    "mtime": 1784783153.3101492,
+    "ast_hash": "a1078554534aec01c5fe9d2500814655",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/round-history/round-history.html": {
+    "mtime": 1784783103.3753793,
+    "ast_hash": "bed4fd89d78699381700725a96b07059",
+    "semantic_hash": ""
+  },
+  "src/app/features/landing/landing.html": {
+    "mtime": 1784782880.2999537,
+    "ast_hash": "3f3a5590b60d15310d51388064efb1b5",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/counter/ttr-counter.html": {
+    "mtime": 1784782993.7782323,
+    "ast_hash": "00b560df985d5b999906f8850202826c",
+    "semantic_hash": ""
+  },
+  "src/app/features/ticket-to-ride/variant-select/variant-select.html": {
+    "mtime": 1784782922.280976,
+    "ast_hash": "d454f0366830d1b32d2093fede75b4ba",
+    "semantic_hash": ""
+  },
+  "src/index.html": {
+    "mtime": 1784782350.9945798,
+    "ast_hash": "3b9d617faf6d90bcef57b255c1520a95",
+    "semantic_hash": ""
+  },
+  "public/azul/azul-logo.webp": {
+    "mtime": 1784770928.9455142,
+    "ast_hash": "252b00e2181f7f2943173621b25b9b15",
+    "semantic_hash": ""
+  },
+  "public/azul/tile-black.svg": {
+    "mtime": 1784768731.3114314,
+    "ast_hash": "e8aacabee8a148d531224850759f2b3b",
+    "semantic_hash": ""
+  },
+  "public/azul/tile-blue.svg": {
+    "mtime": 1784768777.8065224,
+    "ast_hash": "f8622dda3f5b004a4f719e532c1a71dc",
+    "semantic_hash": ""
+  },
+  "public/azul/tile-negative-point.svg": {
+    "mtime": 1784773316.7592537,
+    "ast_hash": "4b136926980980bd19f32e3823f2b2f8",
+    "semantic_hash": ""
+  },
+  "public/azul/tile-red.svg": {
+    "mtime": 1784768791.344423,
+    "ast_hash": "9fdb5dbcaa70fd466fdd686898ebaceb",
+    "semantic_hash": ""
+  },
+  "public/azul/tile-turquoise.svg": {
+    "mtime": 1784768795.6988332,
+    "ast_hash": "94095a1fd2a07ff07addbc5b8decb7be",
+    "semantic_hash": ""
+  },
+  "public/azul/tile-yellow.svg": {
+    "mtime": 1784768800.0602715,
+    "ast_hash": "bcd598a1d3d7ff08e534e6125502fbda",
+    "semantic_hash": ""
+  },
+  "public/ticket-to-ride/locomotive.svg": {
+    "mtime": 1784780868.403529,
+    "ast_hash": "bb390e57afec7fb56c1fc7316f690dbc",
+    "semantic_hash": ""
+  },
+  "public/ticket-to-ride/ticket-to-ride-logo.png": {
+    "mtime": 1784770973.3910537,
+    "ast_hash": "99c372ac827aceb7ac63153fe1cc1ffc",
+    "semantic_hash": ""
+  },
+  "public/ticket-to-ride/train-rail.svg": {
+    "mtime": 1784781080.3565273,
+    "ast_hash": "9ed92553a4c2499d5f1604a79c1728fd",
+    "semantic_hash": ""
+  },
+  "regras/azul/parede-azul-preenchida-exemplo.png": {
+    "mtime": 1784772043.019673,
+    "ast_hash": "93b4823c7bcb23118c4f65e72432078b",
+    "semantic_hash": ""
+  },
+  "regras/azul/parede-azul-vazia-exemplo.png": {
+    "mtime": 1784772285.4429545,
+    "ast_hash": "34abe55ab0f5ac715f678de41e9f84ab",
+    "semantic_hash": ""
+  }
+}
