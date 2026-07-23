@@ -45,11 +45,11 @@ interface Cell {
               [disabled]="committed || readOnly()"
               (click)="onTap(row, col)"
             >
-              @if (committed || draft) {
-                <app-azul-tile [color]="colorAt(row, col)" />
-              } @else {
-                <span class="ghost" [style.background]="ghostColor(row, col)"></span>
-              }
+              <app-azul-tile
+                class="tile"
+                [class.faded]="!committed && !draft"
+                [color]="colorAt(row, col)"
+              />
 
               @if (committed && badge(row, col); as n) {
                 <span class="badge tabular" aria-hidden="true">{{ n }}</span>
@@ -77,17 +77,6 @@ export class AzulWall {
 
   colorAt(row: number, col: number): AzulColor {
     return wallColor(row, col);
-  }
-
-  ghostColor(row: number, col: number): string {
-    const map: Record<AzulColor, string> = {
-      blue: 'var(--azul-blue)',
-      yellow: 'var(--azul-yellow)',
-      red: 'var(--azul-red)',
-      black: 'var(--azul-black)',
-      white: 'var(--azul-white)',
-    };
-    return map[wallColor(row, col)];
   }
 
   badge(row: number, col: number): number | null {

@@ -16,14 +16,14 @@
   <section class="cards" aria-label="Escolha um jogo">
     <a class="card azul" routerLink="/azul" data-anim aria-label="Jogar Azul">
       <div class="card-art" aria-hidden="true">
-        <span class="pip pip-blue"></span>
-        <span class="pip pip-yellow"></span>
-        <span class="pip pip-red"></span>
-        <span class="pip pip-black"></span>
-        <span class="pip pip-white"></span>
+        <div class="tiles">
+          @for (c of tileColors; track c) {
+            <span class="tile"><app-azul-tile [color]="c" /></span>
+          }
+        </div>
       </div>
       <div class="card-body">
-        <h2 class="display">Azul</h2>
+        <img class="game-logo" src="azul/azul-logo.webp" alt="Azul" />
         <p>Parede 5×5, pontuação por ligação e penalidades da linha do chão.</p>
       </div>
       <span class="go" aria-hidden="true">
@@ -38,7 +38,7 @@
         <app-ttr-rail></app-ttr-rail>
       </div>
       <div class="card-body">
-        <h2 class="display">Ticket to Ride</h2>
+        <img class="game-logo ttr-logo" src="ticket-to-ride/ticket-to-ride-logo.png" alt="Ticket to Ride" />
         <p>Escolha a edição — cada mapa tem sua tabela de rotas e bônus próprios.</p>
       </div>
       <span class="go" aria-hidden="true">

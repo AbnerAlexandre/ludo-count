@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, ElementRef, afterNextRender, inject, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TtrRail } from '../../shared/svg/ttr-icons';
+import { AzulTile } from '../../shared/svg/azul-tile';
+import { AZUL_COLORS, type AzulColor } from '../azul/scoring/azul-scoring';
 
 /**
  * Landing / hero. Establishes the app identity with a staggered entrance. Uses
@@ -10,13 +12,14 @@ import { TtrRail } from '../../shared/svg/ttr-icons';
 @Component({
   selector: 'app-landing',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, TtrRail],
+  imports: [RouterLink, TtrRail, AzulTile],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
 export class Landing {
   private readonly host = inject(ElementRef<HTMLElement>);
   readonly stage = viewChild<ElementRef<HTMLElement>>('stage');
+  readonly tileColors = AZUL_COLORS as readonly AzulColor[];
 
   constructor() {
     afterNextRender(async () => {

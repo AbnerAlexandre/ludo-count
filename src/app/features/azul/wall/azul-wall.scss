@@ -39,17 +39,19 @@
   cursor: default;
 }
 
-.ghost {
+.tile {
   position: absolute;
-  inset: 14%;
-  border-radius: 22%;
-  opacity: 0.16;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s ease, transform 0.14s ease;
 }
-
-app-azul-tile {
-  position: absolute;
-  inset: 6%;
-  width: 88%;
+/* empty cells show a faint tile so the wall layout reads like the reference */
+.tile.faded {
+  opacity: 0.12;
+}
+:root[data-scheme='light'] .tile.faded {
+  opacity: 0.18;
 }
 
 .cell.committed {

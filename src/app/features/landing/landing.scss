@@ -139,30 +139,26 @@ h1 .accent {
   height: 64px;
   align-items: center;
 }
-.pip {
-  width: 40px;
-  height: 40px;
+.card-art .tiles {
+  display: flex;
+  gap: 8px;
+}
+.card-art .tile {
+  width: 44px;
+  height: 44px;
   border-radius: 11px;
-  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.25), inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
   transition: transform 0.25s ease;
 }
-.card.azul:hover .pip {
-  transform: translateY(-2px) rotate(-4deg);
+.card.azul:hover .tile {
+  transform: translateY(-3px) rotate(-4deg);
 }
-.pip-blue {
-  background: var(--azul-blue);
+.card.azul:hover .tile:nth-child(2) {
+  transform: translateY(-3px) rotate(3deg);
 }
-.pip-yellow {
-  background: var(--azul-yellow);
-}
-.pip-red {
-  background: var(--azul-red);
-}
-.pip-black {
-  background: var(--azul-black);
-}
-.pip-white {
-  background: var(--azul-white);
+.card.azul:hover .tile:nth-child(4) {
+  transform: translateY(-3px) rotate(-2deg);
 }
 
 .card-art.rail app-ttr-rail {
@@ -172,11 +168,18 @@ h1 .accent {
   opacity: 0.9;
 }
 
-.card-body h2 {
-  margin: 0 0 6px;
-  font-size: 1.8rem;
-  font-weight: 700;
+.game-logo {
+  display: block;
+  height: 46px;
+  width: auto;
+  max-width: 78%;
+  object-fit: contain;
+  margin: 0 0 8px;
 }
+.game-logo.ttr-logo {
+  height: 40px;
+}
+
 .card-body p {
   margin: 0;
   color: var(--text-dim);

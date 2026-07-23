@@ -52,6 +52,24 @@ export class TtrCounter {
     this.match.addTicket(this.ticketValue(), completed);
   }
 
+  /** Keep the ticket-value input strictly numeric. */
+  onTicketInput(event: Event): void {
+    const el = event.target as HTMLInputElement;
+    const digits = el.value.replace(/[^0-9]/g, '').slice(0, 3);
+    el.value = digits;
+    this.ticketValue.set(digits === '' ? 0 : parseInt(digits, 10));
+  }
+
+  /** Block non-numeric keys (e, E, +, -, ., etc.) that type=number would otherwise allow. */
+  blockNonNumericKey(event: KeyboardEvent): void {
+    if (['e', 'E', '+', '-', '.', ','].includes(event.key)) event.preventDefault();
+  }
+
+  /** On blur, an empty field falls back to 1 so the stepper stays usable. */
+  normalizeTicketValue(): void {
+    if (this.ticketValue() < 1) this.ticketValue.set(1);
+  }
+
   // bonus helpers ------------------------------------------------------------
   bonusNumber(spec: BonusSpec): number {
     const v = this.match.bonusValue(spec);

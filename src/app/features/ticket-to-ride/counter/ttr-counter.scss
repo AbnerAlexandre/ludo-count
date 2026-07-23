@@ -180,12 +180,12 @@
   gap: 10px;
 }
 .len {
-  min-height: 66px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
   background: var(--bg-elev-2);
@@ -201,8 +201,20 @@
   transform: scale(0.95);
 }
 .len-cars {
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.15rem;
   font-weight: 800;
+}
+.len-loco {
+  width: 22px;
+  height: 22px;
+  color: var(--ttr-rail);
+  display: inline-flex;
+}
+.len:hover .len-loco {
+  color: color-mix(in srgb, var(--ttr-rail) 92%, white);
 }
 .len-cars small {
   font-size: 0.62rem;
@@ -291,6 +303,28 @@
   text-align: center;
   font-size: 1.15rem;
   font-weight: 800;
+}
+.s-input {
+  width: 56px;
+  height: 44px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0 4px;
+  -moz-appearance: textfield;
+}
+.s-input::-webkit-outer-spin-button,
+.s-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.s-input:focus-visible {
+  outline: 2px solid var(--ttr-rail);
+  outline-offset: 1px;
 }
 .add {
   flex: 1;

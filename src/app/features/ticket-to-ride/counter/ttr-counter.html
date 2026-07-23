@@ -50,7 +50,11 @@
       <div class="len-grid">
         @for (len of routeLengths(); track len) {
           <button type="button" class="len" (click)="addRoute(len)">
-            <span class="len-cars">{{ len }} <small>{{ len === 1 ? 'vagão' : 'vagões' }}</small></span>
+            <span class="len-cars">
+              <span class="len-loco" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
+              <b class="tabular">{{ len }}</b>
+              <small>{{ len === 1 ? 'vagão' : 'vagões' }}</small>
+            </span>
             <span class="len-pts tabular">+{{ terrainEnabled() && v.terrainTable ? v.terrainTable[len] : v.routeTable[len] }}</span>
           </button>
         }
@@ -80,7 +84,19 @@
       <div class="ticket-entry">
         <div class="stepper mini" role="group" aria-label="Valor do bilhete">
           <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() > 1 ? ticketValue() - 1 : 1)" aria-label="Diminuir valor">−</button>
-          <span class="s-val tabular">{{ ticketValue() }}</span>
+          <input
+            type="number"
+            class="s-input tabular"
+            inputmode="numeric"
+            min="1"
+            max="999"
+            step="1"
+            aria-label="Valor do bilhete"
+            [value]="ticketValue()"
+            (input)="onTicketInput($event)"
+            (keydown)="blockNonNumericKey($event)"
+            (blur)="normalizeTicketValue()"
+          />
           <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() + 1)" aria-label="Aumentar valor">+</button>
         </div>
         <button type="button" class="add good" (click)="addTicket(true)">＋ Completo</button>
