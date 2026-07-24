@@ -41,7 +41,7 @@ interface Cell {
               [class.locked]="committed || readOnly()"
               [attr.data-color]="colorAt(row, col)"
               [attr.aria-label]="cellLabel(row, col, committed, draft)"
-              [attr.aria-pressed]="draft"
+              [attr.aria-selected]="committed || draft"
               [disabled]="committed || readOnly()"
               (click)="onTap(row, col)"
             >

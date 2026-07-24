@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Seo } from '../../../core/seo/seo';
 import { TTR_GENERIC_LOGO, TTR_VARIANTS } from '../scoring/ttr-variants';
 import { TtrMatch } from '../../../core/services/ttr-match';
 import { TtrRail } from '../../../shared/svg/ttr-icons';
@@ -26,7 +26,13 @@ export class VariantSelect {
   readonly hasProgress = this.match.hasProgress;
 
   constructor() {
-    inject(Title).setTitle('Ticket to Ride — LudoCount');
+    inject(Seo).update({
+      title: 'Contador de pontos Ticket to Ride — todas as edições | LudoCount',
+      description:
+        'Escolha a edição do Ticket to Ride (EUA, Europa, Nordic, Índia, Japão e mais) e ' +
+        'conte os pontos com a tabela de rotas e os bônus corretos de cada mapa.',
+      path: '/ticket-to-ride',
+    });
   }
 
   choose(id: string): void {

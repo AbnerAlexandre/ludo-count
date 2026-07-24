@@ -2,17 +2,103 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>LudoCount — Contador de Pontos</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Título e descrição (sobrescritos por rota pelo Seo service) -->
+  <title>LudoCount — Contador de pontos para jogos de tabuleiro</title>
+  <meta name="description" content="Contador de pontos online e gratuito para Azul e Ticket to Ride. Some sem erro de conta e veja de onde vem cada ponto do seu total. Funciona no celular, sem instalar e sem criar conta.">
+  <link rel="canonical" href="https://ludo-contador.vercel.app/">
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="LudoCount">
+  <meta name="application-name" content="LudoCount">
   <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="Contador e auditoria de pontos para jogos de tabuleiro — Azul e Ticket to Ride.">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LudoCount">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="LudoCount — Contador de pontos para jogos de tabuleiro">
+  <meta property="og:description" content="Contador de pontos online e gratuito para Azul e Ticket to Ride, com auditoria de cada ponto do total.">
+  <meta property="og:url" content="https://ludo-contador.vercel.app/">
+  <meta property="og:image" content="https://ludo-contador.vercel.app/ticket-to-ride/ticket-to-ride-logo.png">
+  <meta property="og:image:alt" content="LudoCount — contador de pontos para Azul e Ticket to Ride">
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LudoCount — Contador de pontos para jogos de tabuleiro">
+  <meta name="twitter:description" content="Contador de pontos online e gratuito para Azul e Ticket to Ride, com auditoria de cada ponto do total.">
+  <meta name="twitter:image" content="https://ludo-contador.vercel.app/ticket-to-ride/ticket-to-ride-logo.png">
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="azul/azul-logo.webp">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Fontes: preconnect + preload para reduzir o atraso de renderização (LCP) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap">
+  </noscript>
+
+  <!-- Dados estruturados: ajuda o Google a entender o que o site é -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ludo-contador.vercel.app/#app",
+        "name": "LudoCount",
+        "url": "https://ludo-contador.vercel.app/",
+        "description": "Contador de pontos online e gratuito para os jogos de tabuleiro Azul e Ticket to Ride, com auditoria de cada ponto do total.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Qualquer navegador moderno",
+        "browserRequirements": "Requer JavaScript",
+        "inLanguage": "pt-BR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "featureList": [
+          "Contador de pontos do Azul com parede 5x5 e penalidades da linha do chão",
+          "Bônus de fim de partida do Azul: linhas, colunas e cores completas",
+          "Contador de pontos do Ticket to Ride com 13 edições e tabelas de rota próprias",
+          "Auditoria que mostra a origem de cada ponto",
+          "Funciona offline no navegador, sem conta e sem instalar"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ludo-contador.vercel.app/#website",
+        "url": "https://ludo-contador.vercel.app/",
+        "name": "LudoCount",
+        "inLanguage": "pt-BR"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <!-- Conteúdo de fallback: aparece antes do app carregar e para crawlers sem JS -->
+    <h1>LudoCount — contador de pontos para jogos de tabuleiro</h1>
+    <p>
+      Contador de pontos gratuito para Azul e Ticket to Ride, com auditoria de cada ponto do total.
+      Carregando o aplicativo…
+    </p>
+  </app-root>
+  <noscript>
+    <p>
+      O LudoCount precisa de JavaScript para calcular a pontuação. Ative o JavaScript no navegador
+      para usar o contador de pontos de Azul e Ticket to Ride.
+    </p>
+  </noscript>
 </body>
 </html>

@@ -6,6 +6,7 @@
     <span class="eyebrow" data-anim>Contador &amp; auditoria de pontos</span>
     <h1 class="display" data-anim>
       Ludo<span class="accent">Count</span>
+      <span class="sr-only"> — contador de pontos para Azul e Ticket to Ride</span>
     </h1>
     <p class="lede" data-anim>
       Some cada ponto sem erro de conta. Registre as jogadas, e o app rastreia de onde vem cada
@@ -14,17 +15,33 @@
   </header>
 
   <section class="cards" aria-label="Escolha um jogo">
-    <a class="card azul" routerLink="/azul" data-anim aria-label="Jogar Azul">
-      <img class="game-logo" src="azul/azul-logo.webp" alt="Azul" />
-      <p class="card-desc">Parede 5×5, pontuação por ligação e penalidades da linha do chão.</p>
+    <a class="card azul" routerLink="/azul" data-anim>
+      <img
+        class="game-logo"
+        src="azul/azul-logo.webp"
+        alt="Azul — contador de pontos"
+        width="575"
+        height="408"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="sr-only">Abrir o contador de pontos do Azul</span>
       <span class="go" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
     </a>
 
-    <a class="card ttr" routerLink="/ticket-to-ride" data-anim aria-label="Jogar Ticket to Ride">
-      <img class="game-logo ttr-logo" src="ticket-to-ride/ticket-to-ride-logo.png" alt="Ticket to Ride" />
-      <p class="card-desc">Escolha a edição — cada mapa tem sua tabela de rotas e bônus próprios.</p>
+    <a class="card ttr" routerLink="/ticket-to-ride" data-anim>
+      <img
+        class="game-logo ttr-logo"
+        src="ticket-to-ride/ticket-to-ride-logo.png"
+        alt="Ticket to Ride — contador de pontos"
+        width="1339"
+        height="462"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="sr-only">Escolher a edição do Ticket to Ride e abrir o contador</span>
       <span class="go" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>

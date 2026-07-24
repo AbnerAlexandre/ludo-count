@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Seo } from '../../core/seo/seo';
 import { AzulMatch } from '../../core/services/azul-match';
 import { AzulWall } from './wall/azul-wall';
 import { RoundHistory } from './round-history/round-history';
@@ -17,7 +18,7 @@ import { floorPenalty } from './scoring/azul-scoring';
 })
 export class AzulPage {
   readonly match = inject(AzulMatch);
-  private readonly title = inject(Title);
+  private readonly seo = inject(Seo);
 
   readonly showAudit = signal(false);
   /** which confirmation dialog is open, if any */
@@ -32,9 +33,21 @@ export class AzulPage {
   readonly floorSlots = [1, 2, 3, 4, 5, 6, 7];
 
   constructor() {
-    effect(() => {
-      this.title.setTitle(`Azul - ${this.match.finalTotal()}`);
+    this.seo.update({
+      title: 'Contador de pontos do Azul — parede, penalidades e bônus | LudoCount',
+      description:
+        'Conte os pontos do jogo Azul sem errar: parede 5x5 interativa, pontuação por ligação, ' +
+        'penalidades da linha do chão e bônus de linhas, colunas e cores completas no fim da partida.',
+      path: '/azul',
     });
+
+    // No browser o título acompanha o placar ao vivo. No prerender ele é
+    // preservado descritivo, senão o buscador indexaria "Azul - 0".
+    if (isPlatformBrowser(inject(PLATFORM_ID))) {
+      effect(() => {
+        this.seo.setTitle(`Azul - ${this.match.finalTotal()}`);
+      });
+    }
   }
 
   cumulativePenalty(slot: number): number {

@@ -1,0 +1,39 @@
+{
+  "name": "LudoCount — Contador de pontos para jogos de tabuleiro",
+  "short_name": "LudoCount",
+  "description": "Contador de pontos online e gratuito para Azul e Ticket to Ride, com auditoria de cada ponto do total.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "categories": ["games", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "azul/azul-logo.webp",
+      "sizes": "575x408",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contar pontos no Azul",
+      "short_name": "Azul",
+      "url": "./azul"
+    },
+    {
+      "name": "Contar pontos no Ticket to Ride",
+      "short_name": "Ticket to Ride",
+      "url": "./ticket-to-ride"
+    }
+  ]
+}

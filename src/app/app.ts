@@ -1,4 +1,5 @@
-import { Component, DOCUMENT, effect, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -18,6 +19,8 @@ export class App {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly doc = inject(DOCUMENT);
+  /** localStorage não existe durante o prerender (Node) */
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly scheme = signal<'dark' | 'light'>('dark');
 
@@ -35,8 +38,10 @@ export class App {
   );
 
   constructor() {
-    const saved = localStorage.getItem('ludocount:scheme');
-    if (saved === 'light' || saved === 'dark') this.scheme.set(saved);
+    if (this.isBrowser) {
+      const saved = localStorage.getItem('ludocount:scheme');
+      if (saved === 'light' || saved === 'dark') this.scheme.set(saved);
+    }
 
     effect(() => {
       const el = this.doc.documentElement;
@@ -50,7 +55,7 @@ export class App {
       const el = this.doc.documentElement;
       if (s === 'light') el.setAttribute('data-scheme', 'light');
       else el.removeAttribute('data-scheme');
-      localStorage.setItem('ludocount:scheme', s);
+      if (this.isBrowser) localStorage.setItem('ludocount:scheme', s);
     });
   }
 

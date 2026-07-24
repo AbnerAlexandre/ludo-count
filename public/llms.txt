@@ -1,0 +1,34 @@
+# LudoCount
+
+> Contador de pontos online e gratuito para os jogos de tabuleiro Azul e Ticket to Ride.
+> Roda inteiramente no navegador, sem conta e sem instalação, e mostra a origem de cada
+> ponto do total numa tela de auditoria.
+
+## Contadores
+
+- [Contador de pontos do Azul](https://ludo-contador.vercel.app/azul): parede 5x5 interativa, pontuação por ligação
+  (horizontal + vertical), penalidades da linha do chão e bônus de fim de partida por linhas,
+  colunas e cores completas.
+- [Ticket to Ride — escolha a edição](https://ludo-contador.vercel.app/ticket-to-ride): cada edição tem sua própria
+  tabela de pontos por rota e seus bônus de fim de jogo.
+
+## Edições do Ticket to Ride
+
+- [EUA](https://ludo-contador.vercel.app/ticket-to-ride/usa)
+- [Europa](https://ludo-contador.vercel.app/ticket-to-ride/europa)
+- [Nordic Countries](https://ludo-contador.vercel.app/ticket-to-ride/nordic)
+- [Märklin](https://ludo-contador.vercel.app/ticket-to-ride/marklin)
+- [Switzerland](https://ludo-contador.vercel.app/ticket-to-ride/switzerland)
+- [India](https://ludo-contador.vercel.app/ticket-to-ride/india)
+- [Heart of Africa](https://ludo-contador.vercel.app/ticket-to-ride/africa)
+- [Nederland](https://ludo-contador.vercel.app/ticket-to-ride/nederland)
+- [Pennsylvania](https://ludo-contador.vercel.app/ticket-to-ride/pennsylvania)
+- [Legendary Asia](https://ludo-contador.vercel.app/ticket-to-ride/legendary-asia)
+- [Japan](https://ludo-contador.vercel.app/ticket-to-ride/japan)
+- [Italy](https://ludo-contador.vercel.app/ticket-to-ride/italy)
+- [France](https://ludo-contador.vercel.app/ticket-to-ride/france)
+
+## Observações
+
+- O app pontua o que o jogador informa; ele não simula o estado do jogo.
+- A pontuação final do Ticket to Ride pode ser negativa; a do Azul nunca fica abaixo de zero.

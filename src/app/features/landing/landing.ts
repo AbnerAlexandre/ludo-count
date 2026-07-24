@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, afterNextRender, inject, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { TtrRail, TtrWagon } from '../../shared/svg/ttr-icons';
-import { AzulTile } from '../../shared/svg/azul-tile';
-import { AZUL_COLORS, type AzulColor } from '../azul/scoring/azul-scoring';
+import { Seo } from '../../core/seo/seo';
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from '../../core/seo/seo.config';
 
 /**
  * Landing / hero. Establishes the app identity with a staggered entrance. Uses
@@ -13,17 +11,20 @@ import { AZUL_COLORS, type AzulColor } from '../azul/scoring/azul-scoring';
 @Component({
   selector: 'app-landing',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, TtrRail, TtrWagon, AzulTile],
+  imports: [RouterLink],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
 export class Landing {
   private readonly host = inject(ElementRef<HTMLElement>);
   readonly stage = viewChild<ElementRef<HTMLElement>>('stage');
-  readonly tileColors = AZUL_COLORS as readonly AzulColor[];
 
   constructor() {
-    inject(Title).setTitle('LudoCount — Contador de Pontos');
+    inject(Seo).update({
+      title: DEFAULT_TITLE,
+      description: DEFAULT_DESCRIPTION,
+      path: '/',
+    });
 
     afterNextRender(async () => {
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;

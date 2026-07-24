@@ -1,0 +1,13 @@
+# robots.txt — LudoCount
+# Contador de pontos para jogos de tabuleiro (Azul e Ticket to Ride).
+
+User-agent: *
+Allow: /
+
+# Sem área privada, sem login e sem conteúdo duplicado: tudo pode ser indexado.
+# Arquivos de build não trazem valor de busca:
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.map$
+
+Sitemap: https://ludo-contador.vercel.app/sitemap.xml
