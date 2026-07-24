@@ -2,9 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/ludocount/browser",
-
-  "// nota": "O build é 100% estático (outputMode: static). O @angular/ssr é usado apenas em tempo de build para prerenderizar as 16 rotas — não há função de servidor. Fixamos buildCommand/outputDirectory para a Vercel não tentar o preset de SSR.",
-
   "cleanUrls": true,
   "trailingSlash": false,
 
