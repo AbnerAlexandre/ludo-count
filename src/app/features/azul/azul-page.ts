@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { AzulMatch } from '../../core/services/azul-match';
 import { AzulWall } from './wall/azul-wall';
 import { RoundHistory } from './round-history/round-history';
 import { AuditSheet } from '../../shared/ui/audit-sheet';
 import { ConfirmDialog } from '../../shared/ui/confirm-dialog';
+import { floorPenalty } from './scoring/azul-scoring';
 
 @Component({
   selector: 'app-azul-page',
@@ -15,25 +17,47 @@ import { ConfirmDialog } from '../../shared/ui/confirm-dialog';
 })
 export class AzulPage {
   readonly match = inject(AzulMatch);
+  private readonly title = inject(Title);
 
   readonly showAudit = signal(false);
-  readonly showConfirm = signal(false);
+  /** which confirmation dialog is open, if any */
+  readonly confirm = signal<'finish' | 'new' | null>(null);
 
   readonly draftCount = computed(() => this.match.draftPlacements().length);
   readonly preview = this.match.draftPreview;
   readonly isViewingHistory = computed(() => this.match.viewedRound() !== null);
+  readonly finished = this.match.finished;
 
-  setFloor(n: number): void {
-    this.match.setFloor(n);
+  /** floor-line slots (1..7) rendered as a penalty "rating" row */
+  readonly floorSlots = [1, 2, 3, 4, 5, 6, 7];
+
+  constructor() {
+    effect(() => {
+      this.title.setTitle(`Azul - ${this.match.finalTotal()}`);
+    });
+  }
+
+  cumulativePenalty(slot: number): number {
+    return floorPenalty(slot);
+  }
+
+  onFloorClick(slot: number): void {
+    // rating behaviour: click selects 1..slot; re-clicking the highest clears it back one
+    this.match.setFloor(this.match.draftFloor() === slot ? slot - 1 : slot);
   }
 
   commit(): void {
     this.match.commitRound();
   }
 
+  confirmFinish(): void {
+    this.match.finish();
+    this.confirm.set(null);
+  }
+
   confirmNewMatch(): void {
     this.match.reset();
-    this.showConfirm.set(false);
+    this.confirm.set(null);
   }
 
   signed(n: number): string {

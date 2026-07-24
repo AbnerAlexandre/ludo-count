@@ -34,11 +34,20 @@ export interface BonusSpec {
   hint?: string;
 }
 
+/** Fallback logo, used by editions that don't ship their own art. */
+export const TTR_GENERIC_LOGO = 'ticket-to-ride/ticket-to-ride-logo.png';
+
 export interface TtrVariant {
   id: string;
   name: string;
   /** short region/era tag shown on the card */
   tag: string;
+  /**
+   * Path (under public/) to this edition's logo. Omitted when no matching art
+   * exists — the selection list then shows no logo for that edition, and the
+   * counter header falls back to TTR_GENERIC_LOGO.
+   */
+  logo?: string;
   playersMin: number;
   playersMax: number;
   cars: number;
@@ -75,6 +84,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'usa',
     name: 'EUA',
     tag: 'Clássico · 2004',
+    logo: TTR_GENERIC_LOGO, // o logo genérico é o da versão EUA
     playersMin: 2,
     playersMax: 5,
     cars: 45,
@@ -86,6 +96,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'europa',
     name: 'Europa',
     tag: '2005',
+    logo: 'ticket-to-ride/ticket-europe.webp',
     playersMin: 2,
     playersMax: 5,
     cars: 45,
@@ -108,6 +119,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'nordic',
     name: 'Nordic Countries',
     tag: '2007 · 2–3 jog.',
+    logo: 'ticket-to-ride/ticket-nordic.webp',
     playersMin: 2,
     playersMax: 3,
     cars: 40,
@@ -152,6 +164,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'india',
     name: 'India',
     tag: 'Map Collection 2',
+    logo: 'ticket-to-ride/ticket-india.webp',
     playersMin: 2,
     playersMax: 4,
     cars: 45,
@@ -174,6 +187,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'africa',
     name: 'Heart of Africa',
     tag: 'Map Collection 3',
+    logo: 'ticket-to-ride/ticket-heartafrica.webp',
     playersMin: 2,
     playersMax: 5,
     cars: 45,
@@ -186,6 +200,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'nederland',
     name: 'Nederland',
     tag: 'Map Collection 4',
+    logo: 'ticket-to-ride/ticket-nederland.webp',
     playersMin: 2,
     playersMax: 5,
     cars: 45,
@@ -238,6 +253,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'legendary-asia',
     name: 'Legendary Asia',
     tag: 'Map Collection 1',
+    logo: 'ticket-to-ride/ticket-asia.webp',
     playersMin: 2,
     playersMax: 6,
     cars: 45,
@@ -260,6 +276,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'japan',
     name: 'Japan',
     tag: 'Map Collection 7',
+    logo: 'ticket-to-ride/ticket-japan.webp',
     playersMin: 2,
     playersMax: 5,
     cars: 45,
@@ -302,6 +319,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     id: 'france',
     name: 'France',
     tag: 'Map Collection 6',
+    logo: 'ticket-to-ride/ticket-france.webp',
     playersMin: 2,
     playersMax: 5,
     cars: 45,

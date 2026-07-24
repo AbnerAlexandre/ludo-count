@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { TtrMatch } from '../../../core/services/ttr-match';
 import { AuditSheet } from '../../../shared/ui/audit-sheet';
 import { ConfirmDialog } from '../../../shared/ui/confirm-dialog';
 import { TtrLocomotive, TtrRail } from '../../../shared/svg/ttr-icons';
-import type { BonusSpec } from '../scoring/ttr-variants';
+import { TTR_GENERIC_LOGO, type BonusSpec } from '../scoring/ttr-variants';
 
 @Component({
   selector: 'app-ttr-counter',
@@ -16,15 +17,23 @@ import type { BonusSpec } from '../scoring/ttr-variants';
 export class TtrCounter {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly title = inject(Title);
   readonly match = inject(TtrMatch);
 
   readonly showAudit = signal(false);
-  readonly showConfirm = signal(false);
+  /** which confirmation dialog is open, if any */
+  readonly confirm = signal<'finish' | 'new' | null>(null);
 
   /** ticket entry draft */
   readonly ticketValue = signal(1);
 
   readonly variant = this.match.variant;
+  readonly finished = this.match.finished;
+
+  /** edition logo for the header; editions without their own art use the generic one */
+  readonly headerLogo = computed(() => this.variant()?.logo ?? TTR_GENERIC_LOGO);
+  /** when the generic logo is used the edition isn't identifiable, so we caption it */
+  readonly usesGenericLogo = computed(() => !this.variant()?.logo);
 
   readonly routeLengths = computed(() => {
     const v = this.variant();
@@ -40,6 +49,10 @@ export class TtrCounter {
     const id = this.route.snapshot.paramMap.get('variantId')!;
     const ok = this.match.selectVariant(id);
     if (!ok) this.router.navigate(['/ticket-to-ride']);
+
+    effect(() => {
+      this.title.setTitle(`Ticket - ${this.match.total()}`);
+    });
   }
 
   addRoute(length: number): void {
@@ -89,10 +102,15 @@ export class TtrCounter {
     return n > 0 ? `+${n}` : `${n}`;
   }
 
+  confirmFinish(): void {
+    this.match.finish();
+    this.confirm.set(null);
+  }
+
   confirmNewMatch(): void {
     this.match.reset();
     this.terrainEnabled.set(false);
-    this.showConfirm.set(false);
+    this.confirm.set(null);
     this.router.navigate(['/ticket-to-ride']);
   }
 }

@@ -4,6 +4,7 @@ import type { AuditEntry } from '../models/audit.models';
 import {
   cloneWall,
   emptyWall,
+  endGameScore,
   floorPenalty,
   scoreRound,
   wallColor,
@@ -16,7 +17,16 @@ import {
 interface AzulSnapshot {
   wall: Wall;
   rounds: RoundResult[];
+  finished: boolean;
 }
+
+const COLOR_LABEL: Record<AzulColor, string> = {
+  blue: 'azul',
+  yellow: 'amarelo',
+  red: 'vermelho',
+  black: 'preto',
+  white: 'branco',
+};
 
 const KEY = 'azul';
 
@@ -43,10 +53,20 @@ export class AzulMatch {
   /** which round the history viewer is focused on (null = live/current) */
   readonly viewedRound = signal<number | null>(null);
 
+  /** true once the player finishes the match — locks all inputs */
+  readonly finished = signal(false);
+
+  /** running total from the rounds (floor-at-zero already applied per round) */
   readonly total = computed(() => {
     const r = this.rounds();
     return r.length ? r[r.length - 1].totalAfter : 0;
   });
+
+  /** end-of-game bonuses computed from the final wall */
+  readonly endGame = computed(() => endGameScore(this.wall()));
+
+  /** total shown to the player: adds the end-game bonuses once finished */
+  readonly finalTotal = computed(() => this.total() + (this.finished() ? this.endGame().total : 0));
 
   readonly roundNumber = computed(() => this.rounds().length + 1);
 
@@ -103,6 +123,40 @@ export class AzulMatch {
         });
       }
     });
+
+    if (this.finished()) {
+      const eg = this.endGame();
+      for (const row of eg.completedRows) {
+        out.push({
+          id: `eg-row-${row}`,
+          group: 'Fim de partida',
+          label: `Linha ${row + 1} completa`,
+          points: 2,
+          detail: 'linha horizontal',
+          kind: 'bonus',
+        });
+      }
+      for (const col of eg.completedCols) {
+        out.push({
+          id: `eg-col-${col}`,
+          group: 'Fim de partida',
+          label: `Coluna ${col + 1} completa`,
+          points: 7,
+          detail: 'coluna vertical',
+          kind: 'bonus',
+        });
+      }
+      for (const color of eg.completedColors) {
+        out.push({
+          id: `eg-color-${color}`,
+          group: 'Fim de partida',
+          label: `Cor ${COLOR_LABEL[color]} completa`,
+          points: 10,
+          detail: 'os 5 azulejos da cor',
+          kind: 'bonus',
+        });
+      }
+    }
     return out;
   });
 
@@ -115,10 +169,11 @@ export class AzulMatch {
     if (snap?.wall && snap?.rounds) {
       this.wall.set(snap.wall);
       this.rounds.set(snap.rounds);
+      this.finished.set(!!snap.finished);
     }
     // persist committed state whenever it changes
     effect(() => {
-      const snap: AzulSnapshot = { wall: this.wall(), rounds: this.rounds() };
+      const snap: AzulSnapshot = { wall: this.wall(), rounds: this.rounds(), finished: this.finished() };
       this.store.save(KEY, snap);
     });
   }
@@ -139,7 +194,7 @@ export class AzulMatch {
 
   /** Toggle a cell for the in-progress round. One tile per row (Azul rule). */
   toggleCell(row: number, col: number): void {
-    if (this.isCommitted(row, col)) return;
+    if (this.finished() || this.isCommitted(row, col)) return;
     const current = this.draftPlacements();
     const existing = current.find((p) => p.row === row && p.col === col);
     if (existing) {
@@ -152,6 +207,7 @@ export class AzulMatch {
   }
 
   setFloor(n: number): void {
+    if (this.finished()) return;
     this.draftFloor.set(Math.max(0, Math.min(7, n)));
   }
 
@@ -160,7 +216,7 @@ export class AzulMatch {
   }
 
   canCommit(): boolean {
-    return this.draftPlacements().length > 0 || this.draftFloor() > 0;
+    return !this.finished() && (this.draftPlacements().length > 0 || this.draftFloor() > 0);
   }
 
   /** Commit the in-progress round to history. */
@@ -195,6 +251,15 @@ export class AzulMatch {
 
   // ---- lifecycle -----------------------------------------------------------
 
+  /** Finish the match: apply end-game bonuses and lock all inputs. */
+  finish(): void {
+    if (this.finished()) return;
+    // fold any uncommitted draft in first so nothing is lost
+    if (this.draftPlacements().length > 0 || this.draftFloor() > 0) this.commitRound();
+    this.finished.set(true);
+    this.viewedRound.set(null);
+  }
+
   /** Clears history and starts a fresh match. */
   reset(): void {
     this.wall.set(emptyWall());
@@ -202,6 +267,7 @@ export class AzulMatch {
     this.draftPlacements.set([]);
     this.draftFloor.set(0);
     this.viewedRound.set(null);
+    this.finished.set(false);
     this.store.clear(KEY);
   }
 

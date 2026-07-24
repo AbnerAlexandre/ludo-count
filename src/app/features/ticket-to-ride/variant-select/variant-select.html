@@ -4,11 +4,8 @@
       <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <div class="title">
-      <span class="logo" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
-      <div>
-        <h1 class="display">Ticket to Ride</h1>
-        <p>Escolha a edição que você está jogando</p>
-      </div>
+      <img class="brand-logo" [src]="genericLogo" alt="Ticket to Ride" />
+      <p>Escolha a edição que você está jogando</p>
     </div>
   </header>
 
@@ -33,8 +30,15 @@
           (click)="choose(v.id)"
           [attr.aria-pressed]="v.id === activeId()"
         >
+          @if (v.logo) {
+            <span class="v-logo">
+              <img [src]="v.logo" [alt]="v.name" loading="lazy" draggable="false" />
+            </span>
+          }
           <div class="v-head">
-            <h2 class="display">{{ v.name }}</h2>
+            @if (!v.logo) {
+              <h2 class="display">{{ v.name }}</h2>
+            }
             <span class="tag">{{ v.tag }}</span>
           </div>
           <p class="note">{{ v.note }}</p>

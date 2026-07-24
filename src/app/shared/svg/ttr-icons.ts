@@ -18,6 +18,28 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class TtrLocomotive {}
 
+/** Inline boxcar / wagon silhouette, tinted via currentColor. */
+@Component({
+  selector: 'app-ttr-wagon',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <svg viewBox="0 0 100 64" fill="currentColor" role="img" aria-label="vagão">
+      <rect x="2" y="47" width="12" height="5" rx="2.5" />
+      <rect x="86" y="47" width="12" height="5" rx="2.5" />
+      <rect x="6" y="12" width="88" height="9" rx="4.5" />
+      <rect x="10" y="17" width="80" height="27" rx="6" />
+      <rect x="20" y="24" width="24" height="14" rx="3" fill-opacity="0.32" />
+      <rect x="56" y="24" width="24" height="14" rx="3" fill-opacity="0.32" />
+      <circle cx="30" cy="51" r="9" />
+      <circle cx="70" cy="51" r="9" />
+      <circle cx="30" cy="51" r="3.4" fill-opacity="0.4" />
+      <circle cx="70" cy="51" r="3.4" fill-opacity="0.4" />
+    </svg>
+  `,
+  styles: [`:host{display:inline-block;line-height:0}svg{width:100%;height:100%;display:block}`],
+})
+export class TtrWagon {}
+
 /** Inline rail-track glyph (from public/ticket-to-ride/train-rail.svg), tinted via currentColor. */
 @Component({
   selector: 'app-ttr-rail',

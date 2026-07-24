@@ -47,6 +47,21 @@ export interface RoundResult {
   totalAfter: number;
 }
 
+/** End-of-game bonuses (regras oficiais do Azul, aplicadas ao terminar a partida). */
+export const AZUL_ROW_BONUS = 2; // linha horizontal completa
+export const AZUL_COL_BONUS = 7; // coluna vertical completa
+export const AZUL_COLOR_BONUS = 10; // uma cor com os 5 azulejos
+
+export interface EndGameResult {
+  completedRows: number[]; // índices das linhas completas
+  completedCols: number[]; // índices das colunas completas
+  completedColors: AzulColor[];
+  rowPoints: number;
+  colPoints: number;
+  colorPoints: number;
+  total: number;
+}
+
 /** cor(linha, coluna) = CORES[(coluna - linha) mod 5] */
 export function wallColor(row: number, col: number): AzulColor {
   const idx = (((col - row) % WALL_SIZE) + WALL_SIZE) % WALL_SIZE;
@@ -140,5 +155,43 @@ export function scoreRound(
       totalAfter,
     },
     wallAfter: w,
+  };
+}
+
+/**
+ * End-of-game bonuses: complete horizontal lines (+2 each), complete vertical
+ * lines (+7 each) and complete color sets (all 5 tiles of a color, +10 each).
+ */
+export function endGameScore(wall: Wall): EndGameResult {
+  const completedRows: number[] = [];
+  const completedCols: number[] = [];
+  const completedColors: AzulColor[] = [];
+
+  for (let r = 0; r < WALL_SIZE; r++) {
+    if (wall[r].every(Boolean)) completedRows.push(r);
+  }
+  for (let c = 0; c < WALL_SIZE; c++) {
+    let full = true;
+    for (let r = 0; r < WALL_SIZE; r++) if (!wall[r][c]) full = false;
+    if (full) completedCols.push(c);
+  }
+  for (const color of AZUL_COLORS) {
+    let full = true;
+    for (let r = 0; r < WALL_SIZE; r++) if (!wall[r][colOfColor(r, color)]) full = false;
+    if (full) completedColors.push(color);
+  }
+
+  const rowPoints = completedRows.length * AZUL_ROW_BONUS;
+  const colPoints = completedCols.length * AZUL_COL_BONUS;
+  const colorPoints = completedColors.length * AZUL_COLOR_BONUS;
+
+  return {
+    completedRows,
+    completedCols,
+    completedColors,
+    rowPoints,
+    colPoints,
+    colorPoints,
+    total: rowPoints + colPoints + colorPoints,
   };
 }

@@ -1,23 +1,19 @@
 @if (variant(); as v) {
-  <main class="counter">
+  <main class="counter" [class.is-finished]="finished()">
     <header class="bar">
       <a routerLink="/ticket-to-ride" class="icon-btn" aria-label="Trocar edição">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <div class="bar-title">
-        <span class="loco" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
-        <div>
-          <h1 class="display">{{ v.name }}</h1>
-          <span class="tag">{{ v.tag }}</span>
-        </div>
+        <img class="game-logo" [src]="headerLogo()" [alt]="v.name" />
+        @if (usesGenericLogo()) {
+          <span class="edition-name">{{ v.name }}</span>
+        }
       </div>
-      <button type="button" class="icon-btn danger" (click)="showConfirm.set(true)" aria-label="Nova partida">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
     </header>
 
-    <section class="score-card" [class.neg]="match.total() < 0">
-      <span class="score-label">Total da partida</span>
+    <section class="score-card" [class.neg]="match.total() < 0" [class.done]="finished()">
+      <span class="score-label">{{ finished() ? 'Pontuação final' : 'Total da partida' }}</span>
       <span class="score tabular">{{ match.total() }}</span>
       <div class="score-parts">
         <span>Rotas <b class="tabular">{{ signed(match.routesTotal()) }}</b></span>
@@ -32,11 +28,18 @@
       </button>
     </section>
 
+    @if (finished()) {
+      <p class="lock-banner">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Partida encerrada — os dados estão travados.
+      </p>
+    }
+
     <!-- ROTAS -->
     <section class="panel">
       <div class="panel-head">
         <h2>Rotas reivindicadas</h2>
-        @if (v.terrainTable) {
+        @if (v.terrainTable && !finished()) {
           <button
             type="button"
             class="terrain-toggle"
@@ -46,28 +49,32 @@
           >terreno ×2</button>
         }
       </div>
-      <p class="hint">Toque no comprimento da rota que você acabou de completar.</p>
-      <div class="len-grid">
-        @for (len of routeLengths(); track len) {
-          <button type="button" class="len" (click)="addRoute(len)">
-            <span class="len-cars">
-              <span class="len-loco" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
-              <b class="tabular">{{ len }}</b>
-              <small>{{ len === 1 ? 'vagão' : 'vagões' }}</small>
-            </span>
-            <span class="len-pts tabular">+{{ terrainEnabled() && v.terrainTable ? v.terrainTable[len] : v.routeTable[len] }}</span>
-          </button>
-        }
-      </div>
+      @if (!finished()) {
+        <p class="hint">Toque no comprimento da rota que você acabou de completar.</p>
+        <div class="len-grid">
+          @for (len of routeLengths(); track len) {
+            <button type="button" class="len" (click)="addRoute(len)">
+              <span class="len-cars">
+                <span class="len-loco" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
+                <b class="tabular">{{ len }}</b>
+                <small>{{ len === 1 ? 'vagão' : 'vagões' }}</small>
+              </span>
+              <span class="len-pts tabular">+{{ terrainEnabled() && v.terrainTable ? v.terrainTable[len] : v.routeTable[len] }}</span>
+            </button>
+          }
+        </div>
+      }
 
       @if (match.routes().length) {
         <ul class="chips" role="list">
           @for (r of match.routes(); track r.id) {
             <li>
-              <button type="button" class="chip removable" (click)="match.removeRoute(r.id)" [attr.aria-label]="'Remover rota de ' + r.length + ' vagões'">
+              <button type="button" class="chip removable" [class.locked]="finished()" [disabled]="finished()" (click)="match.removeRoute(r.id)" [attr.aria-label]="'Remover rota de ' + r.length + ' vagões'">
                 <span>{{ r.length }} {{ r.terrain ? '· terreno' : '' }}</span>
                 <b class="tabular">+{{ match.routePointsFor(r) }}</b>
-                <svg viewBox="0 0 24 24" width="14" height="14"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                @if (!finished()) {
+                  <svg viewBox="0 0 24 24" width="14" height="14"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                }
               </button>
             </li>
           }
@@ -80,34 +87,36 @@
     <!-- BILHETES -->
     <section class="panel">
       <div class="panel-head"><h2>Bilhetes de destino</h2></div>
-      <p class="hint">Completo soma o valor; não completado subtrai.</p>
-      <div class="ticket-entry">
-        <div class="stepper mini" role="group" aria-label="Valor do bilhete">
-          <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() > 1 ? ticketValue() - 1 : 1)" aria-label="Diminuir valor">−</button>
-          <input
-            type="number"
-            class="s-input tabular"
-            inputmode="numeric"
-            min="1"
-            max="999"
-            step="1"
-            aria-label="Valor do bilhete"
-            [value]="ticketValue()"
-            (input)="onTicketInput($event)"
-            (keydown)="blockNonNumericKey($event)"
-            (blur)="normalizeTicketValue()"
-          />
-          <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() + 1)" aria-label="Aumentar valor">+</button>
+      @if (!finished()) {
+        <p class="hint">Completo soma o valor; não completado subtrai.</p>
+        <div class="ticket-entry">
+          <div class="stepper mini" role="group" aria-label="Valor do bilhete">
+            <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() > 1 ? ticketValue() - 1 : 1)" aria-label="Diminuir valor">−</button>
+            <input
+              type="number"
+              class="s-input tabular"
+              inputmode="numeric"
+              min="1"
+              max="999"
+              step="1"
+              aria-label="Valor do bilhete"
+              [value]="ticketValue()"
+              (input)="onTicketInput($event)"
+              (keydown)="blockNonNumericKey($event)"
+              (blur)="normalizeTicketValue()"
+            />
+            <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() + 1)" aria-label="Aumentar valor">+</button>
+          </div>
+          <button type="button" class="add good" (click)="addTicket(true)">＋ Completo</button>
+          <button type="button" class="add bad" (click)="addTicket(false)">－ Não feito</button>
         </div>
-        <button type="button" class="add good" (click)="addTicket(true)">＋ Completo</button>
-        <button type="button" class="add bad" (click)="addTicket(false)">－ Não feito</button>
-      </div>
+      }
 
       @if (match.tickets().length) {
         <ul class="ticket-list" role="list">
           @for (t of match.tickets(); track t.id) {
             <li [class.done]="t.completed">
-              <button type="button" class="t-state" (click)="match.toggleTicket(t.id)" [attr.aria-label]="t.completed ? 'Marcar como não completado' : 'Marcar como completo'">
+              <button type="button" class="t-state" [disabled]="finished()" (click)="match.toggleTicket(t.id)" [attr.aria-label]="t.completed ? 'Marcar como não completado' : 'Marcar como completo'">
                 @if (t.completed) {
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 } @else {
@@ -116,9 +125,11 @@
               </button>
               <span class="t-label">{{ t.completed ? 'Bilhete completo' : 'Não completado' }}</span>
               <span class="t-pts tabular">{{ signed(t.completed ? t.value : -t.value) }}</span>
-              <button type="button" class="t-del" (click)="match.removeTicket(t.id)" aria-label="Remover bilhete">
-                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-              </button>
+              @if (!finished()) {
+                <button type="button" class="t-del" (click)="match.removeTicket(t.id)" aria-label="Remover bilhete">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                </button>
+              }
             </li>
           }
         </ul>
@@ -145,6 +156,7 @@
                     type="button"
                     class="switch"
                     [class.on]="bonusOn(b)"
+                    [disabled]="finished()"
                     (click)="toggleBonus(b)"
                     role="switch"
                     [attr.aria-checked]="bonusOn(b)"
@@ -156,9 +168,9 @@
                 }
                 @default {
                   <div class="b-stepper" role="group" [attr.aria-label]="b.label">
-                    <button type="button" class="s-btn" (click)="bumpBonus(b, -1)" aria-label="Diminuir">−</button>
+                    <button type="button" class="s-btn" [disabled]="finished()" (click)="bumpBonus(b, -1)" aria-label="Diminuir">−</button>
                     <span class="s-val tabular">{{ bonusNumber(b) }}</span>
-                    <button type="button" class="s-btn" (click)="bumpBonus(b, 1)" aria-label="Aumentar">+</button>
+                    <button type="button" class="s-btn" [disabled]="finished()" (click)="bumpBonus(b, 1)" aria-label="Aumentar">+</button>
                   </div>
                 }
               }
@@ -172,18 +184,37 @@
       <app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail>
     </div>
     <p class="note">{{ v.note }}</p>
+
+    <div class="match-actions">
+      @if (finished()) {
+        <button type="button" class="action primary" (click)="confirm.set('new')">Começar nova partida</button>
+      } @else {
+        <button type="button" class="action ghost" (click)="confirm.set('new')">Nova partida</button>
+        <button type="button" class="action finish" (click)="confirm.set('finish')">Terminar partida</button>
+      }
+    </div>
   </main>
 
   @if (showAudit()) {
     <app-audit-sheet [entries]="match.audit()" [total]="match.total()" (close)="showAudit.set(false)" />
   }
-  @if (showConfirm()) {
+  @if (confirm() === 'finish') {
+    <app-confirm-dialog
+      title="Terminar a partida?"
+      message="A pontuação será travada e você não poderá mais alterar rotas, bilhetes ou bônus."
+      confirmLabel="Terminar partida"
+      cancelLabel="Ainda não"
+      (confirm)="confirmFinish()"
+      (cancel)="confirm.set(null)"
+    />
+  }
+  @if (confirm() === 'new') {
     <app-confirm-dialog
       title="Nova partida?"
       message="A pontuação e todo o histórico desta partida serão apagados. Esta ação não pode ser desfeita."
       confirmLabel="Apagar e recomeçar"
       (confirm)="confirmNewMatch()"
-      (cancel)="showConfirm.set(false)"
+      (cancel)="confirm.set(null)"
     />
   }
 }

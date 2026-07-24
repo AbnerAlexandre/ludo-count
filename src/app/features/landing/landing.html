@@ -15,32 +15,16 @@
 
   <section class="cards" aria-label="Escolha um jogo">
     <a class="card azul" routerLink="/azul" data-anim aria-label="Jogar Azul">
-      <div class="card-art" aria-hidden="true">
-        <div class="tiles">
-          @for (c of tileColors; track c) {
-            <span class="tile"><app-azul-tile [color]="c" /></span>
-          }
-        </div>
-      </div>
-      <div class="card-body">
-        <img class="game-logo" src="azul/azul-logo.webp" alt="Azul" />
-        <p>Parede 5×5, pontuação por ligação e penalidades da linha do chão.</p>
-      </div>
+      <img class="game-logo" src="azul/azul-logo.webp" alt="Azul" />
+      <p class="card-desc">Parede 5×5, pontuação por ligação e penalidades da linha do chão.</p>
       <span class="go" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
     </a>
 
     <a class="card ttr" routerLink="/ticket-to-ride" data-anim aria-label="Jogar Ticket to Ride">
-      <div class="card-art rail" aria-hidden="true">
-        <app-ttr-rail></app-ttr-rail>
-        <app-ttr-rail></app-ttr-rail>
-        <app-ttr-rail></app-ttr-rail>
-      </div>
-      <div class="card-body">
-        <img class="game-logo ttr-logo" src="ticket-to-ride/ticket-to-ride-logo.png" alt="Ticket to Ride" />
-        <p>Escolha a edição — cada mapa tem sua tabela de rotas e bônus próprios.</p>
-      </div>
+      <img class="game-logo ttr-logo" src="ticket-to-ride/ticket-to-ride-logo.png" alt="Ticket to Ride" />
+      <p class="card-desc">Escolha a edição — cada mapa tem sua tabela de rotas e bônus próprios.</p>
       <span class="go" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>

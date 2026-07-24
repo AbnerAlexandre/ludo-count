@@ -16,6 +16,8 @@
   align-items: center;
   gap: 12px;
   padding: 12px 0;
+  /* leave room on the right for the floating theme toggle */
+  padding-right: 52px;
   background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(10px);
 }
@@ -47,25 +49,22 @@
   gap: 10px;
   min-width: 0;
 }
-.loco {
-  width: 34px;
-  height: 34px;
-  color: var(--ttr-rail);
-  flex-shrink: 0;
+.bar-title .game-logo {
+  height: 52px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+  flex-shrink: 1;
+  min-width: 0;
 }
-.bar-title h1 {
-  margin: 0;
-  font-size: 1.25rem;
+.edition-name {
+  font-size: 0.92rem;
   font-weight: 700;
+  color: var(--text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.tag {
-  font-size: 0.68rem;
-  color: var(--text-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 /* score */
@@ -496,4 +495,82 @@
   color: var(--text-faint);
   font-size: 0.8rem;
   margin: 0;
+}
+
+/* finished state */
+.score-card.done {
+  border-color: color-mix(in srgb, var(--ttr-rail) 55%, var(--line));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ttr-rail) 35%, transparent);
+}
+.lock-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--ttr-rail) 14%, var(--bg-elev));
+  border: 1px solid color-mix(in srgb, var(--ttr-rail) 40%, var(--line));
+  color: color-mix(in srgb, var(--ttr-rail) 92%, white);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.chip.removable.locked {
+  cursor: default;
+  opacity: 0.9;
+}
+.chip.removable.locked:hover {
+  border-color: var(--line);
+  background: var(--bg-elev-2);
+}
+.switch:disabled,
+.s-btn:disabled,
+.t-state:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* match lifecycle actions */
+.match-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.action {
+  flex: 1;
+  min-height: 54px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.15s ease, background 0.2s ease;
+}
+.action:active {
+  transform: scale(0.98);
+}
+.action.primary {
+  background: var(--ttr-rail);
+  color: #06101f;
+}
+.action.primary:hover {
+  filter: brightness(1.08);
+}
+.action.ghost {
+  flex: 0 0 auto;
+  padding: 0 20px;
+  background: var(--bg-elev);
+  border-color: var(--line);
+  color: var(--text-dim);
+}
+.action.ghost:hover {
+  background: var(--bg-elev-2);
+  color: var(--text);
+}
+.action.finish {
+  background: var(--ttr-rail);
+  color: #06101f;
+}
+.action.finish:hover {
+  filter: brightness(1.08);
 }

@@ -1,18 +1,17 @@
-<main class="azul">
+<main class="azul" [class.is-finished]="finished()">
   <header class="bar">
     <a routerLink="/" class="icon-btn" aria-label="Voltar ao início">
       <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <h1 class="display">Azul</h1>
-    <button type="button" class="icon-btn danger" (click)="showConfirm.set(true)" aria-label="Nova partida">
-      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+    <div class="bar-title">
+      <img class="game-logo" src="azul/azul-logo.webp" alt="Azul" />
+    </div>
   </header>
 
-  <section class="score-card">
+  <section class="score-card" [class.done]="finished()">
     <div class="score-main">
-      <span class="score-label">Pontuação</span>
-      <span class="score tabular">{{ match.total() }}</span>
+      <span class="score-label">{{ finished() ? 'Pontuação final' : 'Pontuação' }}</span>
+      <span class="score tabular">{{ match.finalTotal() }}</span>
     </div>
     <button type="button" class="audit-btn" (click)="showAudit.set(true)">
       <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -20,9 +19,42 @@
     </button>
   </section>
 
+  @if (finished()) {
+    <p class="lock-banner">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Partida encerrada — os dados estão travados.
+    </p>
+  }
+
   <app-azul-wall />
 
-  @if (isViewingHistory()) {
+  @if (finished()) {
+    @let eg = match.endGame();
+    <section class="endgame" aria-label="Bônus de fim de partida">
+      <h2 class="section-title display">Bônus de fim de partida</h2>
+      <div class="eg-grid">
+        <div class="eg-item">
+          <span class="eg-label">Linhas completas</span>
+          <span class="eg-calc">{{ eg.completedRows.length }} × +2</span>
+          <b class="eg-pts tabular">+{{ eg.rowPoints }}</b>
+        </div>
+        <div class="eg-item">
+          <span class="eg-label">Colunas completas</span>
+          <span class="eg-calc">{{ eg.completedCols.length }} × +7</span>
+          <b class="eg-pts tabular">+{{ eg.colPoints }}</b>
+        </div>
+        <div class="eg-item">
+          <span class="eg-label">Cores completas</span>
+          <span class="eg-calc">{{ eg.completedColors.length }} × +10</span>
+          <b class="eg-pts tabular">+{{ eg.colorPoints }}</b>
+        </div>
+      </div>
+      <div class="eg-total">
+        <span>Bônus de fim de partida</span>
+        <b class="tabular pos">+{{ eg.total }}</b>
+      </div>
+    </section>
+  } @else if (isViewingHistory()) {
     <p class="viewing-note">
       Vendo o histórico — os azulejos desta rodada estão destacados. Volte ao atual para continuar marcando.
     </p>
@@ -36,15 +68,31 @@
       </div>
       <p class="hint">Toque nas casas da parede que receberam azulejo nesta rodada.</p>
 
-      <div class="floor">
-        <div class="floor-info">
-          <span class="floor-label">Linha do chão</span>
-          <span class="floor-sub">penalidade {{ match.floorPreview() === 0 ? '0' : signed(match.floorPreview()) }}</span>
+      <div class="floor-block">
+        <div class="floor-block-head">
+          <span class="floor-title">Linha do chão</span>
+          <span class="floor-sum" [class.neg]="match.floorPreview() < 0">
+            {{ match.floorPreview() === 0 ? 'sem penalidade' : signed(match.floorPreview()) }}
+          </span>
         </div>
-        <div class="floor-stepper" role="group" aria-label="Azulejos na linha do chão">
-          <button type="button" class="fs-btn" (click)="setFloor(match.draftFloor() - 1)" [disabled]="match.draftFloor() <= 0" aria-label="Menos um azulejo no chão">−</button>
-          <span class="fs-val tabular">{{ match.draftFloor() }}</span>
-          <button type="button" class="fs-btn" (click)="setFloor(match.draftFloor() + 1)" [disabled]="match.draftFloor() >= 7" aria-label="Mais um azulejo no chão">+</button>
+        <div class="floor-rating" role="group" aria-label="Azulejos na linha do chão">
+          @for (slot of floorSlots; track slot) {
+            <div class="floor-slot" [class.active]="match.draftFloor() >= slot">
+              <span class="floor-pts tabular">{{ cumulativePenalty(slot) }}</span>
+              <button
+                type="button"
+                class="floor-btn"
+                [class.selected]="match.draftFloor() >= slot"
+                [attr.aria-pressed]="match.draftFloor() >= slot"
+                [attr.aria-label]="slot + ' azulejos no chão, total ' + cumulativePenalty(slot)"
+                (click)="onFloorClick(slot)"
+              >
+                @if (match.draftFloor() >= slot) {
+                  <img class="neg-marker" src="azul/tile-negative-point.svg" alt="" draggable="false" />
+                }
+              </button>
+            </div>
+          }
         </div>
       </div>
 
@@ -73,17 +121,36 @@
     <h2 class="section-title display">Histórico</h2>
     <app-round-history />
   </section>
+
+  <div class="match-actions">
+    @if (finished()) {
+      <button type="button" class="action primary" (click)="confirm.set('new')">Começar nova partida</button>
+    } @else {
+      <button type="button" class="action ghost" (click)="confirm.set('new')">Nova partida</button>
+      <button type="button" class="action finish" (click)="confirm.set('finish')">Terminar partida</button>
+    }
+  </div>
 </main>
 
 @if (showAudit()) {
-  <app-audit-sheet [entries]="match.audit()" [total]="match.total()" (close)="showAudit.set(false)" />
+  <app-audit-sheet [entries]="match.audit()" [total]="match.finalTotal()" (close)="showAudit.set(false)" />
 }
-@if (showConfirm()) {
+@if (confirm() === 'finish') {
+  <app-confirm-dialog
+    title="Terminar a partida?"
+    message="Os bônus de fim de jogo (linhas, colunas e cores completas) serão aplicados e os dados ficarão travados."
+    confirmLabel="Terminar e calcular"
+    cancelLabel="Ainda não"
+    (confirm)="confirmFinish()"
+    (cancel)="confirm.set(null)"
+  />
+}
+@if (confirm() === 'new') {
   <app-confirm-dialog
     title="Nova partida?"
     message="A pontuação e o histórico de rodadas serão apagados. Esta ação não pode ser desfeita."
     confirmLabel="Apagar e recomeçar"
     (confirm)="confirmNewMatch()"
-    (cancel)="showConfirm.set(false)"
+    (cancel)="confirm.set(null)"
   />
 }

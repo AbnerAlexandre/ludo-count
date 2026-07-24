@@ -3,6 +3,7 @@ import {
   AZUL_COLORS,
   colOfColor,
   emptyWall,
+  endGameScore,
   floorPenalty,
   scorePlacement,
   scoreRound,
@@ -113,5 +114,45 @@ describe('scoreRound', () => {
     const w = emptyWall();
     scoreRound(w, [{ row: 2, col: 2 }], 0, 0);
     expect(w.flat().some(Boolean)).toBe(false);
+  });
+});
+
+describe('endGameScore (fim de partida)', () => {
+  it('an empty wall scores no bonus', () => {
+    expect(endGameScore(emptyWall()).total).toBe(0);
+  });
+
+  it('a full first row scores +2', () => {
+    const w = emptyWall();
+    for (let c = 0; c < 5; c++) w[0][c] = true;
+    const r = endGameScore(w);
+    expect(r.completedRows).toEqual([0]);
+    expect(r.rowPoints).toBe(2);
+    expect(r.total).toBe(2);
+  });
+
+  it('a full first column scores +7', () => {
+    const w = emptyWall();
+    for (let row = 0; row < 5; row++) w[row][0] = true;
+    const r = endGameScore(w);
+    expect(r.completedCols).toEqual([0]);
+    expect(r.colPoints).toBe(7);
+  });
+
+  it('all 5 tiles of a color score +10', () => {
+    const w = emptyWall();
+    for (let row = 0; row < 5; row++) w[row][colOfColor(row, 'blue')] = true;
+    const r = endGameScore(w);
+    expect(r.completedColors).toEqual(['blue']);
+    expect(r.colorPoints).toBe(10);
+  });
+
+  it('a completely full wall scores 5×2 + 5×7 + 5×10 = 95', () => {
+    const w = emptyWall().map((row) => row.map(() => true));
+    const r = endGameScore(w);
+    expect(r.completedRows.length).toBe(5);
+    expect(r.completedCols.length).toBe(5);
+    expect(r.completedColors.length).toBe(5);
+    expect(r.total).toBe(10 + 35 + 50);
   });
 });

@@ -133,10 +133,23 @@ h1 .accent {
   --tint: var(--ttr-rail);
 }
 
+.game-logo {
+  display: block;
+  height: 84px;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+  object-position: left center;
+  margin: 0 0 4px;
+}
+.game-logo.ttr-logo {
+  height: 74px;
+}
+
 .card-art {
   display: flex;
   gap: 8px;
-  height: 64px;
+  height: 60px;
   align-items: center;
 }
 .card-art .tiles {
@@ -161,27 +174,29 @@ h1 .accent {
   transform: translateY(-3px) rotate(-2deg);
 }
 
-.card-art.rail app-ttr-rail {
-  width: 26px;
-  height: 60px;
+.card-art.rail {
+  gap: 14px;
+}
+.card-art .rail-piece {
+  width: 24px;
+  height: 56px;
   color: var(--ttr-rail);
-  opacity: 0.9;
+  display: inline-flex;
+}
+.card-art .wagon-piece {
+  width: 74px;
+  height: 48px;
+  color: var(--ttr-rail);
+  display: inline-flex;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card.ttr:hover .wagon-piece {
+  transform: translateX(8px);
 }
 
-.game-logo {
-  display: block;
-  height: 46px;
-  width: auto;
-  max-width: 78%;
-  object-fit: contain;
-  margin: 0 0 8px;
-}
-.game-logo.ttr-logo {
-  height: 40px;
-}
-
-.card-body p {
+.card-desc {
   margin: 0;
+  padding-right: 52px;
   color: var(--text-dim);
   line-height: 1.5;
   font-size: 0.95rem;

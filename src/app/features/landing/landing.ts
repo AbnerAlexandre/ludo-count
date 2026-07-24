@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, afterNextRender, inject, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TtrRail } from '../../shared/svg/ttr-icons';
+import { Title } from '@angular/platform-browser';
+import { TtrRail, TtrWagon } from '../../shared/svg/ttr-icons';
 import { AzulTile } from '../../shared/svg/azul-tile';
 import { AZUL_COLORS, type AzulColor } from '../azul/scoring/azul-scoring';
 
@@ -12,7 +13,7 @@ import { AZUL_COLORS, type AzulColor } from '../azul/scoring/azul-scoring';
 @Component({
   selector: 'app-landing',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, TtrRail, AzulTile],
+  imports: [RouterLink, TtrRail, TtrWagon, AzulTile],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
@@ -22,6 +23,8 @@ export class Landing {
   readonly tileColors = AZUL_COLORS as readonly AzulColor[];
 
   constructor() {
+    inject(Title).setTitle('LudoCount — Contador de Pontos');
+
     afterNextRender(async () => {
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const root = this.host.nativeElement as HTMLElement;

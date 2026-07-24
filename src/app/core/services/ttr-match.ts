@@ -19,6 +19,7 @@ interface TtrSnapshot {
   routes: ClaimedRoute[];
   tickets: Ticket[];
   bonuses: BonusState;
+  finished: boolean;
 }
 
 const KEY = 'ttr';
@@ -38,6 +39,9 @@ export class TtrMatch {
   readonly routes = signal<ClaimedRoute[]>([]);
   readonly tickets = signal<Ticket[]>([]);
   readonly bonuses = signal<BonusState>({});
+
+  /** true once the player finishes the match — locks all inputs */
+  readonly finished = signal(false);
 
   readonly routesTotal = computed(() => {
     const v = this.variant();
@@ -73,6 +77,7 @@ export class TtrMatch {
         this.routes.set(snap.routes ?? []);
         this.tickets.set(snap.tickets ?? []);
         this.bonuses.set(snap.bonuses ?? {});
+        this.finished.set(!!snap.finished);
       }
     }
     effect(() => {
@@ -83,6 +88,7 @@ export class TtrMatch {
         routes: this.routes(),
         tickets: this.tickets(),
         bonuses: this.bonuses(),
+        finished: this.finished(),
       };
       this.store.save(KEY, snap);
     });
@@ -96,6 +102,7 @@ export class TtrMatch {
       this.routes.set([]);
       this.tickets.set([]);
       this.bonuses.set({});
+      this.finished.set(false);
     }
     this.variant.set(v);
     return true;
@@ -109,10 +116,12 @@ export class TtrMatch {
   // ---- routes --------------------------------------------------------------
 
   addRoute(length: number, terrain = false): void {
+    if (this.finished()) return;
     this.routes.update((rs) => [...rs, { id: uid(), length, terrain: terrain || undefined }]);
   }
 
   removeRoute(id: string): void {
+    if (this.finished()) return;
     this.routes.update((rs) => rs.filter((r) => r.id !== id));
   }
 
@@ -128,15 +137,17 @@ export class TtrMatch {
   // ---- tickets -------------------------------------------------------------
 
   addTicket(value: number, completed: boolean): void {
-    if (value <= 0) return;
+    if (this.finished() || value <= 0) return;
     this.tickets.update((ts) => [...ts, { id: uid(), value, completed }]);
   }
 
   toggleTicket(id: string): void {
+    if (this.finished()) return;
     this.tickets.update((ts) => ts.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)));
   }
 
   removeTicket(id: string): void {
+    if (this.finished()) return;
     this.tickets.update((ts) => ts.filter((t) => t.id !== id));
   }
 
@@ -149,6 +160,7 @@ export class TtrMatch {
   }
 
   setBonus(spec: BonusSpec, value: number | boolean): void {
+    if (this.finished()) return;
     this.bonuses.update((b) => ({ ...b, [spec.id]: value }));
   }
 
@@ -163,7 +175,13 @@ export class TtrMatch {
 
   // ---- lifecycle -----------------------------------------------------------
 
+  /** Finish the match and lock all inputs. */
+  finish(): void {
+    this.finished.set(true);
+  }
+
   reset(): void {
+    this.finished.set(false);
     this.routes.set([]);
     this.tickets.set([]);
     this.bonuses.set({});

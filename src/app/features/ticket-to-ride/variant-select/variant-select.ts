@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { TTR_VARIANTS } from '../scoring/ttr-variants';
+import { Title } from '@angular/platform-browser';
+import { TTR_GENERIC_LOGO, TTR_VARIANTS } from '../scoring/ttr-variants';
 import { TtrMatch } from '../../../core/services/ttr-match';
-import { TtrLocomotive, TtrRail } from '../../../shared/svg/ttr-icons';
+import { TtrRail } from '../../../shared/svg/ttr-icons';
 
 /**
  * Variant / edition picker. The counter only starts after a variant is chosen,
@@ -11,7 +12,7 @@ import { TtrLocomotive, TtrRail } from '../../../shared/svg/ttr-icons';
 @Component({
   selector: 'app-ttr-variant-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, TtrLocomotive, TtrRail],
+  imports: [RouterLink, TtrRail],
   templateUrl: './variant-select.html',
   styleUrl: './variant-select.scss',
 })
@@ -20,8 +21,13 @@ export class VariantSelect {
   readonly match = inject(TtrMatch);
 
   readonly variants = TTR_VARIANTS;
+  readonly genericLogo = TTR_GENERIC_LOGO;
   readonly activeId = computed(() => this.match.variant()?.id ?? null);
   readonly hasProgress = this.match.hasProgress;
+
+  constructor() {
+    inject(Title).setTitle('Ticket to Ride — LudoCount');
+  }
 
   choose(id: string): void {
     this.match.selectVariant(id);
