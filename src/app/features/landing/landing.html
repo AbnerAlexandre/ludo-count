@@ -48,7 +48,102 @@
     </a>
   </section>
 
-  <footer class="foot" data-anim>
-    <span>Roda no navegador · sem contas · progresso salvo automaticamente</span>
+  <!-- Conteúdo indexável: explica o que é e como funciona, com os termos de busca naturais -->
+  <section class="content" aria-labelledby="sobre-titulo">
+    <h2 id="sobre-titulo" class="section-h display">Contador de pontos online para jogos de tabuleiro</h2>
+    <p>
+      O <strong>LudoCount</strong> é um contador de pontos gratuito para <strong>Azul</strong> e
+      <strong>Ticket to Ride</strong>. Em vez de somar de cabeça ou no papel no fim da partida, você
+      registra cada jogada e o app calcula o total — mostrando de onde vem cada ponto numa tela de
+      auditoria. Funciona no celular, direto no navegador, sem instalar nada e sem criar conta.
+    </p>
+
+    <div class="content-grid">
+      <article>
+        <h3 class="content-h">Como contar os pontos do Azul</h3>
+        <p>
+          Marque na parede 5×5 quais azulejos entraram na rodada. O contador do Azul pontua por
+          ligação — horizontal e vertical, contando o cruzamento duas vezes — aplica as penalidades
+          da linha do chão e, ao encerrar a partida, soma os bônus de linhas, colunas e cores
+          completas. A pontuação nunca fica negativa.
+        </p>
+      </article>
+      <article>
+        <h3 class="content-h">Como funciona no Ticket to Ride</h3>
+        <p>
+          Escolha a edição que você está jogando e registre as rotas pelo número de vagões, os
+          bilhetes de destino completados e os bônus de fim de jogo. Cada mapa usa a sua própria
+          tabela de pontos, então o cálculo sai certo para EUA, Europa, Índia, Japão e todas as
+          outras edições — inclusive quando o placar fica negativo.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FAQ visível (casada com o FAQPage JSON-LD injetado pelo componente) -->
+  <section class="faq" aria-labelledby="faq-titulo">
+    <h2 id="faq-titulo" class="section-h display">Perguntas frequentes</h2>
+    <div class="faq-list">
+      @for (item of faqs; track item.q) {
+        <details class="faq-item">
+          <summary>
+            <span>{{ item.q }}</span>
+            <svg class="chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <p>{{ item.a }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <!-- Novidades: conteúdo fresco (bom para SEO) carregado de public/novidades.json -->
+  @if (novidades().length) {
+    <section class="novidades" aria-labelledby="novidades-titulo">
+      <h2 id="novidades-titulo" class="section-h display">Novidades</h2>
+      <ul class="nov-list" role="list">
+        @for (n of novidades(); track n.titulo) {
+          <li class="nov-item" [class.planned]="n.status === 'planejado'">
+            <div class="nov-meta">
+              @if (n.status === 'planejado') {
+                <span class="nov-soon">Em breve</span>
+              } @else {
+                <time [attr.datetime]="n.data">{{ n.data }}</time>
+              }
+              <span class="nov-tag">{{ n.tag }}</span>
+            </div>
+            <h3 class="nov-h">{{ n.titulo }}</h3>
+            <p>{{ n.descricao }}</p>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  <footer class="foot">
+    <p class="foot-note">Roda no navegador · sem contas · progresso salvo automaticamente</p>
+
+    <div class="contact" aria-label="Contato do desenvolvedor">
+      <span class="contact-label">Feito por Abner da Silva</span>
+      <div class="contact-links">
+        <a
+          class="contact-link"
+          href="https://www.linkedin.com/in/abner-da-silva-394296161/"
+          target="_blank"
+          rel="noopener noreferrer me"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2.02 0-2.33 1.57-2.33 3.2V21H9z"/></svg>
+          LinkedIn
+        </a>
+        <button
+          type="button"
+          class="contact-link"
+          (click)="copyDiscord()"
+          [attr.aria-label]="'Copiar usuário do Discord ' + discord"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20 4.4A19 19 0 0 0 15.3 3l-.24.5a14 14 0 0 1 4.1 2.1 13.5 13.5 0 0 0-11.6-.6c-.3.13-.6.27-.9.42a14 14 0 0 1 3.9-1.9L10.3 3A19 19 0 0 0 4 4.4C1.3 8.5.6 12.5.9 16.5A19 19 0 0 0 6.7 19l.5-.7a12 12 0 0 1-1.8-.9l.36-.28a13.6 13.6 0 0 0 11.6 0l.36.28c-.57.34-1.17.63-1.8.9l.5.7a19 19 0 0 0 5.8-2.5c.4-4.7-.7-8.7-3.4-11.6zM9 14.2c-.9 0-1.7-.85-1.7-1.9S8 10.4 9 10.4s1.7.85 1.7 1.9-.76 1.9-1.7 1.9zm6 0c-.9 0-1.7-.85-1.7-1.9s.8-1.9 1.7-1.9 1.7.85 1.7 1.9-.76 1.9-1.7 1.9z"/></svg>
+          {{ copied() ? 'Copiado!' : discord }}
+        </button>
+      </div>
+    </div>
   </footer>
 </main>

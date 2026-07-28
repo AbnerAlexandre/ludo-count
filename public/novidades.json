@@ -1,0 +1,30 @@
+{
+  "titulo": "Novidades do LudoCount",
+  "atualizadoEm": "2026-07-28",
+  "itens": [
+    {
+      "data": "2026-07-22",
+      "tag": "Azul",
+      "titulo": "Contador de pontos do Azul",
+      "descricao": "Parede 5×5 interativa, pontuação por ligação (horizontal e vertical), penalidades da linha do chão e bônus de linhas, colunas e cores completas no fim da partida."
+    },
+    {
+      "data": "2026-07-23",
+      "tag": "Ticket to Ride",
+      "titulo": "Contadores do Ticket to Ride",
+      "descricao": "Treze edições, cada uma com sua própria tabela de pontos por rota, bilhetes de destino e bônus de fim de jogo — inclusive quando o placar fica negativo."
+    },
+    {
+      "status": "planejado",
+      "tag": "Regionalização",
+      "titulo": "Versão em inglês (English)",
+      "descricao": "Em breve o LudoCount também estará disponível em inglês, com endereços próprios para cada idioma."
+    },
+    {
+      "data": "2026-07-27",
+      "tag": "FAQ",
+      "titulo": "Perguntas frequentes",
+      "descricao": "Uma seção de perguntas e respostas sobre como contar os pontos, quais edições são suportadas e como o progresso é salvo."
+    }
+  ]
+}
