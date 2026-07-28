@@ -73,15 +73,31 @@ export function scoreMatch(variant: TtrVariant, state: TtrState): number {
   );
 }
 
+/**
+ * Rótulos localizados para a auditoria. Passados pelo serviço (que tem acesso ao
+ * i18n) para que este módulo continue puro, sem dependência de Angular.
+ */
+export interface TtrAuditLabels {
+  routesGroup: string;
+  ticketsGroup: string;
+  bonusesGroup: string;
+  route: (len: number, terrain: boolean) => string;
+  ticketComplete: string;
+  ticketIncomplete: string;
+  ticketValue: (v: number) => string;
+  bonusLabel: (spec: BonusSpec) => string;
+  bonusHint: (spec: BonusSpec) => string | undefined;
+}
+
 /** Build the audit trail directly from the same state used for the total. */
-export function buildAudit(variant: TtrVariant, state: TtrState): AuditEntry[] {
+export function buildAudit(variant: TtrVariant, state: TtrState, labels: TtrAuditLabels): AuditEntry[] {
   const entries: AuditEntry[] = [];
 
-  state.routes.forEach((r, i) => {
+  state.routes.forEach((r) => {
     entries.push({
       id: `route-${r.id}`,
-      group: 'Rotas',
-      label: `Rota de ${r.length} ${r.length === 1 ? 'vagão' : 'vagões'}${r.terrain ? ' (terreno ×2)' : ''}`,
+      group: labels.routesGroup,
+      label: labels.route(r.length, !!r.terrain),
       points: routePoints(variant, r),
       kind: 'route',
     });
@@ -90,10 +106,10 @@ export function buildAudit(variant: TtrVariant, state: TtrState): AuditEntry[] {
   state.tickets.forEach((t) => {
     entries.push({
       id: `ticket-${t.id}`,
-      group: 'Bilhetes de destino',
-      label: t.completed ? 'Bilhete completo' : 'Bilhete não completado',
+      group: labels.ticketsGroup,
+      label: t.completed ? labels.ticketComplete : labels.ticketIncomplete,
       points: t.completed ? t.value : -t.value,
-      detail: `valor ${t.value}`,
+      detail: labels.ticketValue(t.value),
       kind: 'ticket',
     });
   });
@@ -103,10 +119,10 @@ export function buildAudit(variant: TtrVariant, state: TtrState): AuditEntry[] {
     if (pts !== 0) {
       entries.push({
         id: `bonus-${spec.id}`,
-        group: 'Bônus de fim de jogo',
-        label: spec.label,
+        group: labels.bonusesGroup,
+        label: labels.bonusLabel(spec),
         points: pts,
-        detail: spec.hint,
+        detail: labels.bonusHint(spec),
         kind: 'bonus',
       });
     }

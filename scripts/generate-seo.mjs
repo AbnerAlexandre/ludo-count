@@ -26,33 +26,37 @@ const variantsSrc = read('src/app/features/ticket-to-ride/scoring/ttr-variants.t
 const variantIds = [...variantsSrc.matchAll(/^\s{4}id:\s*'([^']+)'/gm)].map((m) => m[1]);
 if (variantIds.length === 0) throw new Error('Nenhuma edição encontrada em ttr-variants.ts');
 
-// --- rotas ----------------------------------------------------------------
-/** @type {{path: string, priority: string, changefreq: string}[]} */
+// --- rotas (caminho-base em pt) -------------------------------------------
+/** @type {{base: string, priority: string, changefreq: string}[]} */
 const routes = [
-  { path: '/', priority: '1.0', changefreq: 'monthly' },
-  { path: '/azul', priority: '0.9', changefreq: 'monthly' },
-  { path: '/ticket-to-ride', priority: '0.9', changefreq: 'monthly' },
-  ...variantIds.map((id) => ({
-    path: `/ticket-to-ride/${id}`,
-    priority: '0.7',
-    changefreq: 'yearly',
-  })),
+  { base: '', priority: '1.0', changefreq: 'monthly' },
+  { base: '/azul', priority: '0.9', changefreq: 'monthly' },
+  { base: '/ticket-to-ride', priority: '0.9', changefreq: 'monthly' },
+  ...variantIds.map((id) => ({ base: `/ticket-to-ride/${id}`, priority: '0.7', changefreq: 'yearly' })),
 ];
 
 const today = new Date().toISOString().slice(0, 10);
+const ptUrl = (base) => `${SITE_URL}${base === '' ? '/' : base}`;
+const enUrl = (base) => `${SITE_URL}/en${base}`;
 
-// --- sitemap.xml ----------------------------------------------------------
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes
-  .map(
-    (r) => `  <url>
-    <loc>${SITE_URL}${r.path === '/' ? '/' : r.path}</loc>
+// --- sitemap.xml (com hreflang pt/en em cada URL) -------------------------
+const alternates = (base) =>
+  `    <xhtml:link rel="alternate" hreflang="pt-BR" href="${ptUrl(base)}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="${enUrl(base)}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${ptUrl(base)}"/>`;
+
+const urlEntry = (loc, base, r) => `  <url>
+    <loc>${loc}</loc>
+${alternates(base)}
     <lastmod>${today}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
-  </url>`,
-  )
+  </url>`;
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${routes
+  .flatMap((r) => [urlEntry(ptUrl(r.base), r.base, r), urlEntry(enUrl(r.base), r.base, r)])
   .join('\n')}
 </urlset>
 `;

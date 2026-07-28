@@ -1,5 +1,6 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { Persistence } from './persistence';
+import { I18n } from '../i18n/i18n';
 import type { AuditEntry } from '../models/audit.models';
 import {
   cloneWall,
@@ -20,14 +21,6 @@ interface AzulSnapshot {
   finished: boolean;
 }
 
-const COLOR_LABEL: Record<AzulColor, string> = {
-  blue: 'azul',
-  yellow: 'amarelo',
-  red: 'vermelho',
-  black: 'preto',
-  white: 'branco',
-};
-
 const KEY = 'azul';
 
 /**
@@ -39,6 +32,7 @@ const KEY = 'azul';
 @Injectable({ providedIn: 'root' })
 export class AzulMatch {
   private readonly store = inject(Persistence);
+  private readonly i18n = inject(I18n);
 
   /** committed wall (all past rounds applied) */
   readonly wall = signal<Wall>(emptyWall());
@@ -93,21 +87,23 @@ export class AzulMatch {
   });
 
   readonly audit = computed<AuditEntry[]>(() => {
+    const t = this.i18n;
     const out: AuditEntry[] = [];
     this.rounds().forEach((r, i) => {
+      const group = t.tp('audit.round', { n: i + 1 });
       for (const p of r.placements) {
         const detail =
           p.h > 1 && p.v > 1
-            ? `horizontal ${p.h} + vertical ${p.v}`
+            ? t.tp('audit.detail.cross', { h: p.h, v: p.v })
             : p.h > 1
-              ? `horizontal ${p.h}`
+              ? t.tp('audit.detail.h', { h: p.h })
               : p.v > 1
-                ? `vertical ${p.v}`
-                : 'azulejo isolado';
+                ? t.tp('audit.detail.v', { v: p.v })
+                : t.t('audit.detail.isolated');
         out.push({
           id: `r${i}-p${p.row}${p.col}`,
-          group: `Rodada ${i + 1}`,
-          label: `Azulejo em linha ${p.row + 1}, col ${p.col + 1}`,
+          group,
+          label: t.tp('audit.azulTile', { r: p.row + 1, c: p.col + 1 }),
           points: p.points,
           detail,
           kind: 'placement',
@@ -116,8 +112,11 @@ export class AzulMatch {
       if (r.floorCount > 0) {
         out.push({
           id: `r${i}-floor`,
-          group: `Rodada ${i + 1}`,
-          label: `Linha do chão, ${r.floorCount} ${r.floorCount === 1 ? 'azulejo' : 'azulejos'}`,
+          group,
+          label:
+            r.floorCount === 1
+              ? t.tp('audit.floorOne', { n: r.floorCount })
+              : t.tp('audit.floorMany', { n: r.floorCount }),
           points: r.floorPenalty,
           kind: 'penalty',
         });
@@ -126,33 +125,34 @@ export class AzulMatch {
 
     if (this.finished()) {
       const eg = this.endGame();
+      const egGroup = t.t('audit.endgame');
       for (const row of eg.completedRows) {
         out.push({
           id: `eg-row-${row}`,
-          group: 'Fim de partida',
-          label: `Linha ${row + 1} completa`,
+          group: egGroup,
+          label: t.tp('audit.rowComplete', { n: row + 1 }),
           points: 2,
-          detail: 'linha horizontal',
+          detail: t.t('audit.rowDetail'),
           kind: 'bonus',
         });
       }
       for (const col of eg.completedCols) {
         out.push({
           id: `eg-col-${col}`,
-          group: 'Fim de partida',
-          label: `Coluna ${col + 1} completa`,
+          group: egGroup,
+          label: t.tp('audit.colComplete', { n: col + 1 }),
           points: 7,
-          detail: 'coluna vertical',
+          detail: t.t('audit.colDetail'),
           kind: 'bonus',
         });
       }
       for (const color of eg.completedColors) {
         out.push({
           id: `eg-color-${color}`,
-          group: 'Fim de partida',
-          label: `Cor ${COLOR_LABEL[color]} completa`,
+          group: egGroup,
+          label: t.tp('audit.colorComplete', { color: t.t(`color.${color}`) }),
           points: 10,
-          detail: 'os 5 azulejos da cor',
+          detail: t.t('audit.colorDetail'),
           kind: 'bonus',
         });
       }

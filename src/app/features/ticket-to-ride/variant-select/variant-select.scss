@@ -12,7 +12,7 @@
   align-items: center;
   gap: 12px;
   /* leave room on the right for the floating theme toggle */
-  padding-right: 52px;
+  padding-right: 104px; /* dois controles no topo: idioma + tema */
 }
 .back {
   width: var(--tap);

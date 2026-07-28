@@ -1,12 +1,12 @@
 <main class="wrap">
   <header class="top">
-    <a routerLink="/" class="back" aria-label="Voltar ao início">
+    <a [routerLink]="base() || '/'" class="back" [attr.aria-label]="i18n.t('common.backHome')">
       <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <div class="title">
-      <h1 class="sr-only">Contador de pontos do Ticket to Ride — escolha a edição</h1>
+      <h1 class="sr-only">Ticket to Ride — {{ i18n.t('ttr.select.subtitle') }}</h1>
       <img class="brand-logo" [src]="genericLogo" alt="Ticket to Ride" width="1339" height="462" />
-      <p>Escolha a edição que você está jogando</p>
+      <p>{{ i18n.t('ttr.select.subtitle') }}</p>
     </div>
   </header>
 
@@ -16,8 +16,7 @@
 
   @if (activeId(); as active) {
     <p class="resume">
-      Você tem uma partida de <strong>{{ match.variant()?.name }}</strong> em andamento.
-      Escolher outra edição começa uma nova.
+      {{ i18n.t('ttr.select.resumePre') }} <strong>{{ name(match.variant()!) }}</strong> {{ i18n.t('ttr.select.resumePost') }}
     </p>
   }
 
@@ -33,27 +32,27 @@
         >
           @if (v.logo) {
             <span class="v-logo">
-              <img [src]="v.logo" [alt]="v.name" loading="lazy" draggable="false" />
+              <img [src]="v.logo" [alt]="name(v)" loading="lazy" draggable="false" />
             </span>
           }
           <div class="v-head">
             @if (v.logo) {
               <!-- a logo já mostra o nome; mantemos o texto para busca/leitores de tela -->
-              <h2 class="sr-only">{{ v.name }}</h2>
+              <h2 class="sr-only">{{ name(v) }}</h2>
             } @else {
-              <h2 class="display">{{ v.name }}</h2>
+              <h2 class="display">{{ name(v) }}</h2>
             }
-            <span class="tag">{{ v.tag }}</span>
+            <span class="tag">{{ tag(v) }}</span>
           </div>
-          <p class="note">{{ v.note }}</p>
+          <p class="note">{{ note(v) }}</p>
           <div class="meta">
-            <span class="chip">{{ v.playersMin }}–{{ v.playersMax }} jog.</span>
-            <span class="chip">{{ v.cars }} vagões</span>
-            <span class="chip">rotas {{ lengths(v.routeTable).join('/') }}</span>
+            <span class="chip">{{ i18n.tp('ttr.select.players', { min: v.playersMin, max: v.playersMax }) }}</span>
+            <span class="chip">{{ i18n.tp('ttr.select.cars', { n: v.cars }) }}</span>
+            <span class="chip">{{ i18n.tp('ttr.select.routes', { list: lengths(v.routeTable).join('/') }) }}</span>
           </div>
           <div class="bonus-row">
             @for (b of v.bonuses; track b.id) {
-              <span class="bonus">{{ b.label }}</span>
+              <span class="bonus">{{ i18n.locale() === 'en' && b.labelEn ? b.labelEn : b.label }}</span>
             }
           </div>
         </button>

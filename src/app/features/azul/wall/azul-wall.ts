@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { AzulMatch } from '../../../core/services/azul-match';
+import { I18n } from '../../../core/i18n/i18n';
 import { AzulTile } from '../../../shared/svg/azul-tile';
 import { wallColor, type AzulColor } from '../scoring/azul-scoring';
 
@@ -24,7 +25,7 @@ interface Cell {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [AzulTile],
   template: `
-    <div class="wall" role="grid" aria-label="Parede do Azul">
+    <div class="wall" role="grid" [attr.aria-label]="i18n.t('azul.wallAria')">
       @for (row of rows; track row) {
         <div class="wall-row" role="row">
           @for (col of cols; track col) {
@@ -67,6 +68,7 @@ interface Cell {
 })
 export class AzulWall {
   readonly match = inject(AzulMatch);
+  readonly i18n = inject(I18n);
 
   readonly rows = [0, 1, 2, 3, 4];
   readonly cols = [0, 1, 2, 3, 4];
@@ -89,7 +91,16 @@ export class AzulWall {
   }
 
   cellLabel(row: number, col: number, committed: boolean, draft: boolean): string {
-    const state = committed ? 'preenchido' : draft ? 'selecionado' : 'vazio';
-    return `Linha ${row + 1}, coluna ${col + 1}, ${this.colorAt(row, col)}, ${state}`;
+    const state = committed
+      ? this.i18n.t('azul.cell.filled')
+      : draft
+        ? this.i18n.t('azul.cell.selected')
+        : this.i18n.t('azul.cell.empty');
+    return this.i18n.tp('azul.cell', {
+      r: row + 1,
+      c: col + 1,
+      color: this.i18n.t(`color.${this.colorAt(row, col)}`),
+      state,
+    });
   }
 }

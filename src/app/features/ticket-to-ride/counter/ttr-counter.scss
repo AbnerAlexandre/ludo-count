@@ -17,7 +17,7 @@
   gap: 12px;
   padding: 12px 0;
   /* leave room on the right for the floating theme toggle */
-  padding-right: 52px;
+  padding-right: 104px; /* dois controles no topo: idioma + tema */
   background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(10px);
 }

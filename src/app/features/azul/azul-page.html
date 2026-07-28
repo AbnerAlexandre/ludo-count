@@ -1,29 +1,29 @@
 <main class="azul" [class.is-finished]="finished()">
   <header class="bar">
-    <a routerLink="/" class="icon-btn" aria-label="Voltar ao início">
+    <a [routerLink]="i18n.locale() === 'en' ? '/en' : '/'" class="icon-btn" [attr.aria-label]="i18n.t('common.backHome')">
       <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <div class="bar-title">
-      <h1 class="sr-only">Contador de pontos do Azul</h1>
-      <img class="game-logo" src="azul/azul-logo.webp" alt="Azul" width="575" height="408" />
+      <h1 class="sr-only">{{ i18n.t('azul.h1') }}</h1>
+      <img class="game-logo" src="azul/azul-logo.webp" [alt]="i18n.t('azul.iconAlt')" width="575" height="408" />
     </div>
   </header>
 
   <section class="score-card" [class.done]="finished()">
     <div class="score-main">
-      <span class="score-label">{{ finished() ? 'Pontuação final' : 'Pontuação' }}</span>
+      <span class="score-label">{{ finished() ? i18n.t('azul.finalScore') : i18n.t('azul.score') }}</span>
       <span class="score tabular">{{ match.finalTotal() }}</span>
     </div>
     <button type="button" class="audit-btn" (click)="showAudit.set(true)">
       <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      Auditoria
+      {{ i18n.t('common.audit') }}
     </button>
   </section>
 
   @if (finished()) {
     <p class="lock-banner">
       <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Partida encerrada — os dados estão travados.
+      {{ i18n.t('azul.lockBanner') }}
     </p>
   }
 
@@ -31,52 +31,50 @@
 
   @if (finished()) {
     @let eg = match.endGame();
-    <section class="endgame" aria-label="Bônus de fim de partida">
-      <h2 class="section-title display">Bônus de fim de partida</h2>
+    <section class="endgame" [attr.aria-label]="i18n.t('azul.endgame.title')">
+      <h2 class="section-title display">{{ i18n.t('azul.endgame.title') }}</h2>
       <div class="eg-grid">
         <div class="eg-item">
-          <span class="eg-label">Linhas completas</span>
+          <span class="eg-label">{{ i18n.t('azul.endgame.rows') }}</span>
           <span class="eg-calc">{{ eg.completedRows.length }} × +2</span>
           <b class="eg-pts tabular">+{{ eg.rowPoints }}</b>
         </div>
         <div class="eg-item">
-          <span class="eg-label">Colunas completas</span>
+          <span class="eg-label">{{ i18n.t('azul.endgame.cols') }}</span>
           <span class="eg-calc">{{ eg.completedCols.length }} × +7</span>
           <b class="eg-pts tabular">+{{ eg.colPoints }}</b>
         </div>
         <div class="eg-item">
-          <span class="eg-label">Cores completas</span>
+          <span class="eg-label">{{ i18n.t('azul.endgame.colors') }}</span>
           <span class="eg-calc">{{ eg.completedColors.length }} × +10</span>
           <b class="eg-pts tabular">+{{ eg.colorPoints }}</b>
         </div>
       </div>
       <div class="eg-total">
-        <span>Bônus de fim de partida</span>
+        <span>{{ i18n.t('azul.endgame.bonusTotal') }}</span>
         <b class="tabular pos">+{{ eg.total }}</b>
       </div>
     </section>
   } @else if (isViewingHistory()) {
-    <p class="viewing-note">
-      Vendo o histórico — os azulejos desta rodada estão destacados. Volte ao atual para continuar marcando.
-    </p>
+    <p class="viewing-note">{{ i18n.t('azul.viewingNote') }}</p>
   } @else {
-    <section class="entry" aria-label="Registrar rodada">
+    <section class="entry" [attr.aria-label]="i18n.tp('azul.entry.round', { n: match.roundNumber() })">
       <div class="entry-head">
-        <h2 class="display">Rodada {{ match.roundNumber() }}</h2>
+        <h2 class="display">{{ i18n.tp('azul.entry.round', { n: match.roundNumber() }) }}</h2>
         <span class="draft-count">
-          {{ draftCount() }} {{ draftCount() === 1 ? 'azulejo' : 'azulejos' }} marcado{{ draftCount() === 1 ? '' : 's' }}
+          {{ draftCount() === 1 ? i18n.tp('azul.entry.markedOne', { n: draftCount() }) : i18n.tp('azul.entry.markedMany', { n: draftCount() }) }}
         </span>
       </div>
-      <p class="hint">Toque nas casas da parede que receberam azulejo nesta rodada.</p>
+      <p class="hint">{{ i18n.t('azul.entry.hint') }}</p>
 
       <div class="floor-block">
         <div class="floor-block-head">
-          <span class="floor-title">Linha do chão</span>
+          <span class="floor-title">{{ i18n.t('azul.floor.title') }}</span>
           <span class="floor-sum" [class.neg]="match.floorPreview() < 0">
-            {{ match.floorPreview() === 0 ? 'sem penalidade' : signed(match.floorPreview()) }}
+            {{ match.floorPreview() === 0 ? i18n.t('azul.floor.none') : signed(match.floorPreview()) }}
           </span>
         </div>
-        <div class="floor-rating" role="group" aria-label="Azulejos na linha do chão">
+        <div class="floor-rating" role="group" [attr.aria-label]="i18n.t('azul.floor.aria')">
           @for (slot of floorSlots; track slot) {
             <div class="floor-slot" [class.active]="match.draftFloor() >= slot">
               <span class="floor-pts tabular">{{ cumulativePenalty(slot) }}</span>
@@ -85,7 +83,7 @@
                 class="floor-btn"
                 [class.selected]="match.draftFloor() >= slot"
                 [attr.aria-pressed]="match.draftFloor() >= slot"
-                [attr.aria-label]="slot + ' azulejos no chão, total ' + cumulativePenalty(slot)"
+                [attr.aria-label]="i18n.tp('azul.floor.slotAria', { n: slot, p: cumulativePenalty(slot) })"
                 (click)="onFloorClick(slot)"
               >
                 @if (match.draftFloor() >= slot) {
@@ -99,36 +97,36 @@
 
       <div class="preview">
         <div class="preview-row">
-          <span>Pontos da parede</span>
+          <span>{{ i18n.t('azul.preview.wall') }}</span>
           <b class="tabular pos">{{ signed(preview().placementPoints) }}</b>
         </div>
         <div class="preview-row">
-          <span>Penalidade do chão</span>
+          <span>{{ i18n.t('azul.preview.floor') }}</span>
           <b class="tabular" [class.neg]="preview().floorPenalty < 0">{{ preview().floorPenalty === 0 ? '0' : signed(preview().floorPenalty) }}</b>
         </div>
         <div class="preview-row total">
-          <span>Total após a rodada</span>
+          <span>{{ i18n.t('azul.preview.after') }}</span>
           <b class="tabular">{{ preview().totalAfter }}</b>
         </div>
       </div>
 
       <button type="button" class="commit" [disabled]="!match.canCommit()" (click)="commit()">
-        Confirmar rodada {{ match.roundNumber() }}
+        {{ i18n.tp('azul.commit', { n: match.roundNumber() }) }}
       </button>
     </section>
   }
 
-  <section class="history-section" aria-label="Histórico de rodadas">
-    <h2 class="section-title display">Histórico</h2>
+  <section class="history-section" [attr.aria-label]="i18n.t('azul.history')">
+    <h2 class="section-title display">{{ i18n.t('azul.history') }}</h2>
     <app-round-history />
   </section>
 
   <div class="match-actions">
     @if (finished()) {
-      <button type="button" class="action primary" (click)="confirm.set('new')">Começar nova partida</button>
+      <button type="button" class="action primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
     } @else {
-      <button type="button" class="action ghost" (click)="confirm.set('new')">Nova partida</button>
-      <button type="button" class="action finish" (click)="confirm.set('finish')">Terminar partida</button>
+      <button type="button" class="action ghost" (click)="confirm.set('new')">{{ i18n.t('common.newMatch') }}</button>
+      <button type="button" class="action finish" (click)="confirm.set('finish')">{{ i18n.t('common.finishMatch') }}</button>
     }
   </div>
 </main>
@@ -138,19 +136,19 @@
 }
 @if (confirm() === 'finish') {
   <app-confirm-dialog
-    title="Terminar a partida?"
-    message="Os bônus de fim de jogo (linhas, colunas e cores completas) serão aplicados e os dados ficarão travados."
-    confirmLabel="Terminar e calcular"
-    cancelLabel="Ainda não"
+    [title]="i18n.t('azul.confirmFinish.title')"
+    [message]="i18n.t('azul.confirmFinish.msg')"
+    [confirmLabel]="i18n.t('azul.confirmFinish.ok')"
+    [cancelLabel]="i18n.t('azul.confirmFinish.cancel')"
     (confirm)="confirmFinish()"
     (cancel)="confirm.set(null)"
   />
 }
 @if (confirm() === 'new') {
   <app-confirm-dialog
-    title="Nova partida?"
-    message="A pontuação e o histórico de rodadas serão apagados. Esta ação não pode ser desfeita."
-    confirmLabel="Apagar e recomeçar"
+    [title]="i18n.t('azul.confirmNew.title')"
+    [message]="i18n.t('azul.confirmNew.msg')"
+    [confirmLabel]="i18n.t('azul.confirmNew.ok')"
     (confirm)="confirmNewMatch()"
     (cancel)="confirm.set(null)"
   />

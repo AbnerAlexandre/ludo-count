@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import type { AuditEntry } from '../../core/models/audit.models';
+import { I18n } from '../../core/i18n/i18n';
 
 interface AuditGroup {
   name: string;
@@ -35,17 +36,17 @@ interface AuditGroup {
         @sheet
         role="dialog"
         aria-modal="true"
-        aria-label="Auditoria de pontos"
+        [attr.aria-label]="i18n.t('audit.title')"
         (click)="$event.stopPropagation()"
       >
         <header>
           <div class="grabber" aria-hidden="true"></div>
           <div class="head-row">
             <div>
-              <h2 class="display">Auditoria</h2>
-              <p>De onde vem cada ponto do total.</p>
+              <h2 class="display">{{ i18n.t('audit.title') }}</h2>
+              <p>{{ i18n.t('audit.subtitle') }}</p>
             </div>
-            <button type="button" class="close" aria-label="Fechar" (click)="close.emit()">
+            <button type="button" class="close" [attr.aria-label]="i18n.t('common.close')" (click)="close.emit()">
               <svg viewBox="0 0 24 24" width="22" height="22">
                 <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
               </svg>
@@ -55,7 +56,7 @@ interface AuditGroup {
 
         <div class="scroll">
           @if (groups().length === 0) {
-            <p class="empty">Nenhum ponto registrado ainda.</p>
+            <p class="empty">{{ i18n.t('audit.empty') }}</p>
           }
           @for (g of groups(); track g.name) {
             <div class="group">
@@ -81,7 +82,7 @@ interface AuditGroup {
         </div>
 
         <footer>
-          <span>Total</span>
+          <span>{{ i18n.t('common.total') }}</span>
           <span class="total tabular" [class.neg]="total() < 0">{{ signed(total()) }}</span>
         </footer>
       </section>
@@ -227,6 +228,7 @@ interface AuditGroup {
   ],
 })
 export class AuditSheet {
+  readonly i18n = inject(I18n);
   readonly entries = input.required<AuditEntry[]>();
   readonly total = input.required<number>();
   readonly close = output<void>();

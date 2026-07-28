@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, PLATFORM_ID, computed, effect, inje
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Seo } from '../../../core/seo/seo';
+import { I18n } from '../../../core/i18n/i18n';
 import { TtrMatch } from '../../../core/services/ttr-match';
 import { AuditSheet } from '../../../shared/ui/audit-sheet';
 import { ConfirmDialog } from '../../../shared/ui/confirm-dialog';
 import { TtrLocomotive, TtrRail } from '../../../shared/svg/ttr-icons';
-import { TTR_GENERIC_LOGO, type BonusSpec } from '../scoring/ttr-variants';
+import { TTR_GENERIC_LOGO, bonusHint, bonusLabel, variantName, variantNote, type BonusSpec } from '../scoring/ttr-variants';
 import { SITE_URL } from '../../../core/seo/seo.config';
 
 @Component({
@@ -21,6 +22,7 @@ export class TtrCounter {
   private readonly router = inject(Router);
   private readonly seo = inject(Seo);
   readonly match = inject(TtrMatch);
+  readonly i18n = inject(I18n);
 
   readonly showAudit = signal(false);
   /** which confirmation dialog is open, if any */
@@ -50,20 +52,22 @@ export class TtrCounter {
   constructor() {
     const id = this.route.snapshot.paramMap.get('variantId')!;
     const ok = this.match.selectVariant(id);
-    if (!ok) this.router.navigate(['/ticket-to-ride']);
+    if (!ok) this.router.navigate([...(this.i18n.locale() === 'en' ? ['/en'] : []), 'ticket-to-ride']);
 
-    const v = this.match.variant();
-    if (v) {
+    effect(() => {
+      const v = this.match.variant();
+      if (!v) return;
+      const loc = this.i18n.locale();
+      const name = variantName(v, loc);
+      const bonuses = v.bonuses.map((b) => bonusLabel(b, loc)).join(', ');
       this.seo.update({
-        title: `Contador de pontos Ticket to Ride ${v.name} | LudoCount`,
-        description:
-          `Conte os pontos do Ticket to Ride ${v.name}: tabela de rotas da edição, ` +
-          `bilhetes de destino e ${v.bonuses.map((b) => b.label).join(', ')}. ` +
-          'Cada ponto rastreável na auditoria.',
-        path: `/ticket-to-ride/${v.id}`,
+        title: this.i18n.tp('seo.ttrCounter.title', { name }),
+        description: this.i18n.tp('seo.ttrCounter.desc', { name, bonuses }),
+        basePath: `/ticket-to-ride/${v.id}`,
+        locale: loc,
         image: v.logo ? `${SITE_URL}/${v.logo}` : undefined,
       });
-    }
+    });
 
     // No browser o título acompanha o placar ao vivo. No prerender ele é
     // preservado descritivo, senão o buscador indexaria "Ticket - 0".
@@ -72,6 +76,20 @@ export class TtrCounter {
         this.seo.setTitle(`Ticket - ${this.match.total()}`);
       });
     }
+  }
+
+  variantName(): string {
+    const v = this.variant();
+    return v ? variantName(v, this.i18n.locale()) : '';
+  }
+  note(v: NonNullable<ReturnType<typeof this.variant>>): string {
+    return variantNote(v, this.i18n.locale());
+  }
+  bonusLabel(spec: BonusSpec): string {
+    return bonusLabel(spec, this.i18n.locale());
+  }
+  bonusHint(spec: BonusSpec): string | undefined {
+    return bonusHint(spec, this.i18n.locale());
   }
 
   addRoute(length: number): void {
@@ -130,6 +148,6 @@ export class TtrCounter {
     this.match.reset();
     this.terrainEnabled.set(false);
     this.confirm.set(null);
-    this.router.navigate(['/ticket-to-ride']);
+    this.router.navigate([...(this.i18n.locale() === 'en' ? ['/en'] : []), 'ticket-to-ride']);
   }
 }

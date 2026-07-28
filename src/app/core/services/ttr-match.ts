@@ -1,7 +1,14 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { Persistence } from './persistence';
+import { I18n } from '../i18n/i18n';
 import type { AuditEntry } from '../models/audit.models';
-import { findVariant, type BonusSpec, type TtrVariant } from '../../features/ticket-to-ride/scoring/ttr-variants';
+import {
+  bonusHint,
+  bonusLabel,
+  findVariant,
+  type BonusSpec,
+  type TtrVariant,
+} from '../../features/ticket-to-ride/scoring/ttr-variants';
 import {
   bonusesTotal,
   buildAudit,
@@ -12,6 +19,7 @@ import {
   type BonusState,
   type ClaimedRoute,
   type Ticket,
+  type TtrAuditLabels,
 } from '../../features/ticket-to-ride/scoring/ttr-scoring';
 
 interface TtrSnapshot {
@@ -34,6 +42,7 @@ const uid = () => `${Date.now().toString(36)}-${(seq++).toString(36)}`;
 @Injectable({ providedIn: 'root' })
 export class TtrMatch {
   private readonly store = inject(Persistence);
+  private readonly i18n = inject(I18n);
 
   readonly variant = signal<TtrVariant | null>(null);
   readonly routes = signal<ClaimedRoute[]>([]);
@@ -61,8 +70,28 @@ export class TtrMatch {
 
   readonly audit = computed<AuditEntry[]>(() => {
     const v = this.variant();
-    return v ? buildAudit(v, { routes: this.routes(), tickets: this.tickets(), bonuses: this.bonuses() }) : [];
+    if (!v) return [];
+    return buildAudit(v, { routes: this.routes(), tickets: this.tickets(), bonuses: this.bonuses() }, this.auditLabels());
   });
+
+  private auditLabels(): TtrAuditLabels {
+    const t = this.i18n;
+    const l = t.locale();
+    return {
+      routesGroup: t.t('audit.routes'),
+      ticketsGroup: t.t('audit.tickets'),
+      bonusesGroup: t.t('audit.bonuses'),
+      route: (len, terrain) => {
+        const base = len === 1 ? t.tp('audit.routeOne', { n: len }) : t.tp('audit.routeMany', { n: len });
+        return terrain ? base + t.t('audit.terrainSuffix') : base;
+      },
+      ticketComplete: t.t('audit.ticketComplete'),
+      ticketIncomplete: t.t('audit.ticketIncomplete'),
+      ticketValue: (v) => t.tp('audit.ticketValue', { n: v }),
+      bonusLabel: (spec) => bonusLabel(spec, l),
+      bonusHint: (spec) => bonusHint(spec, l),
+    };
+  }
 
   readonly hasProgress = computed(
     () => this.routes().length > 0 || this.tickets().length > 0 || Object.keys(this.bonuses()).length > 0,

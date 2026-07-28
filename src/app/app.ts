@@ -1,8 +1,9 @@
-import { Component, DOCUMENT, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
+import { I18n } from './core/i18n/i18n';
 
 /**
  * App shell. Drives the per-game color theme from the active route's data and
@@ -11,7 +12,7 @@ import { filter, map } from 'rxjs';
  */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -19,10 +20,30 @@ export class App {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly doc = inject(DOCUMENT);
+  readonly i18n = inject(I18n);
   /** localStorage não existe durante o prerender (Node) */
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly scheme = signal<'dark' | 'light'>('dark');
+
+  /** URL atual (para calcular o link do outro idioma) */
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((e) => e instanceof NavigationEnd),
+      map((e) => (e as NavigationEnd).urlAfterRedirects),
+      startWith(this.router.url),
+    ),
+    { initialValue: this.router.url },
+  );
+
+  /** Mesma página no outro idioma, para o botão de troca. */
+  readonly otherLocaleUrl = computed(() => {
+    const url = this.currentUrl().split('#')[0].split('?')[0];
+    if (url === '/en' || url.startsWith('/en/')) {
+      return url.slice(3) || '/'; // en -> pt
+    }
+    return url === '/' ? '/en' : `/en${url}`; // pt -> en
+  });
 
   /** current route's theme tag ('azul' | 'ttr' | 'default') */
   private readonly theme = toSignal(

@@ -1,13 +1,13 @@
 @if (rounds().length === 0) {
-  <p class="empty">Nenhuma rodada registrada. Marque os azulejos na parede e confirme a rodada.</p>
+  <p class="empty">{{ i18n.t('hist.empty') }}</p>
 } @else {
   <div class="history">
     <div class="nav">
-      <button type="button" class="nav-btn" (click)="step(-1)" [disabled]="selectedIndex() <= 0" aria-label="Rodada anterior">
+      <button type="button" class="nav-btn" (click)="step(-1)" [disabled]="selectedIndex() <= 0" [attr.aria-label]="i18n.t('hist.prev')">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
 
-      <div class="dots" role="tablist" aria-label="Rodadas">
+      <div class="dots" role="tablist" [attr.aria-label]="i18n.t('hist.roundsAria')">
         @for (r of rounds(); track $index) {
           <button
             type="button"
@@ -15,13 +15,13 @@
             class="dot"
             [class.active]="$index === selectedIndex()"
             [attr.aria-selected]="$index === selectedIndex()"
-            [attr.aria-label]="'Rodada ' + ($index + 1)"
+            [attr.aria-label]="i18n.tp('hist.roundN', { n: $index + 1 })"
             (click)="select($index)"
           >{{ $index + 1 }}</button>
         }
       </div>
 
-      <button type="button" class="nav-btn" (click)="step(1)" [disabled]="selectedIndex() >= rounds().length - 1" aria-label="Próxima rodada">
+      <button type="button" class="nav-btn" (click)="step(1)" [disabled]="selectedIndex() >= rounds().length - 1" [attr.aria-label]="i18n.t('hist.next')">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -29,25 +29,25 @@
     @if (selected(); as r) {
       <div class="detail">
         <div class="detail-head">
-          <h3 class="display">Rodada {{ selectedIndex() + 1 }}</h3>
+          <h3 class="display">{{ i18n.tp('hist.roundN', { n: selectedIndex() + 1 }) }}</h3>
           @if (!isLive()) {
-            <button type="button" class="live-btn" (click)="backToLive()">Voltar ao atual</button>
+            <button type="button" class="live-btn" (click)="backToLive()">{{ i18n.t('hist.backToLive') }}</button>
           } @else {
-            <span class="live-tag">rodada atual</span>
+            <span class="live-tag">{{ i18n.t('hist.liveTag') }}</span>
           }
         </div>
 
         <div class="stats">
           <div class="stat">
-            <span class="s-label">Pontos</span>
+            <span class="s-label">{{ i18n.t('hist.points') }}</span>
             <span class="s-val tabular pos">{{ signed(r.placementPoints) }}</span>
           </div>
           <div class="stat">
-            <span class="s-label">Chão</span>
+            <span class="s-label">{{ i18n.t('hist.floor') }}</span>
             <span class="s-val tabular" [class.neg]="r.floorPenalty < 0">{{ r.floorPenalty === 0 ? '0' : signed(r.floorPenalty) }}</span>
           </div>
           <div class="stat total">
-            <span class="s-label">Total após</span>
+            <span class="s-label">{{ i18n.t('hist.after') }}</span>
             <span class="s-val tabular">{{ r.totalAfter }}</span>
           </div>
         </div>
@@ -63,7 +63,7 @@
             }
           </ul>
         } @else {
-          <p class="only-floor">Só penalidade da linha do chão nesta rodada.</p>
+          <p class="only-floor">{{ i18n.t('hist.onlyFloor') }}</p>
         }
       </div>
     }

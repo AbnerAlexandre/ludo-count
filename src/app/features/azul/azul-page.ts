@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, PLATFORM_ID, computed, effect, inje
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Seo } from '../../core/seo/seo';
+import { I18n } from '../../core/i18n/i18n';
 import { AzulMatch } from '../../core/services/azul-match';
 import { AzulWall } from './wall/azul-wall';
 import { RoundHistory } from './round-history/round-history';
@@ -19,6 +20,7 @@ import { floorPenalty } from './scoring/azul-scoring';
 export class AzulPage {
   readonly match = inject(AzulMatch);
   private readonly seo = inject(Seo);
+  readonly i18n = inject(I18n);
 
   readonly showAudit = signal(false);
   /** which confirmation dialog is open, if any */
@@ -33,12 +35,13 @@ export class AzulPage {
   readonly floorSlots = [1, 2, 3, 4, 5, 6, 7];
 
   constructor() {
-    this.seo.update({
-      title: 'Contador de pontos do Azul — parede, penalidades e bônus | LudoCount',
-      description:
-        'Conte os pontos do jogo Azul sem errar: parede 5x5 interativa, pontuação por ligação, ' +
-        'penalidades da linha do chão e bônus de linhas, colunas e cores completas no fim da partida.',
-      path: '/azul',
+    effect(() => {
+      this.seo.update({
+        title: this.i18n.t('seo.azul.title'),
+        description: this.i18n.t('seo.azul.desc'),
+        basePath: '/azul',
+        locale: this.i18n.locale(),
+      });
     });
 
     // No browser o título acompanha o placar ao vivo. No prerender ele é

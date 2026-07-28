@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { AzulMatch } from '../../../core/services/azul-match';
+import { I18n } from '../../../core/i18n/i18n';
 
 /**
  * Navigable round history. Stepping selects a round, which highlights that
@@ -14,6 +15,7 @@ import { AzulMatch } from '../../../core/services/azul-match';
 })
 export class RoundHistory {
   readonly match = inject(AzulMatch);
+  readonly i18n = inject(I18n);
 
   readonly rounds = this.match.rounds;
   readonly viewed = this.match.viewedRound;
@@ -33,9 +35,7 @@ export class RoundHistory {
   readonly isLive = computed(() => this.viewed() === null);
 
   colorName(c: string): string {
-    return (
-      { blue: 'azul', yellow: 'amarelo', red: 'vermelho', black: 'preto', white: 'branco' } as Record<string, string>
-    )[c] ?? c;
+    return this.i18n.t(`color.${c}`);
   }
 
   step(delta: number): void {

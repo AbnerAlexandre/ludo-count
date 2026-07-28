@@ -5,26 +5,38 @@
     {
       "data": "2026-07-22",
       "tag": "Azul",
+      "tagEn": "Azul",
       "titulo": "Contador de pontos do Azul",
-      "descricao": "Parede 5×5 interativa, pontuação por ligação (horizontal e vertical), penalidades da linha do chão e bônus de linhas, colunas e cores completas no fim da partida."
+      "tituloEn": "Azul score counter",
+      "descricao": "Parede 5×5 interativa, pontuação por ligação (horizontal e vertical), penalidades da linha do chão e bônus de linhas, colunas e cores completas no fim da partida.",
+      "descricaoEn": "Interactive 5×5 wall, adjacency scoring (horizontal and vertical), floor-line penalties and bonuses for complete rows, columns and colors at the end of the game."
     },
     {
       "data": "2026-07-23",
       "tag": "Ticket to Ride",
+      "tagEn": "Ticket to Ride",
       "titulo": "Contadores do Ticket to Ride",
-      "descricao": "Treze edições, cada uma com sua própria tabela de pontos por rota, bilhetes de destino e bônus de fim de jogo — inclusive quando o placar fica negativo."
+      "tituloEn": "Ticket to Ride counters",
+      "descricao": "Treze edições, cada uma com sua própria tabela de pontos por rota, bilhetes de destino e bônus de fim de jogo — inclusive quando o placar fica negativo.",
+      "descricaoEn": "Thirteen editions, each with its own route points table, destination tickets and end-game bonuses — including when the score goes negative."
     },
     {
-      "status": "planejado",
+      "data": "2026-07-28",
       "tag": "Regionalização",
-      "titulo": "Versão em inglês (English)",
-      "descricao": "Em breve o LudoCount também estará disponível em inglês, com endereços próprios para cada idioma."
+      "tagEn": "Localization",
+      "titulo": "Agora em dois idiomas",
+      "tituloEn": "Now in two languages",
+      "descricao": "O LudoCount está disponível em português e inglês, com endereços próprios para cada idioma (/ e /en) e troca de idioma pelo botão no topo.",
+      "descricaoEn": "LudoCount is available in Portuguese and English, with its own addresses for each language (/ and /en) and a language switch in the top corner."
     },
     {
       "data": "2026-07-27",
       "tag": "FAQ",
+      "tagEn": "FAQ",
       "titulo": "Perguntas frequentes",
-      "descricao": "Uma seção de perguntas e respostas sobre como contar os pontos, quais edições são suportadas e como o progresso é salvo."
+      "tituloEn": "Frequently asked questions",
+      "descricao": "Uma seção de perguntas e respostas sobre como contar os pontos, quais edições são suportadas e como o progresso é salvo.",
+      "descricaoEn": "A questions-and-answers section on how to count points, which editions are supported and how progress is saved."
     }
   ]
 }
