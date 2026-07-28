@@ -64,7 +64,7 @@
 h1 {
   margin: 20px 0 0;
   font-size: clamp(3.4rem, 15vw, 6rem);
-  font-weight: 900;
+  font-weight: 700; /* Fredoka vai até 700 — evita negrito sintético */
   line-height: 0.95;
   letter-spacing: -0.02em;
 }

@@ -39,6 +39,11 @@
   --ttr-rail: #d9b46a;
   --ttr-rail-dark: #8a6a2f;
 
+  /* tipografia — moderna e informal, sem serifa */
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Gabarito', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-brand: 'Gabarito', 'Plus Jakarta Sans', system-ui, sans-serif;
+
   /* geometry */
   --radius: 8px;
   --radius-sm: 6px;
@@ -93,15 +98,22 @@ body {
     radial-gradient(1000px 700px at -10% 110%, color-mix(in srgb, var(--game-2) 10%, transparent), transparent 55%),
     var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background 500ms ease;
 }
 
+/* títulos — moderna e limpa (sem serifa) */
 .display {
-  font-family: 'Fraunces', 'Fraunces', Georgia, serif;
-  font-optical-sizing: auto;
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* wordmark da marca — arredondada e informal, usada só no logotipo */
+.brand-type {
+  font-family: var(--font-brand);
+  letter-spacing: -0.01em;
 }
 
 .tabular {
