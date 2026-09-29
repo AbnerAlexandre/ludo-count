@@ -1,35 +1,49 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Seo } from '../../../core/seo/seo';
 import { I18n } from '../../../core/i18n/i18n';
-import { TTR_GENERIC_LOGO, TTR_VARIANTS, variantName, variantNote, variantTag } from '../scoring/ttr-variants';
+import {
+  TTR_GENERIC_LOGO,
+  TTR_VARIANTS,
+  bonusLabel,
+  findVariant,
+  variantName,
+  variantNote,
+  variantTag,
+  type TtrVariant,
+} from '../scoring/ttr-variants';
 import { TtrMatch } from '../../../core/services/ttr-match';
-import { TtrRail } from '../../../shared/svg/ttr-icons';
+import { PageHeader } from '../../../shared/ui/page-header';
+import { SiteFooter } from '../../../shared/ui/site-footer';
+import { HistoryPanel } from '../../../shared/ui/history-panel';
+import { Reveal } from '../../../shared/motion/reveal.directive';
 
 /**
- * Variant / edition picker. The counter only starts after a variant is chosen,
- * which determines the route table, the bonuses, and the mechanics shown.
+ * Escolha da edição. O contador só começa depois dela, porque a edição define a
+ * tabela de rotas, os bônus e as mecânicas mostradas.
  */
 @Component({
   selector: 'app-ttr-variant-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, TtrRail],
+  imports: [RouterLink, PageHeader, SiteFooter, HistoryPanel, Reveal],
   templateUrl: './variant-select.html',
   styleUrl: './variant-select.scss',
 })
 export class VariantSelect {
-  private readonly router = inject(Router);
   private readonly seo = inject(Seo);
   readonly match = inject(TtrMatch);
   readonly i18n = inject(I18n);
 
   readonly variants = TTR_VARIANTS;
   readonly genericLogo = TTR_GENERIC_LOGO;
-  readonly activeId = computed(() => this.match.variant()?.id ?? null);
-  readonly hasProgress = this.match.hasProgress;
-
-  /** Prefixo de rota do idioma atual. */
+  readonly activeId = computed(() => (this.match.hasProgress() ? (this.match.variant()?.id ?? null) : null));
   readonly base = computed(() => (this.i18n.locale() === 'en' ? '/en' : ''));
+
+  /** nome da edição salva no histórico */
+  readonly historyName = (id?: string) => {
+    const v = id ? findVariant(id) : undefined;
+    return v ? variantName(v, this.i18n.locale()) : 'Ticket to Ride';
+  };
 
   constructor() {
     effect(() => {
@@ -38,26 +52,26 @@ export class VariantSelect {
         description: this.i18n.t('seo.ttrSelect.desc'),
         basePath: '/ticket-to-ride',
         locale: this.i18n.locale(),
+        breadcrumbs: [{ name: 'Ticket to Ride', basePath: '/ticket-to-ride' }],
       });
     });
   }
 
-  name(v: (typeof TTR_VARIANTS)[number]): string {
+  name(v: TtrVariant): string {
     return variantName(v, this.i18n.locale());
   }
-  tag(v: (typeof TTR_VARIANTS)[number]): string {
+  tag(v: TtrVariant): string {
     return variantTag(v, this.i18n.locale());
   }
-  note(v: (typeof TTR_VARIANTS)[number]): string {
+  note(v: TtrVariant): string {
     return variantNote(v, this.i18n.locale());
   }
-
-  choose(id: string): void {
-    this.match.selectVariant(id);
-    this.router.navigate([...(this.i18n.locale() === 'en' ? ['/en'] : []), 'ticket-to-ride', id]);
+  bonus(v: TtrVariant): string[] {
+    return v.bonuses.map((b) => bonusLabel(b, this.i18n.locale()));
   }
-
   lengths(table: Record<number, number>): number[] {
-    return Object.keys(table).map(Number).sort((a, b) => a - b);
+    return Object.keys(table)
+      .map(Number)
+      .sort((a, b) => a - b);
   }
 }

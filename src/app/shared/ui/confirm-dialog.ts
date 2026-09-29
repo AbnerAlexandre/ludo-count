@@ -1,55 +1,30 @@
-import { animate, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, afterNextRender, inject, input, output } from '@angular/core';
 
 /**
- * Confirmation dialog used before any destructive lifecycle action (starting a
- * new match). Requires an explicit confirm; cancelling leaves state untouched.
+ * Confirmação antes de ações destrutivas ou definitivas. Exige clique explícito;
+ * cancelar (botão, fundo ou Esc) não altera nada.
  */
 @Component({
   selector: 'app-confirm-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('backdrop', [
-      transition(':enter', [style({ opacity: 0 }), animate('180ms ease', style({ opacity: 1 }))]),
-      transition(':leave', [animate('140ms ease', style({ opacity: 0 }))]),
-    ]),
-    trigger('sheet', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(24px) scale(0.96)' }),
-        animate('240ms cubic-bezier(0.22,1,0.36,1)', style({ opacity: 1, transform: 'none' })),
-      ]),
-      transition(':leave', [
-        animate('160ms ease', style({ opacity: 0, transform: 'translateY(12px) scale(0.98)' })),
-      ]),
-    ]),
-  ],
+  host: { '(document:keydown.escape)': 'cancel.emit()' },
   template: `
-    <div class="backdrop" @backdrop role="presentation" (click)="cancel.emit()">
+    <div class="backdrop" animate.enter="in" animate.leave="out" role="presentation" (click)="cancel.emit()">
       <div
         class="card"
-        @sheet
         role="alertdialog"
         aria-modal="true"
         [attr.aria-label]="title()"
+        [attr.aria-describedby]="'cd-msg'"
         (click)="$event.stopPropagation()"
       >
-        <div class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26">
-            <path
-              d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
         <h2 class="display">{{ title() }}</h2>
-        <p>{{ message() }}</p>
+        <p id="cd-msg">{{ message() }}</p>
         <div class="actions">
-          <button type="button" class="ghost" (click)="cancel.emit()">{{ cancelLabel() }}</button>
-          <button type="button" class="danger" (click)="confirm.emit()">{{ confirmLabel() }}</button>
+          <button type="button" class="btn btn-quiet" (click)="cancel.emit()">{{ cancelLabel() }}</button>
+          <button type="button" class="btn" [class.btn-danger]="tone() === 'danger'" [class.btn-primary]="tone() === 'primary'" (click)="confirm.emit()">
+            {{ confirmLabel() }}
+          </button>
         </div>
       </div>
     </div>
@@ -61,68 +36,50 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         inset: 0;
         z-index: 60;
         display: grid;
-        place-items: center;
-        padding: 20px;
-        background: rgba(5, 9, 18, 0.62);
-        backdrop-filter: blur(6px);
+        place-items: end center;
+        padding: 16px;
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+        background: rgba(6, 8, 12, 0.62);
+      }
+      @media (min-width: 640px) {
+        .backdrop {
+          place-items: center;
+        }
       }
       .card {
-        width: min(420px, 100%);
-        background: var(--bg-elev);
+        width: min(440px, 100%);
+        background: var(--surface);
         border: 1px solid var(--line);
-        border-radius: var(--radius-lg);
-        padding: 28px 24px 22px;
+        border-radius: var(--radius-xl);
+        padding: 24px 20px 18px;
         box-shadow: var(--shadow);
-        text-align: center;
-      }
-      .icon {
-        width: 56px;
-        height: 56px;
-        margin: 0 auto 14px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        color: var(--warn);
-        background: color-mix(in srgb, var(--warn) 16%, transparent);
       }
       h2 {
         margin: 0 0 8px;
         font-size: 1.4rem;
-        font-weight: 700;
+        font-weight: 800;
       }
       p {
         margin: 0 0 22px;
         color: var(--text-dim);
-        line-height: 1.5;
+        line-height: 1.55;
       }
       .actions {
-        display: flex;
-        gap: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
       }
-      button {
-        flex: 1;
-        min-height: var(--tap);
-        border-radius: 999px;
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        border: 1px solid transparent;
-        transition: transform 0.12s ease, filter 0.15s ease;
+      .backdrop.in {
+        animation: fade-in 200ms var(--ease-out);
       }
-      button:active {
-        transform: scale(0.97);
+      .backdrop.in .card {
+        animation: dialog-in 240ms var(--ease-out);
       }
-      .ghost {
-        background: var(--bg-elev-2);
-        border-color: var(--line);
-        color: var(--text);
+      .backdrop.out {
+        animation: fade-out 180ms var(--ease-out) forwards;
       }
-      .danger {
-        background: var(--bad);
-        color: #fff;
-      }
-      .danger:hover {
-        filter: brightness(1.08);
+      .backdrop.out .card {
+        animation: dialog-out 160ms var(--ease-out) forwards;
       }
     `,
   ],
@@ -132,6 +89,14 @@ export class ConfirmDialog {
   readonly message = input('Esta ação não pode ser desfeita.');
   readonly confirmLabel = input('Confirmar');
   readonly cancelLabel = input('Cancelar');
+  /** 'danger' para apagar dados, 'primary' para ações definitivas mas não destrutivas */
+  readonly tone = input<'danger' | 'primary'>('danger');
   readonly confirm = output<void>();
   readonly cancel = output<void>();
+
+  constructor() {
+    const host = inject(ElementRef<HTMLElement>);
+    // foco inicial no botão seguro (cancelar)
+    afterNextRender(() => (host.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.btn-quiet')?.focus());
+  }
 }

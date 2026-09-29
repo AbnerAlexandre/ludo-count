@@ -2,23 +2,17 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { AzulMatch } from '../../../core/services/azul-match';
 import { I18n } from '../../../core/i18n/i18n';
 import { AzulTile } from '../../../shared/svg/azul-tile';
+import { pop } from '../../../shared/motion/motion-utils';
 import { wallColor, type AzulColor } from '../scoring/azul-scoring';
 
-interface Cell {
-  row: number;
-  col: number;
-  color: AzulColor;
-}
-
 /**
- * The 5×5 Azul wall. Fixed color positions follow
- * cor(linha, coluna) = CORES[(coluna - linha) mod 5].
+ * Parede 5×5 do Azul. Cores fixas: cor(linha, coluna) = CORES[(coluna − linha) mod 5].
  *
- * States per cell:
- *  - committed  → filled tile + round-number badge
- *  - draft      → selected for the round being entered (pulsing)
- *  - highlighted→ belongs to the round being viewed in history (ring)
- *  - empty      → faint color hint, tappable
+ * Estados de cada casa:
+ *  - committed   → azulejo cheio + selo com o número da rodada
+ *  - draft       → marcado na rodada em andamento (contorno + mola ao marcar)
+ *  - highlighted → pertence à rodada vista no histórico
+ *  - empty       → azulejo apagado, tocável
  */
 @Component({
   selector: 'app-azul-wall',
@@ -44,7 +38,7 @@ interface Cell {
               [attr.aria-label]="cellLabel(row, col, committed, draft)"
               [attr.aria-selected]="committed || draft"
               [disabled]="committed || readOnly()"
-              (click)="onTap(row, col)"
+              (click)="onTap(row, col, $event)"
             >
               <app-azul-tile
                 class="tile"
@@ -85,9 +79,15 @@ export class AzulWall {
     return this.match.cellRound()[row][col];
   }
 
-  onTap(row: number, col: number): void {
+  onTap(row: number, col: number, event: Event): void {
     if (this.readOnly()) return;
+    const wasDraft = this.match.isDraft(row, col);
     this.match.toggleCell(row, col);
+    // mola só ao marcar: é o momento em que o jogador precisa da confirmação
+    if (!wasDraft && this.match.isDraft(row, col)) {
+      const tile = (event.currentTarget as HTMLElement).querySelector('app-azul-tile');
+      if (tile) pop(tile, 0.78);
+    }
   }
 
   cellLabel(row: number, col: number, committed: boolean, draft: boolean): string {

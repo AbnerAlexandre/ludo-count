@@ -1,89 +1,159 @@
 @import 'tailwindcss';
 
 /* ============================================================
-   LudoCount — design tokens
+   LudoCount — design system
+   Sem gradientes nem halos: cor sólida por jogo, uma família de
+   cinzas por tema, textura sutil de mesa e controles com
+   profundidade física (teclas que afundam ao toque).
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  /* base surfaces (dark-first, table-friendly) */
-  --bg: #0b1220;
-  --bg-elev: #121b2e;
-  --bg-elev-2: #1a2740;
-  --surface: #16223a;
-  --line: #26344f;
-  --line-soft: #1e2c47;
+  /* neutros — uma única família fria */
+  --bg: #0e1014;
+  --surface: #16181e;
+  --surface-2: #1d2027;
+  --surface-3: #262a33;
+  --line: #2a2e37;
+  --line-strong: #3b404c;
+  --text: #eef0f3;
+  --text-dim: #aab0bc;
+  --text-faint: #8d94a2;
+  --ink: #0e1014;
 
-  /* text */
-  --text: #eef3fb;
-  --text-dim: #a9b6cf;
-  /* clareado para passar em contraste AA (4.5:1) sobre as superfícies escuras */
-  --text-faint: #8b9bba;
+  /* aliases usados por estilos antigos */
+  --bg-elev: var(--surface);
+  --bg-elev-2: var(--surface-2);
+  --line-soft: var(--line);
 
-  /* brand accents */
-  --accent: #6ea8ff;
-  --accent-2: #b78bff;
-  --good: #47d18a;
-  --bad: #ff6b6b;
-  --warn: #ffcf5c;
+  /* semântica */
+  --good: #4cc98c;
+  --bad: #f16b60;
+  --warn: #eabb4a;
 
-  /* azul tile colors (from provided assets) */
+  /* acentos por jogo: fill (bloco sólido), ink (texto sobre o fill),
+     text (acento legível sobre superfície) */
+  --azul-fill: #2f6fd0;
+  --azul-ink: #ffffff;
+  --azul-text: #86b4f6;
+  --ttr-fill: #e7a53c;
+  --ttr-ink: #17110a;
+  --ttr-text: #efbd66;
+  --sw-fill: #b9542e;
+  --sw-ink: #ffffff;
+  --sw-text: #ee9270;
+
+  /* azulejos (assets) */
   --azul-blue: #007ecc;
   --azul-yellow: #fcbc1e;
   --azul-red: #e82624;
   --azul-black: #1c2426;
-  --azul-white: #00c4f9; /* "branco" -> turquoise asset */
+  --azul-white: #00c4f9;
   --azul-negative: #043369;
 
   /* ttr */
-  --ttr-rail: #d9b46a;
-  --ttr-rail-dark: #8a6a2f;
+  --ttr-rail: var(--ttr-text);
 
-  /* tipografia — moderna e informal, sem serifa */
+  /* cores das cartas do 7 Wonders (conteúdo real do jogo) */
+  --sw-military: #d0473d;
+  --sw-coin: #d8a93b;
+  --sw-wonder: #a98e62;
+  --sw-civil: #3e7bd4;
+  --sw-commerce: #e0b83c;
+  --sw-guild: #8a5fc4;
+  --sw-science: #3f9e61;
+  --sw-leader: #d9d4c7;
+  --sw-city: #4a4d55;
+  --sw-naval: #2b8aa8;
+  --sw-babel: #b98c52;
+  --sw-edifice: #8f949c;
+
+  /* tipografia */
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-display: 'Gabarito', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-brand: 'Gabarito', 'Plus Jakarta Sans', system-ui, sans-serif;
 
-  /* geometry */
+  /* geometria (cantos contidos, preferência do projeto) */
   --radius: 8px;
   --radius-sm: 6px;
   --radius-lg: 12px;
+  --radius-xl: 16px;
   --tap: 48px;
-  --shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.55);
-  --shadow-soft: 0 6px 24px -14px rgba(0, 0, 0, 0.5);
+  --header-h: 64px;
+  --dock-h: 76px;
 
-  /* per-game theme (overridden by [data-theme]) */
-  --game: var(--accent);
-  --game-2: var(--accent-2);
+  /* sombras tingidas pelo fundo, luz vinda de cima */
+  --shadow: 0 18px 40px -22px rgba(4, 6, 12, 0.85);
+  --shadow-soft: 0 10px 24px -18px rgba(4, 6, 12, 0.8);
+  --edge: 0 2px 0 var(--line-strong);
+
+  /* movimento */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 140ms;
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+
+  /* textura de mesa (ruído, não gradiente) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* acento do jogo ativo (sobrescrito por [data-theme]) */
+  --game: var(--text);
+  --game-ink: var(--ink);
+  --game-text: var(--text);
+  --game-2: var(--text-dim);
 }
 
 :root[data-theme='azul'] {
-  --game: #2e9be0;
-  --game-2: #00c4f9;
+  --game: var(--azul-fill);
+  --game-ink: var(--azul-ink);
+  --game-text: var(--azul-text);
 }
 :root[data-theme='ttr'] {
-  --game: #d9b46a;
-  --game-2: #e6a15a;
+  --game: var(--ttr-fill);
+  --game-ink: var(--ttr-ink);
+  --game-text: var(--ttr-text);
+}
+:root[data-theme='sw'] {
+  --game: var(--sw-fill);
+  --game-ink: var(--sw-ink);
+  --game-text: var(--sw-text);
 }
 
-/* light theme opt-in */
+/* tema claro — papel quente, uma família de cinzas quentes */
 :root[data-scheme='light'] {
   color-scheme: light;
-  --bg: #eef2f9;
-  --bg-elev: #ffffff;
-  --bg-elev-2: #f4f7fd;
+  --bg: #f3f1ec;
   --surface: #ffffff;
-  --line: #d8e0ee;
-  --line-soft: #e6ecf6;
-  --text: #16223a;
-  --text-dim: #4a5a76;
-  --text-faint: #8494af;
-  --shadow: 0 12px 40px -16px rgba(23, 34, 58, 0.28);
-  --shadow-soft: 0 6px 20px -12px rgba(23, 34, 58, 0.2);
+  --surface-2: #efece6;
+  --surface-3: #e6e2da;
+  --line: #e0dcd3;
+  --line-strong: #cbc5b9;
+  --text: #16181d;
+  --text-dim: #4c515b;
+  --text-faint: #666c77;
+  --azul-text: #2257aa;
+  --ttr-text: #8c5a10;
+  --sw-text: #9a4222;
+  --shadow: 0 18px 40px -24px rgba(60, 48, 30, 0.35);
+  --shadow-soft: 0 10px 24px -18px rgba(60, 48, 30, 0.3);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.16  0 0 0 0 0.1  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root[data-scheme='light'][data-theme='default'],
+:root[data-scheme='light']:not([data-theme]) {
+  --game: var(--text);
+  --game-ink: #ffffff;
+  --game-text: var(--text);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 12px);
 }
 
 html,
@@ -93,38 +163,39 @@ body {
 }
 
 body {
-  background:
-    radial-gradient(1200px 800px at 80% -10%, color-mix(in srgb, var(--game) 12%, transparent), transparent 60%),
-    radial-gradient(1000px 700px at -10% 110%, color-mix(in srgb, var(--game-2) 10%, transparent), transparent 55%),
-    var(--bg);
+  background-color: var(--bg);
+  background-image: var(--grain);
   color: var(--text);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
-  transition: background 500ms ease;
+  transition: background-color 300ms ease;
 }
 
-/* títulos — moderna e limpa (sem serifa) */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
 .display {
   font-family: var(--font-display);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
-
-/* wordmark da marca — arredondada e informal, usada só no logotipo */
 .brand-type {
   font-family: var(--font-brand);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
-
 .tabular {
   font-variant-numeric: tabular-nums;
 }
 
-/**
- * Conteúdo só para leitores de tela e buscadores. Usado nos títulos das telas
- * de jogo, onde a identidade visual é a logo (imagem) mas a página ainda
- * precisa de um <h1> em texto.
- */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -137,15 +208,508 @@ body {
   border: 0;
 }
 
-/* focus visibility */
-:where(button, a, input, [tabindex]):focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--game) 70%, white);
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+:where(button, a, input, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--game-text);
   outline-offset: 2px;
-  border-radius: 8px;
+  border-radius: var(--radius);
 }
 
 button {
   font-family: inherit;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+input {
+  font-family: inherit;
+  font-size: 16px; /* evita zoom automático no iOS */
+}
+
+::selection {
+  background: color-mix(in srgb, var(--game-text) 35%, transparent);
+}
+
+/* ============================================================
+   Primitivas compartilhadas
+   ============================================================ */
+
+/* botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 0 18px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  font-weight: 700;
+  font-size: 0.97rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    opacity var(--dur-fast) ease;
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--game);
+  color: var(--game-ink);
+}
+.btn-quiet {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+.btn-danger {
+  background: var(--bad);
+  color: #fff;
+}
+.btn-block {
+  width: 100%;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--game) 88%, white);
+  }
+  .btn-quiet:hover:not(:disabled) {
+    background: var(--surface-2);
+  }
+}
+
+/* botão quadrado de ícone */
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+.icon-btn:active {
+  transform: scale(0.94);
+}
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover {
+    background: var(--surface-2);
+    border-color: var(--line-strong);
+  }
+}
+
+/* tecla tátil: afunda ao toque, como uma peça física */
+.key {
+  background: var(--surface-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--edge);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    box-shadow var(--dur-press) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+.key:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--line-strong);
+}
+.key:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+@media (hover: hover) and (pointer: fine) {
+  .key:hover:not(:disabled) {
+    border-color: var(--game-text);
+  }
+}
+
+/* painéis */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+.panel-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.hint {
+  margin: 4px 0 14px;
+  color: var(--text-faint);
+  font-size: 0.86rem;
+}
+.empty {
+  margin: 10px 0 0;
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}
+.pos {
+  color: var(--good);
+}
+.neg {
+  color: var(--bad);
+}
+
+/* chip / etiqueta quadrada */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+}
+
+/* ============================================================
+   Esqueleto dos contadores (Azul, Ticket to Ride, 7 Wonders)
+   celular: conteúdo → resumo, com barra fixa de total no rodapé
+   desktop: conteúdo à esquerda, resumo fixo à direita
+   ============================================================ */
+.counter-layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 16px 16px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
+  display: grid;
+  /* minmax(0, …): nenhum conteúdo pode alargar a coluna além da tela */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+.counter-main,
+.counter-side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  min-width: 0;
+  align-content: start;
+}
+@media (min-width: 960px) {
+  .counter-layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+    gap: 28px;
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+  .counter-side {
+    position: sticky;
+    top: calc(var(--header-h) + 20px);
+    max-height: calc(100dvh - var(--header-h) - 40px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+}
+
+/* placar: bloco sólido na cor do jogo, como uma peça do tabuleiro */
+.scoreboard {
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  background: var(--game);
+  color: var(--game-ink);
+  transition: background-color 320ms var(--ease-out), color 320ms var(--ease-out);
+}
+.scoreboard.neg {
+  background: var(--bad);
+  color: #fff;
+}
+.scoreboard .sb-label {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.78;
+}
+.scoreboard .sb-total {
+  display: block;
+  margin: 6px 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 14vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.scoreboard .sb-parts {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+.scoreboard .sb-parts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 0.92rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+.scoreboard .sb-parts b {
+  font-variant-numeric: tabular-nums;
+}
+.scoreboard .sb-audit {
+  width: 100%;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  border-color: color-mix(in srgb, currentColor 28%, transparent);
+  color: inherit;
+}
+@media (hover: hover) and (pointer: fine) {
+  .scoreboard .sb-audit:hover {
+    background: color-mix(in srgb, currentColor 20%, transparent);
+  }
+}
+
+.lock-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--good) 13%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--good) 40%, var(--line));
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.match-actions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}
+.match-actions.single {
+  grid-template-columns: 1fr;
+}
+
+/* barra fixa no rodapé (celular): total ao vivo + ação principal */
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--dock-h);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-top: 1px solid var(--line);
+}
+.dock .dock-total {
+  display: flex;
+  flex-direction: column;
+  min-width: 72px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+.dock .dock-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.dock .dock-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--game-text);
+}
+.dock .dock-num.neg {
+  color: var(--bad);
+}
+.dock .btn {
+  flex: 1;
+  min-height: 52px;
+}
+@media (min-width: 960px) {
+  .dock {
+    display: none;
+  }
+}
+
+/* regras de pontuação: conteúdo útil para o jogador e para busca */
+.rules {
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+.rules h2 {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.rules h3 {
+  margin: 20px 0 6px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.rules p {
+  margin: 0 0 10px;
+  max-width: 68ch;
+}
+.rules ul {
+  margin: 0 0 10px;
+  padding-left: 1.1em;
+  max-width: 68ch;
+}
+.rules li {
+  margin: 4px 0;
+}
+.rules table {
+  width: 100%;
+  max-width: 520px;
+  border-collapse: collapse;
+  margin: 8px 0 12px;
+  font-size: 0.92rem;
+}
+.rules th,
+.rules td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.rules th {
+  color: var(--text-faint);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.rules td {
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.head-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* entrada genérica de itens em listas (sem JS) */
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.enter {
+  animation: enter-up 320ms var(--ease-out) both;
+}
+@supports (transition-behavior: allow-discrete) {
+  .pop-in {
+    transition:
+      opacity var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+  }
+}
+
+/* diálogos: entrada/saída nativas (animate.enter / animate.leave) */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
 }
 
 ::-webkit-scrollbar {
@@ -153,17 +717,18 @@ button {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--line);
+  background: var(--line-strong);
   border-radius: 999px;
 }
 
+/* movimento reduzido: menos e mais suave, não zero */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
     scroll-behavior: auto !important;
   }
 }

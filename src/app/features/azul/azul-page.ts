@@ -1,38 +1,54 @@
 import { ChangeDetectionStrategy, Component, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { Seo } from '../../core/seo/seo';
 import { I18n } from '../../core/i18n/i18n';
 import { AzulMatch } from '../../core/services/azul-match';
+import { MatchHistory, type HistoryPart } from '../../core/services/match-history';
 import { AzulWall } from './wall/azul-wall';
 import { RoundHistory } from './round-history/round-history';
 import { AuditSheet } from '../../shared/ui/audit-sheet';
 import { ConfirmDialog } from '../../shared/ui/confirm-dialog';
-import { floorPenalty } from './scoring/azul-scoring';
+import { PageHeader } from '../../shared/ui/page-header';
+import { SiteFooter } from '../../shared/ui/site-footer';
+import { HistoryPanel } from '../../shared/ui/history-panel';
+import { ScoreTicker } from '../../shared/motion/score-ticker';
+import { FLOOR_PENALTIES, floorPenalty } from './scoring/azul-scoring';
 
 @Component({
   selector: 'app-azul-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, AzulWall, RoundHistory, AuditSheet, ConfirmDialog],
+  imports: [AzulWall, RoundHistory, AuditSheet, ConfirmDialog, PageHeader, SiteFooter, HistoryPanel, ScoreTicker],
   templateUrl: './azul-page.html',
   styleUrl: './azul-page.scss',
 })
 export class AzulPage {
   readonly match = inject(AzulMatch);
   private readonly seo = inject(Seo);
+  private readonly history = inject(MatchHistory);
   readonly i18n = inject(I18n);
 
   readonly showAudit = signal(false);
-  /** which confirmation dialog is open, if any */
   readonly confirm = signal<'finish' | 'new' | null>(null);
 
   readonly draftCount = computed(() => this.match.draftPlacements().length);
   readonly preview = this.match.draftPreview;
   readonly isViewingHistory = computed(() => this.match.viewedRound() !== null);
   readonly finished = this.match.finished;
+  readonly home = computed(() => (this.i18n.locale() === 'en' ? '/en' : '/'));
 
-  /** floor-line slots (1..7) rendered as a penalty "rating" row */
-  readonly floorSlots = [1, 2, 3, 4, 5, 6, 7];
+  readonly floorSlots = FLOOR_PENALTIES.map((_, i) => i + 1);
+
+  /** partes exibidas no placar (a soma sempre bate com o total) */
+  readonly parts = computed(() => {
+    const s = this.match.summary();
+    const out: Array<{ key: string; points: number }> = [
+      { key: 'history.part.wall', points: s.wall },
+      { key: 'history.part.floor', points: s.floor },
+    ];
+    if (s.clamp) out.push({ key: 'history.part.clamp', points: s.clamp });
+    if (this.finished()) out.push({ key: 'history.part.endgame', points: s.endgame });
+    return out;
+  });
 
   constructor() {
     effect(() => {
@@ -41,15 +57,13 @@ export class AzulPage {
         description: this.i18n.t('seo.azul.desc'),
         basePath: '/azul',
         locale: this.i18n.locale(),
+        breadcrumbs: [{ name: 'Azul', basePath: '/azul' }],
       });
     });
 
-    // No browser o título acompanha o placar ao vivo. No prerender ele é
-    // preservado descritivo, senão o buscador indexaria "Azul - 0".
+    // No browser o título acompanha o placar ao vivo; no prerender fica descritivo.
     if (isPlatformBrowser(inject(PLATFORM_ID))) {
-      effect(() => {
-        this.seo.setTitle(`Azul - ${this.match.finalTotal()}`);
-      });
+      effect(() => this.seo.setTitle(`Azul - ${this.match.finalTotal()}`));
     }
   }
 
@@ -58,7 +72,7 @@ export class AzulPage {
   }
 
   onFloorClick(slot: number): void {
-    // rating behaviour: click selects 1..slot; re-clicking the highest clears it back one
+    // comportamento de "nota": toca → seleciona 1..slot; tocar no último de novo recua um
     this.match.setFloor(this.match.draftFloor() === slot ? slot - 1 : slot);
   }
 
@@ -68,6 +82,8 @@ export class AzulPage {
 
   confirmFinish(): void {
     this.match.finish();
+    const parts: HistoryPart[] = this.parts().filter((p) => p.points !== 0);
+    this.history.record('azul', { total: this.match.finalTotal(), parts });
     this.confirm.set(null);
   }
 

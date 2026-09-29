@@ -1,62 +1,63 @@
-<main class="wrap">
-  <header class="top">
-    <a [routerLink]="base() || '/'" class="back" [attr.aria-label]="i18n.t('common.backHome')">
-      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <div class="title">
-      <h1 class="sr-only">Ticket to Ride — {{ i18n.t('ttr.select.subtitle') }}</h1>
-      <img class="brand-logo" [src]="genericLogo" alt="Ticket to Ride" width="1339" height="462" />
-      <p>{{ i18n.t('ttr.select.subtitle') }}</p>
-    </div>
-  </header>
+<app-page-header [back]="base() || '/'">
+  <img class="head-logo" [src]="genericLogo" alt="Ticket to Ride" width="1339" height="462" />
+</app-page-header>
 
-  <div class="rail-divider" aria-hidden="true">
-    <app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail>
+<main id="conteudo" class="wrap">
+  <div class="intro">
+    <p class="eyebrow">{{ i18n.tp('ttr.select.count', { n: variants.length }) }}</p>
+    <h1 class="display">{{ i18n.t('ttr.select.h1') }}</h1>
+    <p class="lede">{{ i18n.t('ttr.select.subtitle') }}</p>
   </div>
 
   @if (activeId(); as active) {
-    <p class="resume">
-      {{ i18n.t('ttr.select.resumePre') }} <strong>{{ name(match.variant()!) }}</strong> {{ i18n.t('ttr.select.resumePost') }}
-    </p>
+    <a class="resume" [routerLink]="base() + '/ticket-to-ride/' + active">
+      <span class="dot" aria-hidden="true"></span>
+      <span>
+        {{ i18n.t('ttr.select.resumePre') }} <strong>{{ name(match.variant()!) }}</strong>
+        {{ i18n.t('ttr.select.resumePost') }}
+      </span>
+      <span class="resume-go">{{ i18n.t('ttr.select.resumeGo') }} →</span>
+    </a>
   }
 
   <ul class="grid" role="list">
-    @for (v of variants; track v.id) {
-      <li>
-        <button
-          type="button"
-          class="variant"
-          [class.active]="v.id === activeId()"
-          (click)="choose(v.id)"
-          [attr.aria-pressed]="v.id === activeId()"
-        >
-          @if (v.logo) {
-            <span class="v-logo">
-              <img [src]="v.logo" [alt]="name(v)" loading="lazy" draggable="false" />
-            </span>
-          }
-          <div class="v-head">
+    @for (v of variants; track v.id; let i = $index) {
+      <li class="enter" [style.animation-delay.ms]="i * 35">
+        <a class="variant" [class.active]="v.id === activeId()" [routerLink]="base() + '/ticket-to-ride/' + v.id">
+          <span class="cover" [class.plain]="!v.logo">
             @if (v.logo) {
-              <!-- a logo já mostra o nome; mantemos o texto para busca/leitores de tela -->
+              <img [src]="v.logo" [alt]="name(v)" loading="lazy" decoding="async" draggable="false" />
+            } @else {
+              <span class="v-name display">{{ name(v) }}</span>
+            }
+          </span>
+          <span class="body">
+            @if (v.logo) {
               <h2 class="sr-only">{{ name(v) }}</h2>
             } @else {
-              <h2 class="display">{{ name(v) }}</h2>
+              <h2 class="sr-only">Ticket to Ride {{ name(v) }}</h2>
             }
-            <span class="tag">{{ tag(v) }}</span>
-          </div>
-          <p class="note">{{ note(v) }}</p>
-          <div class="meta">
-            <span class="chip">{{ i18n.tp('ttr.select.players', { min: v.playersMin, max: v.playersMax }) }}</span>
-            <span class="chip">{{ i18n.tp('ttr.select.cars', { n: v.cars }) }}</span>
-            <span class="chip">{{ i18n.tp('ttr.select.routes', { list: lengths(v.routeTable).join('/') }) }}</span>
-          </div>
-          <div class="bonus-row">
-            @for (b of v.bonuses; track b.id) {
-              <span class="bonus">{{ i18n.locale() === 'en' && b.labelEn ? b.labelEn : b.label }}</span>
-            }
-          </div>
-        </button>
+            <span class="tag-line">{{ tag(v) }}</span>
+            <span class="note">{{ note(v) }}</span>
+            <span class="chips">
+              <span class="tag">{{ i18n.tp('ttr.select.players', { min: v.playersMin, max: v.playersMax }) }}</span>
+              <span class="tag">{{ i18n.tp('ttr.select.cars', { n: v.cars }) }}</span>
+              <span class="tag">{{ i18n.tp('ttr.select.routes', { list: lengths(v.routeTable).join('/') }) }}</span>
+            </span>
+            <span class="bonuses">
+              @for (b of bonus(v); track b) {
+                <span class="bonus">{{ b }}</span>
+              }
+            </span>
+          </span>
+        </a>
       </li>
     }
   </ul>
+
+  <section class="panel hist" appReveal>
+    <app-history-panel [game]="'ttr'" [variantName]="historyName" />
+  </section>
 </main>
+
+<app-site-footer />

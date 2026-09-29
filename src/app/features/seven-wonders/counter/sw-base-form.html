@@ -1,0 +1,179 @@
+<!-- MILITAR -->
+<app-sw-cat [label]="t('sw.cat.military')" [hint]="t('sw.hint.military')" color="var(--sw-military)" [points]="pts('sw.cat.military')">
+  <app-token-tray
+    [tokens]="militaryTokens"
+    [counts]="s().military"
+    (countsChange)="setMilitary($event)"
+    [addLabel]="t('sw.token.add')"
+    [removeLabel]="t('sw.token.remove')"
+    [disabled]="locked()"
+  />
+</app-sw-cat>
+
+<!-- TESOURO -->
+<app-sw-cat [label]="t('sw.cat.treasury')" [hint]="t('sw.hint.treasury')" color="var(--sw-coin)" [points]="pts('sw.cat.treasury')">
+  <div class="fld">
+    <span class="fl">{{ t('sw.field.coins') }}</span>
+    <app-num-field [value]="s().coins" (valueChange)="patch({ coins: $event })" [max]="199" [label]="t('sw.field.coins')" [disabled]="locked()" />
+  </div>
+  @if (ex().cities) {
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.debt') }}<small>{{ t('sw.field.debtHint') }}</small></span>
+      <app-num-field [value]="s().debt" (valueChange)="patch({ debt: $event })" [max]="99" [label]="t('sw.field.debt')" [disabled]="locked()" />
+    </div>
+  }
+</app-sw-cat>
+
+<!-- MARAVILHA / AZUIS / AMARELAS / GUILDAS -->
+<app-sw-cat [label]="t('sw.cat.wonder')" [hint]="t('sw.hint.wonder')" color="var(--sw-wonder)" [points]="pts('sw.cat.wonder')">
+  <div class="fld">
+    <span class="fl">{{ t('sw.field.vp') }}</span>
+    <app-num-field [value]="s().wonder" (valueChange)="patch({ wonder: $event })" [max]="99" [label]="t('sw.cat.wonder')" [disabled]="locked()" />
+  </div>
+</app-sw-cat>
+
+<app-sw-cat [label]="t('sw.cat.civilian')" [hint]="t('sw.hint.civilian')" color="var(--sw-civil)" [points]="pts('sw.cat.civilian')">
+  <div class="fld">
+    <span class="fl">{{ t('sw.field.vp') }}</span>
+    <app-num-field [value]="s().civilian" (valueChange)="patch({ civilian: $event })" [max]="199" [label]="t('sw.cat.civilian')" [disabled]="locked()" />
+  </div>
+</app-sw-cat>
+
+<app-sw-cat [label]="t('sw.cat.commercial')" [hint]="t('sw.hint.commercial')" color="var(--sw-commerce)" [points]="pts('sw.cat.commercial')">
+  <div class="fld">
+    <span class="fl">{{ t('sw.field.vp') }}</span>
+    <app-num-field [value]="s().commercial" (valueChange)="patch({ commercial: $event })" [max]="99" [label]="t('sw.cat.commercial')" [disabled]="locked()" />
+  </div>
+</app-sw-cat>
+
+<app-sw-cat
+  [label]="t('sw.cat.guilds')"
+  [hint]="ex().armada ? t('sw.hint.guildsArmada') : t('sw.hint.guilds')"
+  color="var(--sw-guild)"
+  [points]="pts('sw.cat.guilds')"
+>
+  <div class="fld">
+    <span class="fl">{{ t('sw.field.vp') }}</span>
+    <app-num-field [value]="s().guilds" (valueChange)="patch({ guilds: $event })" [max]="199" [label]="t('sw.cat.guilds')" [disabled]="locked()" />
+  </div>
+</app-sw-cat>
+
+<!-- CIÊNCIA -->
+<app-sw-cat [label]="t('sw.cat.science')" [hint]="t('sw.hint.science')" color="var(--sw-science)" [points]="pts('sw.cat.science')">
+  <div class="sym-grid">
+    <div class="sym">
+      <span class="sym-name">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M8.5 8h7M8.5 12h7M8.5 16h4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        {{ t('sw.sym.tablet') }}
+      </span>
+      <app-num-field [compact]="true" [value]="s().science.tablet" (valueChange)="setScience('tablet', $event)" [max]="20" [label]="t('sw.sym.tablet')" [disabled]="locked()" />
+    </div>
+    <div class="sym">
+      <span class="sym-name">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8" fill="currentColor" /><path d="M12 6.3 6 20M12 6.3 18 20M8.2 15h7.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        {{ t('sw.sym.compass') }}
+      </span>
+      <app-num-field [compact]="true" [value]="s().science.compass" (valueChange)="setScience('compass', $event)" [max]="20" [label]="t('sw.sym.compass')" [disabled]="locked()" />
+    </div>
+    <div class="sym">
+      <span class="sym-name">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.4 2.5h3.2l.5 2.4 1.9.8 2-1.4 2.3 2.3-1.4 2 .8 1.9 2.4.5v3.2l-2.4.5-.8 1.9 1.4 2-2.3 2.3-2-1.4-1.9.8-.5 2.4h-3.2l-.5-2.4-1.9-.8-2 1.4-2.3-2.3 1.4-2-.8-1.9-2.4-.5v-3.2l2.4-.5.8-1.9-1.4-2 2.3-2.3 2 1.4 1.9-.8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8" /></svg>
+        {{ t('sw.sym.gear') }}
+      </span>
+      <app-num-field [compact]="true" [value]="s().science.gear" (valueChange)="setScience('gear', $event)" [max]="20" [label]="t('sw.sym.gear')" [disabled]="locked()" />
+    </div>
+    <div class="sym wild">
+      <span class="sym-name">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" /></svg>
+        {{ t('sw.sym.wild') }}
+      </span>
+      <app-num-field [compact]="true" [value]="s().science.wild" (valueChange)="setScience('wild', $event)" [max]="10" [label]="t('sw.sym.wild')" [disabled]="locked()" />
+    </div>
+  </div>
+  @if (ex().leaders) {
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.aristotle') }}<small>{{ t('sw.field.aristotleHint') }}</small></span>
+      <app-switch [checked]="s().aristotle" (checkedChange)="patch({ aristotle: $event })" [label]="t('sw.field.aristotle')" [disabled]="locked()" />
+    </div>
+  }
+  @if (sciExplain()) {
+    <p class="sci-explain" aria-live="polite"><b>{{ t('sw.sci.how') }}</b> {{ sciExplain() }}</p>
+  }
+</app-sw-cat>
+
+<!-- LEADERS -->
+@if (ex().leaders) {
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.leaders')" [hint]="t('sw.hint.leaders')" color="var(--sw-leader)" [points]="pts('sw.cat.leaders')">
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.leaderCards') }}</span>
+      <app-num-field [value]="s().leaders" (valueChange)="patch({ leaders: $event })" [max]="99" [label]="t('sw.field.leaderCards')" [disabled]="locked()" />
+    </div>
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.alexander') }}<small>{{ t('sw.field.alexanderHint') }}</small></span>
+      <app-switch [checked]="s().alexander" (checkedChange)="patch({ alexander: $event })" [label]="t('sw.field.alexander')" [disabled]="locked()" />
+    </div>
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.midas') }}<small>{{ t('sw.field.midasHint') }}</small></span>
+      <app-switch [checked]="s().midas" (checkedChange)="patch({ midas: $event })" [label]="t('sw.field.midas')" [disabled]="locked()" />
+    </div>
+  </app-sw-cat>
+}
+
+<!-- CITIES -->
+@if (ex().cities) {
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.cities')" [hint]="t('sw.hint.cities')" color="var(--sw-city)" [points]="pts('sw.cat.cities')">
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.vp') }}</span>
+      <app-num-field [value]="s().cities" (valueChange)="patch({ cities: $event })" [max]="99" [label]="t('sw.cat.cities')" [disabled]="locked()" />
+    </div>
+  </app-sw-cat>
+}
+
+<!-- ARMADA -->
+@if (ex().armada) {
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.naval')" [hint]="t('sw.hint.naval')" color="var(--sw-naval)" [points]="pts('sw.cat.naval')">
+    <app-token-tray
+      [tokens]="navalTokens"
+      [counts]="s().naval"
+      (countsChange)="setNaval($event)"
+      [addLabel]="t('sw.token.add')"
+      [removeLabel]="t('sw.token.remove')"
+    [disabled]="locked()"
+    />
+  </app-sw-cat>
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.islands')" [hint]="t('sw.hint.islands')" color="var(--sw-naval)" [points]="pts('sw.cat.islands')">
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.vp') }}</span>
+      <app-num-field [value]="s().islands" (valueChange)="patch({ islands: $event })" [max]="99" [label]="t('sw.cat.islands')" [disabled]="locked()" />
+    </div>
+  </app-sw-cat>
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.fleet')" [hint]="t('sw.hint.fleet')" color="var(--sw-naval)" [points]="pts('sw.cat.fleet')">
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.vp') }}</span>
+      <app-num-field [value]="s().fleet" (valueChange)="patch({ fleet: $event })" [max]="30" [label]="t('sw.cat.fleet')" [disabled]="locked()" />
+    </div>
+  </app-sw-cat>
+}
+
+<!-- BABEL -->
+@if (ex().babel) {
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.babelTower')" [hint]="t('sw.hint.babelTower')" color="var(--sw-babel)" [points]="pts('sw.cat.babelTower')">
+    <app-choice [options]="towerOptions()" [value]="s().babelTiles" (valueChange)="patch({ babelTiles: +($event ?? 0) })" [label]="t('sw.cat.babelTower')" [disabled]="locked()" />
+  </app-sw-cat>
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.babelProjects')" [hint]="t('sw.hint.babelProjects')" color="var(--sw-babel)" [points]="pts('sw.cat.babelProjects')">
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.vpSigned') }}</span>
+      <app-num-field [value]="s().babelProjects" (valueChange)="patch({ babelProjects: $event })" [min]="-99" [max]="99" [label]="t('sw.cat.babelProjects')" [disabled]="locked()" />
+    </div>
+  </app-sw-cat>
+}
+
+<!-- EDIFICE -->
+@if (ex().edifice) {
+  <app-sw-cat class="pop-in" [label]="t('sw.cat.edifice')" [hint]="t('sw.hint.edifice')" color="var(--sw-edifice)" [points]="pts('sw.cat.edifice')">
+    <div class="fld">
+      <span class="fl">{{ t('sw.field.vpSigned') }}</span>
+      <app-num-field [value]="s().edifice" (valueChange)="patch({ edifice: $event })" [min]="-99" [max]="99" [label]="t('sw.cat.edifice')" [disabled]="locked()" />
+    </div>
+  </app-sw-cat>
+}

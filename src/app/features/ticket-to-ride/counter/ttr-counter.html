@@ -1,206 +1,277 @@
 @if (variant(); as v) {
-  <main class="counter" [class.is-finished]="finished()">
-    <header class="bar">
-      <a [routerLink]="(i18n.locale() === 'en' ? '/en' : '') + '/ticket-to-ride'" class="icon-btn" [attr.aria-label]="i18n.t('ttr.changeEdition')">
-        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <div class="bar-title">
-        <h1 class="sr-only">Ticket to Ride {{ variantName() }}</h1>
-        <img class="game-logo" [src]="headerLogo()" [alt]="variantName()" />
-        @if (usesGenericLogo()) {
-          <span class="edition-name">{{ variantName() }}</span>
-        }
-      </div>
-    </header>
-
-    <section class="score-card" [class.neg]="match.total() < 0" [class.done]="finished()">
-      <span class="score-label">{{ finished() ? i18n.t('ttr.counter.finalScore') : i18n.t('ttr.counter.total') }}</span>
-      <span class="score tabular">{{ match.total() }}</span>
-      <div class="score-parts">
-        <span>{{ i18n.t('ttr.counter.routes') }} <b class="tabular">{{ signed(match.routesTotal()) }}</b></span>
-        <span>{{ i18n.t('ttr.counter.tickets') }} <b class="tabular">{{ signed(match.ticketsTotal()) }}</b></span>
-        @if (v.bonuses.length) {
-          <span>{{ i18n.t('ttr.counter.bonus') }} <b class="tabular">{{ signed(match.bonusesTotal()) }}</b></span>
-        }
-      </div>
-      <button type="button" class="audit-btn" (click)="showAudit.set(true)">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        {{ i18n.t('common.auditView') }}
-      </button>
-    </section>
-
-    @if (finished()) {
-      <p class="lock-banner">
-        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        {{ i18n.t('ttr.lockBanner') }}
-      </p>
+  <app-page-header [back]="selectPath()" [backLabel]="i18n.t('ttr.changeEdition')">
+    <h1 class="sr-only">{{ i18n.tp('ttr.h1', { name: variantName() }) }}</h1>
+    <img class="head-logo" [src]="headerLogo()" [alt]="variantName()" />
+    @if (usesGenericLogo()) {
+      <span class="edition-name">{{ variantName() }}</span>
     }
+  </app-page-header>
 
-    <!-- ROTAS -->
-    <section class="panel">
-      <div class="panel-head">
-        <h2>{{ i18n.t('ttr.routes.title') }}</h2>
-        @if (v.terrainTable && !finished()) {
-          <button
-            type="button"
-            class="terrain-toggle"
-            [class.on]="terrainEnabled()"
-            (click)="terrainEnabled.set(!terrainEnabled())"
-            [attr.aria-pressed]="terrainEnabled()"
-          >{{ i18n.t('ttr.routes.terrain') }}</button>
-        }
-      </div>
-      @if (!finished()) {
-        <p class="hint">{{ i18n.t('ttr.routes.hint') }}</p>
-        <div class="len-grid">
-          @for (len of routeLengths(); track len) {
-            <button type="button" class="len" (click)="addRoute(len)">
-              <span class="len-cars">
-                <span class="len-loco" aria-hidden="true"><app-ttr-locomotive></app-ttr-locomotive></span>
-                <b class="tabular">{{ len }}</b>
-                <small>{{ len === 1 ? i18n.t('ttr.routes.carOne') : i18n.t('ttr.routes.carMany') }}</small>
-              </span>
-              <span class="len-pts tabular">+{{ terrainEnabled() && v.terrainTable ? v.terrainTable[len] : v.routeTable[len] }}</span>
-            </button>
-          }
-        </div>
+  <main id="conteudo" class="counter-layout" [class.is-finished]="finished()">
+    <div class="counter-main">
+      @if (finished()) {
+        <p class="lock-banner">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          {{ i18n.t('ttr.lockBanner') }}
+        </p>
       }
 
-      @if (match.routes().length) {
-        <ul class="chips" role="list">
-          @for (r of match.routes(); track r.id) {
-            <li>
-              <button type="button" class="chip removable" [class.locked]="finished()" [disabled]="finished()" (click)="match.removeRoute(r.id)" [attr.aria-label]="i18n.tp('ttr.routes.removeAria', { n: r.length })">
-                <span>{{ r.length }} {{ r.terrain ? '· ' + i18n.t('ttr.routes.terrain') : '' }}</span>
-                <b class="tabular">+{{ match.routePointsFor(r) }}</b>
-                @if (!finished()) {
-                  <svg viewBox="0 0 24 24" width="14" height="14"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-                }
-              </button>
-            </li>
-          }
-        </ul>
-      } @else {
-        <p class="empty">{{ i18n.t('ttr.routes.empty') }}</p>
-      }
-    </section>
-
-    <!-- BILHETES -->
-    <section class="panel">
-      <div class="panel-head"><h2>{{ i18n.t('ttr.tickets.title') }}</h2></div>
-      @if (!finished()) {
-        <p class="hint">{{ i18n.t('ttr.tickets.hint') }}</p>
-        <div class="ticket-entry">
-          <div class="stepper mini" role="group" [attr.aria-label]="i18n.t('ttr.tickets.valueAria')">
-            <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() > 1 ? ticketValue() - 1 : 1)" [attr.aria-label]="i18n.t('ttr.tickets.decrease')">−</button>
-            <input
-              type="number"
-              class="s-input tabular"
-              inputmode="numeric"
-              min="1"
-              max="999"
-              step="1"
-              [attr.aria-label]="i18n.t('ttr.tickets.valueAria')"
-              [value]="ticketValue()"
-              (input)="onTicketInput($event)"
-              (keydown)="blockNonNumericKey($event)"
-              (blur)="normalizeTicketValue()"
-            />
-            <button type="button" class="s-btn" (click)="ticketValue.set(ticketValue() + 1)" [attr.aria-label]="i18n.t('ttr.tickets.increase')">+</button>
-          </div>
-          <button type="button" class="add good" (click)="addTicket(true)">{{ i18n.t('ttr.tickets.addComplete') }}</button>
-          <button type="button" class="add bad" (click)="addTicket(false)">{{ i18n.t('ttr.tickets.addIncomplete') }}</button>
-        </div>
-      }
-
-      @if (match.tickets().length) {
-        <ul class="ticket-list" role="list">
-          @for (t of match.tickets(); track t.id) {
-            <li [class.done]="t.completed">
-              <button type="button" class="t-state" [disabled]="finished()" (click)="match.toggleTicket(t.id)" [attr.aria-label]="t.completed ? i18n.t('ttr.tickets.markIncomplete') : i18n.t('ttr.tickets.markComplete')">
-                @if (t.completed) {
-                  <svg viewBox="0 0 24 24" width="18" height="18"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                } @else {
-                  <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-                }
-              </button>
-              <span class="t-label">{{ t.completed ? i18n.t('ttr.tickets.complete') : i18n.t('ttr.tickets.incomplete') }}</span>
-              <span class="t-pts tabular">{{ signed(t.completed ? t.value : -t.value) }}</span>
-              @if (!finished()) {
-                <button type="button" class="t-del" (click)="match.removeTicket(t.id)" [attr.aria-label]="i18n.t('ttr.tickets.remove')">
-                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-                </button>
-              }
-            </li>
-          }
-        </ul>
-      } @else {
-        <p class="empty">{{ i18n.t('ttr.tickets.empty') }}</p>
-      }
-    </section>
-
-    <!-- BÔNUS (somente os relevantes à edição) -->
-    @if (v.bonuses.length) {
+      <!-- ROTAS -->
       <section class="panel">
-        <div class="panel-head"><h2>{{ i18n.t('ttr.bonus.title') }}</h2></div>
-        <div class="bonus-list">
-          @for (b of v.bonuses; track b.id) {
-            <div class="bonus-item">
-              <div class="b-info">
-                <span class="b-label">{{ bonusLabel(b) }}</span>
-                @if (bonusHint(b); as hint) { <span class="b-hint">{{ hint }}</span> }
-              </div>
+        <div class="panel-head">
+          <h2 class="panel-title">{{ i18n.t('ttr.routes.title') }}</h2>
+          <span class="panel-sum tabular">{{ signed(match.routesTotal()) }}</span>
+        </div>
+        @if (!finished()) {
+          <div class="sub-row">
+            <p class="hint">{{ i18n.t('ttr.routes.hint') }}</p>
+            @if (v.terrainTable) {
+              <label class="terrain">
+                <span>{{ i18n.t('ttr.routes.terrain') }}</span>
+                <app-switch [(checked)]="terrainEnabled" [label]="i18n.t('ttr.routes.terrain')" />
+              </label>
+            }
+          </div>
+          <div class="len-grid">
+            @for (len of routeLengths(); track len) {
+              <button type="button" class="key len" (click)="addRoute(len, $event)">
+                <span class="len-top">
+                  <app-ttr-locomotive class="loco" aria-hidden="true" />
+                  <b class="tabular">{{ len }}</b>
+                </span>
+                <span class="len-cars">{{ len === 1 ? i18n.t('ttr.routes.carOne') : i18n.t('ttr.routes.carMany') }}</span>
+                <span class="len-pts tabular">+{{ points(v, len) }}</span>
+              </button>
+            }
+          </div>
+        }
 
-              @switch (b.kind) {
-                @case ('toggle') {
-                  <button
-                    type="button"
-                    class="switch"
-                    [class.on]="bonusOn(b)"
-                    [disabled]="finished()"
-                    (click)="toggleBonus(b)"
-                    role="switch"
-                    [attr.aria-checked]="bonusOn(b)"
-                    [attr.aria-label]="bonusLabel(b)"
-                  >
-                    <span class="knob"></span>
-                    <span class="switch-val tabular">{{ bonusOn(b) ? signed(b.value ?? 0) : '0' }}</span>
+        @if (match.routes().length) {
+          <ul class="chips" role="list">
+            @for (r of match.routes(); track r.id) {
+              <li class="pop-in">
+                <button
+                  type="button"
+                  class="chip"
+                  [disabled]="finished()"
+                  (click)="match.removeRoute(r.id)"
+                  [attr.aria-label]="i18n.tp('ttr.routes.removeAria', { n: r.length })"
+                >
+                  <span class="tabular">{{ r.length }}</span>
+                  @if (r.terrain) {
+                    <span class="chip-note">×2</span>
+                  }
+                  <b class="tabular">+{{ match.routePointsFor(r) }}</b>
+                  @if (!finished()) {
+                    <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" /></svg>
+                  }
+                </button>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="empty">{{ i18n.t('ttr.routes.empty') }}</p>
+        }
+      </section>
+
+      <!-- BILHETES -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">{{ i18n.t('ttr.tickets.title') }}</h2>
+          <span class="panel-sum tabular" [class.neg]="match.ticketsTotal() < 0">{{ signed(match.ticketsTotal()) }}</span>
+        </div>
+        @if (!finished()) {
+          <p class="hint">{{ i18n.t('ttr.tickets.hint') }}</p>
+          <div class="ticket-entry">
+            <app-num-field
+              [(value)]="ticketValue"
+              [min]="1"
+              [max]="999"
+              [label]="i18n.t('ttr.tickets.valueAria')"
+              [decLabel]="i18n.t('common.decrease')"
+              [incLabel]="i18n.t('common.increase')"
+            />
+            <div class="ticket-actions">
+              <button type="button" class="btn add good" (click)="addTicket(true)">{{ i18n.t('ttr.tickets.addComplete') }}</button>
+              <button type="button" class="btn add bad" (click)="addTicket(false)">{{ i18n.t('ttr.tickets.addIncomplete') }}</button>
+            </div>
+          </div>
+        }
+
+        @if (match.tickets().length) {
+          <ul class="ticket-list" role="list">
+            @for (t of match.tickets(); track t.id) {
+              <li class="pop-in" [class.done]="t.completed">
+                <button
+                  type="button"
+                  class="t-state"
+                  [disabled]="finished()"
+                  (click)="match.toggleTicket(t.id)"
+                  [attr.aria-label]="t.completed ? i18n.t('ttr.tickets.markIncomplete') : i18n.t('ttr.tickets.markComplete')"
+                >
+                  @if (t.completed) {
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  } @else {
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" /></svg>
+                  }
+                </button>
+                <span class="t-label">{{ t.completed ? i18n.t('ttr.tickets.complete') : i18n.t('ttr.tickets.incomplete') }}</span>
+                <span class="t-pts tabular">{{ signed(t.completed ? t.value : -t.value) }}</span>
+                @if (!finished()) {
+                  <button type="button" class="t-del" (click)="match.removeTicket(t.id)" [attr.aria-label]="i18n.t('ttr.tickets.remove')">
+                    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></svg>
                   </button>
                 }
-                @default {
-                  <div class="b-stepper" role="group" [attr.aria-label]="bonusLabel(b)">
-                    <button type="button" class="s-btn" [disabled]="finished()" (click)="bumpBonus(b, -1)" [attr.aria-label]="i18n.t('ttr.bonus.decrease')">−</button>
-                    <span class="s-val tabular">{{ bonusNumber(b) }}</span>
-                    <button type="button" class="s-btn" [disabled]="finished()" (click)="bumpBonus(b, 1)" [attr.aria-label]="i18n.t('ttr.bonus.increase')">+</button>
-                  </div>
-                }
-              }
-            </div>
-          }
-        </div>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="empty">{{ i18n.t('ttr.tickets.empty') }}</p>
+        }
       </section>
-    }
 
-    <div class="foot-rail" aria-hidden="true">
-      <app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail><app-ttr-rail></app-ttr-rail>
-    </div>
-    <p class="note">{{ note(v) }}</p>
-
-    <div class="match-actions">
-      @if (finished()) {
-        <button type="button" class="action primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
-      } @else {
-        <button type="button" class="action ghost" (click)="confirm.set('new')">{{ i18n.t('common.newMatch') }}</button>
-        <button type="button" class="action finish" (click)="confirm.set('finish')">{{ i18n.t('common.finishMatch') }}</button>
+      <!-- BÔNUS (só os da edição) -->
+      @if (v.bonuses.length) {
+        <section class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">{{ i18n.t('ttr.bonus.title') }}</h2>
+            <span class="panel-sum tabular" [class.neg]="match.bonusesTotal() < 0">{{ signed(match.bonusesTotal()) }}</span>
+          </div>
+          <ul class="bonus-list" role="list">
+            @for (b of v.bonuses; track b.id) {
+              <li class="bonus-item">
+                <div class="b-info">
+                  <span class="b-label">{{ bonusLabel(b) }}</span>
+                  @if (bonusHint(b); as hint) {
+                    <span class="b-hint">{{ hint }}</span>
+                  }
+                </div>
+                @if (b.kind === 'toggle') {
+                  <app-switch
+                    [checked]="bonusOn(b)"
+                    (checkedChange)="match.setBonus(b, $event)"
+                    [disabled]="finished()"
+                    [label]="bonusLabel(b)"
+                  />
+                } @else {
+                  <app-num-field
+                    [compact]="true"
+                    [value]="bonusNumber(b)"
+                    (valueChange)="match.setBonus(b, $event)"
+                    [min]="b.min ?? 0"
+                    [max]="b.max ?? 999"
+                    [step]="b.step ?? 1"
+                    [label]="bonusLabel(b)"
+                    [decLabel]="i18n.t('common.decrease')"
+                    [incLabel]="i18n.t('common.increase')"
+                    [disabled]="finished()"
+                  />
+                }
+              </li>
+            }
+          </ul>
+        </section>
       }
+
+      <section class="rules" aria-labelledby="rules-ttr">
+        <h2 id="rules-ttr">{{ i18n.tp('rules.ttr.h2', { name: variantName() }) }}</h2>
+        <p>{{ note(v) }}</p>
+        <h3>{{ i18n.t('rules.ttr.h3routes') }}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{{ i18n.t('rules.ttr.len') }}</th>
+              @for (len of routeLengths(); track len) {
+                <td>{{ len }}</td>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ i18n.t('rules.ttr.pts') }}</th>
+              @for (len of routeLengths(); track len) {
+                <td>{{ v.routeTable[len] }}</td>
+              }
+            </tr>
+            @if (v.terrainTable) {
+              <tr>
+                <th scope="row">{{ i18n.t('rules.ttr.terrainPts') }}</th>
+                @for (len of routeLengths(); track len) {
+                  <td>{{ v.terrainTable[len] }}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+        <h3>{{ i18n.t('rules.ttr.h3tickets') }}</h3>
+        <p>{{ i18n.t('rules.ttr.tickets') }}</p>
+        @if (v.bonuses.length) {
+          <h3>{{ i18n.t('rules.ttr.h3bonus') }}</h3>
+          <ul>
+            @for (b of v.bonuses; track b.id) {
+              <li>
+                <strong>{{ bonusLabel(b) }}</strong>
+                @if (bonusHint(b); as hint) {
+                  — {{ hint }}
+                }
+              </li>
+            }
+          </ul>
+        }
+      </section>
     </div>
+
+    <aside class="counter-side" [attr.aria-label]="i18n.t('common.summary')">
+      <section class="scoreboard" [class.neg]="match.total() < 0" aria-live="polite">
+        <span class="sb-label">{{ finished() ? i18n.t('ttr.counter.finalScore') : i18n.t('ttr.counter.total') }}</span>
+        <app-score-ticker class="sb-total" [value]="match.total()" />
+        <ul class="sb-parts" role="list">
+          @for (p of parts(); track p.key) {
+            <li>
+              <span>{{ i18n.t(p.key) }}</span>
+              <b>{{ signed(p.points) }}</b>
+            </li>
+          }
+        </ul>
+        <button type="button" class="btn sb-audit" (click)="showAudit.set(true)">{{ i18n.t('common.auditView') }}</button>
+      </section>
+
+      <div class="match-actions" [class.single]="finished()">
+        @if (finished()) {
+          <button type="button" class="btn btn-primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
+        } @else {
+          <button type="button" class="btn btn-quiet" (click)="confirm.set('new')">{{ i18n.t('common.newMatch') }}</button>
+          <button type="button" class="btn btn-primary" (click)="confirm.set('finish')">{{ i18n.t('common.finishMatch') }}</button>
+        }
+      </div>
+
+      <div class="panel">
+        <app-history-panel [game]="'ttr'" [variantName]="historyName" />
+      </div>
+    </aside>
   </main>
+
+  <div class="dock">
+    <button type="button" class="dock-total" (click)="showAudit.set(true)" [attr.aria-label]="i18n.t('common.auditView')">
+      <span class="dock-label">{{ i18n.t('common.total') }}</span>
+      <app-score-ticker class="dock-num" [class.neg]="match.total() < 0" [value]="match.total()" [showDelta]="false" />
+    </button>
+    @if (finished()) {
+      <button type="button" class="btn btn-primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
+    } @else {
+      <button type="button" class="btn btn-quiet" (click)="showAudit.set(true)">{{ i18n.t('common.audit') }}</button>
+      <button type="button" class="btn btn-primary" (click)="confirm.set('finish')">{{ i18n.t('common.finishShort') }}</button>
+    }
+  </div>
+
+  <app-site-footer />
 
   @if (showAudit()) {
     <app-audit-sheet [entries]="match.audit()" [total]="match.total()" (close)="showAudit.set(false)" />
   }
   @if (confirm() === 'finish') {
     <app-confirm-dialog
+      tone="primary"
       [title]="i18n.t('ttr.confirmFinish.title')"
       [message]="i18n.t('ttr.confirmFinish.msg')"
       [confirmLabel]="i18n.t('ttr.confirmFinish.ok')"
@@ -214,6 +285,7 @@
       [title]="i18n.t('ttr.confirmNew.title')"
       [message]="i18n.t('ttr.confirmNew.msg')"
       [confirmLabel]="i18n.t('ttr.confirmNew.ok')"
+      [cancelLabel]="i18n.t('common.cancel')"
       (confirm)="confirmNewMatch()"
       (cancel)="confirm.set(null)"
     />

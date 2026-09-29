@@ -25,9 +25,13 @@ export class I18n {
     return DICT[l][key] ?? DICT.pt[key] ?? key;
   }
 
-  /** Tradução com interpolação de {placeholders}. */
+  /**
+   * Tradução com interpolação de {placeholders}. Quando `n` é 1 e existe a
+   * variante `<chave>.one`, ela é usada (singular); senão vale a chave normal.
+   */
   tp(key: string, params: Record<string, string | number>): string {
-    let s = this.t(key);
+    const one = params['n'] === 1 ? DICT[this.locale()][`${key}.one`] : undefined;
+    let s = one ?? this.t(key);
     for (const [k, v] of Object.entries(params)) {
       s = s.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v));
     }

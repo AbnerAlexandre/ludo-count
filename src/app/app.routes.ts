@@ -6,18 +6,21 @@ const azul = () => import('./features/azul/azul-page').then((m) => m.AzulPage);
 const ttrSelect = () =>
   import('./features/ticket-to-ride/variant-select/variant-select').then((m) => m.VariantSelect);
 const ttrCounter = () => import('./features/ticket-to-ride/counter/ttr-counter').then((m) => m.TtrCounter);
+const swSelect = () => import('./features/seven-wonders/variant-select/sw-select').then((m) => m.SwSelect);
+const swCounter = () => import('./features/seven-wonders/counter/sw-counter').then((m) => m.SwCounter);
+const notFound = () => import('./features/not-found/not-found').then((m) => m.NotFound);
 
-/** Rotas de um idioma. `theme` alimenta o tema por jogo; `locale` alimenta o i18n. */
+/** Rotas de um idioma. `theme` alimenta a cor do jogo; `locale` alimenta o i18n. */
 function localizedRoutes(locale: 'pt' | 'en'): Routes {
   return [
-    { path: '', loadComponent: landing, data: { animation: 'landing', theme: 'default', locale } },
-    { path: 'azul', loadComponent: azul, data: { animation: 'azul', theme: 'azul', locale } },
-    { path: 'ticket-to-ride', loadComponent: ttrSelect, data: { animation: 'ttr-select', theme: 'ttr', locale } },
-    {
-      path: 'ticket-to-ride/:variantId',
-      loadComponent: ttrCounter,
-      data: { animation: 'ttr-counter', theme: 'ttr', locale },
-    },
+    { path: '', loadComponent: landing, data: { theme: 'default', locale } },
+    { path: 'azul', loadComponent: azul, data: { theme: 'azul', locale } },
+    { path: 'ticket-to-ride', loadComponent: ttrSelect, data: { theme: 'ttr', locale } },
+    { path: 'ticket-to-ride/:variantId', loadComponent: ttrCounter, data: { theme: 'ttr', locale } },
+    { path: '7-wonders', loadComponent: swSelect, data: { theme: 'sw', locale } },
+    { path: '7-wonders/:variantId', loadComponent: swCounter, data: { theme: 'sw', locale } },
+    { path: '404', loadComponent: notFound, data: { theme: 'default', locale } },
+    { path: '**', loadComponent: notFound, data: { theme: 'default', locale } },
   ];
 }
 
@@ -36,5 +39,4 @@ export const routes: Routes = [
     data: { locale: 'pt' },
     children: localizedRoutes('pt'),
   },
-  { path: '**', redirectTo: '' },
 ];

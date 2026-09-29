@@ -1,5 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, afterNextRender, computed, inject, input, output } from '@angular/core';
 import type { AuditEntry } from '../../core/models/audit.models';
 import { I18n } from '../../core/i18n/i18n';
 
@@ -10,30 +9,18 @@ interface AuditGroup {
 }
 
 /**
- * Read-only breakdown of every point in the current match. Fed the same audit
- * array the totals are computed from, so it can never drift from the score.
+ * Detalhamento somente-leitura de cada ponto da partida. Recebe o mesmo array
+ * de onde o total é calculado, então nunca diverge do placar.
+ * Folha que sobe do rodapé no celular; painel lateral no desktop.
  */
 @Component({
   selector: 'app-audit-sheet',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('backdrop', [
-      transition(':enter', [style({ opacity: 0 }), animate('180ms ease', style({ opacity: 1 }))]),
-      transition(':leave', [animate('160ms ease', style({ opacity: 0 }))]),
-    ]),
-    trigger('sheet', [
-      transition(':enter', [
-        style({ transform: 'translateY(100%)' }),
-        animate('300ms cubic-bezier(0.22,1,0.36,1)', style({ transform: 'none' })),
-      ]),
-      transition(':leave', [animate('220ms ease', style({ transform: 'translateY(100%)' }))]),
-    ]),
-  ],
+  host: { '(document:keydown.escape)': 'close.emit()' },
   template: `
-    <div class="backdrop" @backdrop (click)="close.emit()">
+    <div class="backdrop" animate.enter="in" animate.leave="out" (click)="close.emit()">
       <section
         class="sheet"
-        @sheet
         role="dialog"
         aria-modal="true"
         [attr.aria-label]="i18n.t('audit.title')"
@@ -46,9 +33,9 @@ interface AuditGroup {
               <h2 class="display">{{ i18n.t('audit.title') }}</h2>
               <p>{{ i18n.t('audit.subtitle') }}</p>
             </div>
-            <button type="button" class="close" [attr.aria-label]="i18n.t('common.close')" (click)="close.emit()">
-              <svg viewBox="0 0 24 24" width="22" height="22">
-                <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+            <button type="button" class="icon-btn close" [attr.aria-label]="i18n.t('common.close')" (click)="close.emit()">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" />
               </svg>
             </button>
           </div>
@@ -64,26 +51,26 @@ interface AuditGroup {
                 <span>{{ g.name }}</span>
                 <span class="tabular" [class.neg]="g.subtotal < 0">{{ signed(g.subtotal) }}</span>
               </div>
-              @for (e of g.entries; track e.id) {
-                <div class="row" [attr.data-kind]="e.kind">
-                  <div class="row-main">
-                    <span class="label">{{ e.label }}</span>
-                    @if (e.detail) {
-                      <span class="detail">{{ e.detail }}</span>
-                    }
-                  </div>
-                  <span class="pts tabular" [class.neg]="e.points < 0" [class.pos]="e.points > 0">
-                    {{ signed(e.points) }}
-                  </span>
-                </div>
-              }
+              <ul role="list">
+                @for (e of g.entries; track e.id) {
+                  <li class="row" [attr.data-kind]="e.kind">
+                    <div class="row-main">
+                      <span class="label">{{ e.label }}</span>
+                      @if (e.detail) {
+                        <span class="detail">{{ e.detail }}</span>
+                      }
+                    </div>
+                    <span class="pts tabular" [class.neg]="e.points < 0" [class.pos]="e.points > 0">{{ signed(e.points) }}</span>
+                  </li>
+                }
+              </ul>
             </div>
           }
         </div>
 
         <footer>
           <span>{{ i18n.t('common.total') }}</span>
-          <span class="total tabular" [class.neg]="total() < 0">{{ signed(total()) }}</span>
+          <span class="total tabular" [class.neg]="total() < 0">{{ total() }}</span>
         </footer>
       </section>
     </div>
@@ -97,92 +84,98 @@ interface AuditGroup {
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        background: rgba(5, 9, 18, 0.6);
-        backdrop-filter: blur(5px);
+        background: rgba(6, 8, 12, 0.6);
       }
       .sheet {
         width: min(560px, 100%);
-        max-height: 86vh;
+        max-height: 88dvh;
         display: flex;
         flex-direction: column;
-        background: var(--bg-elev);
+        background: var(--surface);
         border: 1px solid var(--line);
         border-bottom: none;
-        border-radius: 26px 26px 0 0;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
         box-shadow: var(--shadow);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      @media (min-width: 960px) {
+        .backdrop {
+          justify-content: flex-end;
+          align-items: stretch;
+        }
+        .sheet {
+          width: 440px;
+          max-height: none;
+          border-radius: 0;
+          border: none;
+          border-left: 1px solid var(--line);
+        }
+        .grabber {
+          display: none;
+        }
       }
       header {
-        padding: 10px 20px 12px;
-        border-bottom: 1px solid var(--line-soft);
+        padding: 10px 20px 14px;
+        border-bottom: 1px solid var(--line);
       }
       .grabber {
-        width: 44px;
-        height: 5px;
+        width: 40px;
+        height: 4px;
         border-radius: 999px;
-        background: var(--line);
+        background: var(--line-strong);
         margin: 4px auto 12px;
       }
       .head-row {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        gap: 12px;
       }
       h2 {
         margin: 0;
-        font-size: 1.4rem;
-        font-weight: 700;
+        font-size: 1.45rem;
+        font-weight: 800;
       }
       header p {
         margin: 2px 0 0;
         color: var(--text-faint);
-        font-size: 0.85rem;
-      }
-      .close {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 1px solid var(--line);
-        background: var(--bg-elev-2);
-        color: var(--text);
-        display: grid;
-        place-items: center;
-        cursor: pointer;
+        font-size: 0.86rem;
       }
       .scroll {
+        flex: 1;
         overflow-y: auto;
-        padding: 8px 16px 16px;
-      }
-      .empty {
-        text-align: center;
-        color: var(--text-faint);
-        padding: 40px 0;
+        overscroll-behavior: contain;
+        padding: 6px 20px 16px;
       }
       .group {
-        margin-top: 14px;
+        margin-top: 16px;
       }
       .group-head {
         display: flex;
         justify-content: space-between;
-        font-size: 0.72rem;
+        padding-bottom: 6px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        letter-spacing: 0.09em;
         color: var(--text-faint);
-        padding: 0 6px 6px;
-        font-weight: 700;
       }
       .group-head .neg {
         color: var(--bad);
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
       }
       .row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        padding: 11px 12px;
-        background: var(--bg-elev-2);
-        border: 1px solid var(--line-soft);
-        border-radius: 12px;
-        margin-bottom: 6px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--line);
       }
       .row-main {
         display: flex;
@@ -192,37 +185,63 @@ interface AuditGroup {
       }
       .label {
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 0.94rem;
       }
       .detail {
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         color: var(--text-faint);
       }
       .pts {
         font-weight: 800;
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         white-space: nowrap;
-      }
-      .pts.pos {
-        color: var(--good);
-      }
-      .pts.neg,
-      .total.neg {
-        color: var(--bad);
       }
       footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 22px;
+        padding: 14px 20px 16px;
         border-top: 1px solid var(--line);
         font-weight: 700;
-        font-size: 1.1rem;
       }
       .total {
-        font-size: 1.6rem;
-        font-weight: 900;
-        color: var(--good);
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--game-text);
+      }
+      .total.neg {
+        color: var(--bad);
+      }
+      .backdrop.in {
+        animation: fade-in 220ms var(--ease-out);
+      }
+      .backdrop.in .sheet {
+        animation: sheet-in 380ms var(--ease-drawer);
+      }
+      .backdrop.out {
+        animation: fade-out 240ms var(--ease-out) forwards;
+      }
+      .backdrop.out .sheet {
+        animation: sheet-out 240ms var(--ease-drawer) forwards;
+      }
+      @media (min-width: 960px) {
+        .backdrop.in .sheet {
+          animation-name: panel-in;
+        }
+        .backdrop.out .sheet {
+          animation-name: panel-out;
+        }
+      }
+      @keyframes panel-in {
+        from {
+          transform: translateX(100%);
+        }
+      }
+      @keyframes panel-out {
+        to {
+          transform: translateX(100%);
+        }
       }
     `,
   ],
@@ -232,6 +251,11 @@ export class AuditSheet {
   readonly entries = input.required<AuditEntry[]>();
   readonly total = input.required<number>();
   readonly close = output<void>();
+
+  constructor() {
+    const host = inject(ElementRef<HTMLElement>);
+    afterNextRender(() => (host.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.close')?.focus());
+  }
 
   readonly groups = computed<AuditGroup[]>(() => {
     const order: string[] = [];

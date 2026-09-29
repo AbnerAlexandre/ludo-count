@@ -1,0 +1,80 @@
+:host {
+  display: grid;
+  gap: 12px;
+}
+
+/* linha de campo: rótulo à esquerda, controle à direita (quebra no estreito) */
+.fld {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 8px 0;
+}
+.fld + .fld {
+  border-top: 1px solid var(--line);
+}
+.fl {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.fl small {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  line-height: 1.35;
+}
+
+/* ciência: três símbolos + coringa */
+.sym-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+@media (min-width: 520px) {
+  .sym-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.sym {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+.sym-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.sym-name svg {
+  width: 22px;
+  height: 22px;
+  color: var(--sw-science);
+}
+.sym.wild .sym-name svg {
+  color: var(--sw-guild);
+}
+.sci-explain {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--sw-science) 12%, var(--surface-2));
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+.sci-explain b {
+  color: var(--text);
+}

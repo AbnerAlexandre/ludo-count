@@ -64,6 +64,19 @@ export class AzulMatch {
 
   readonly roundNumber = computed(() => this.rounds().length + 1);
 
+  /** resumo por origem; a soma das partes é sempre igual ao total final */
+  readonly summary = computed(() => {
+    let wall = 0;
+    let floor = 0;
+    let clamp = 0;
+    for (const r of this.rounds()) {
+      wall += r.placementPoints;
+      floor += r.floorPenalty;
+      clamp += r.totalAfter - (r.totalBefore + r.placementPoints + r.floorPenalty);
+    }
+    return { wall, floor, clamp, endgame: this.finished() ? this.endGame().total : 0 };
+  });
+
   /** preview of what the in-progress round would score, live */
   readonly draftPreview = computed(() =>
     scoreRound(this.wall(), this.draftPlacements(), this.draftFloor(), this.total()).result,
@@ -119,6 +132,18 @@ export class AzulMatch {
               : t.tp('audit.floorMany', { n: r.floorCount }),
           points: r.floorPenalty,
           kind: 'penalty',
+        });
+      }
+      // piso em zero: o que a regra devolveu para o placar não ficar negativo
+      const clamp = r.totalAfter - (r.totalBefore + r.placementPoints + r.floorPenalty);
+      if (clamp > 0) {
+        out.push({
+          id: `r${i}-clamp`,
+          group,
+          label: t.t('audit.floorClamp'),
+          points: clamp,
+          detail: t.t('audit.floorClampDetail'),
+          kind: 'bonus',
         });
       }
     });

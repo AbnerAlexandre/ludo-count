@@ -1,0 +1,104 @@
+:host {
+  display: block;
+}
+.demo {
+  margin: 0;
+  padding: 18px;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 14px;
+}
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.head .eyebrow {
+  display: block;
+}
+.round {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.score {
+  font-size: 3.4rem;
+  font-weight: 800;
+  color: var(--azul-text);
+  padding-right: 6px;
+}
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.cell {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  opacity: 0.16;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.cell.on {
+  opacity: 1;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.note {
+  min-height: 2.9em;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.note-line {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+}
+.note-idle {
+  color: var(--text-faint);
+}
+
+.replay {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 12px 0 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-dim);
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out),
+    opacity var(--dur-fast) ease;
+}
+.replay:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.replay:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+@media (hover: hover) and (pointer: fine) {
+  .replay:hover:not(:disabled) {
+    color: var(--text);
+    border-color: var(--line-strong);
+  }
+}

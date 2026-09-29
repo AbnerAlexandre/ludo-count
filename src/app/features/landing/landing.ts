@@ -2,20 +2,24 @@ import {
   ChangeDetectionStrategy,
   Component,
   DOCUMENT,
-  ElementRef,
+  DestroyRef,
   PLATFORM_ID,
-  afterNextRender,
   computed,
   effect,
   inject,
   signal,
-  viewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Seo } from '../../core/seo/seo';
 import { SITE_URL } from '../../core/seo/seo.config';
 import { I18n } from '../../core/i18n/i18n';
+import { PageHeader } from '../../shared/ui/page-header';
+import { SiteFooter } from '../../shared/ui/site-footer';
+import { Reveal } from '../../shared/motion/reveal.directive';
+import { BrandMark, SwMark } from '../../shared/svg/marks';
+import { LiveDemo } from './live-demo';
+import { TTR_VARIANTS } from '../ticket-to-ride/scoring/ttr-variants';
 
 interface Faq {
   q: string;
@@ -33,38 +37,37 @@ interface Novidade {
   descricaoEn?: string;
 }
 
+/** número de perguntas no FAQ (chaves faq.1 … faq.N no dicionário) */
+const FAQ_COUNT = 9;
+
 /**
- * Landing / hero. Concentra o conteúdo textual indexável (seção "como funciona"
- * + FAQ) em pt e en — as telas de jogo são calculadoras com pouco texto.
+ * Landing: identidade, demonstração ao vivo, escolha do jogo e o conteúdo
+ * textual indexável (como funciona + FAQ + novidades).
  */
 @Component({
   selector: 'app-landing',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, PageHeader, SiteFooter, Reveal, BrandMark, SwMark, LiveDemo],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
 export class Landing {
-  private readonly host = inject(ElementRef<HTMLElement>);
   private readonly doc = inject(DOCUMENT);
   private readonly seo = inject(Seo);
   readonly i18n = inject(I18n);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  readonly stage = viewChild<ElementRef<HTMLElement>>('stage');
 
-  /** Prefixo de rota do idioma atual, para os links dos cards. */
   readonly base = computed(() => (this.i18n.locale() === 'en' ? '/en' : ''));
+  readonly ttrCount = TTR_VARIANTS.length;
 
-  /** FAQ traduzido, reativo ao idioma. */
   readonly faqs = computed<Faq[]>(() =>
-    [1, 2, 3, 4, 5, 6, 7].map((i) => ({
-      q: this.i18n.t(`faq.${i}.q`),
-      a: this.i18n.t(`faq.${i}.a`),
+    Array.from({ length: FAQ_COUNT }, (_, i) => ({
+      q: this.i18n.t(`faq.${i + 1}.q`),
+      a: this.i18n.t(`faq.${i + 1}.a`),
     })),
   );
 
   private readonly rawNovidades = signal<Novidade[]>([]);
-  /** Novidades resolvidas para o idioma atual. */
   readonly novidades = computed(() => {
     const en = this.i18n.locale() === 'en';
     return this.rawNovidades().map((n) => ({
@@ -76,9 +79,6 @@ export class Landing {
     }));
   });
 
-  readonly discord = '@graaay.sh';
-  readonly copied = signal(false);
-
   constructor() {
     effect(() => {
       this.seo.update({
@@ -86,43 +86,28 @@ export class Landing {
         description: this.i18n.t('seo.home.desc'),
         basePath: '',
         locale: this.i18n.locale(),
+        breadcrumbs: [],
       });
     });
 
-    // FAQPage JSON-LD reflete o idioma atual (fica só na landing).
+    // FAQPage JSON-LD casado com o FAQ visível (só na landing)
     effect(() => this.injectFaqStructuredData(this.faqs()));
+    inject(DestroyRef).onDestroy(() => this.doc.head.querySelector('script[data-faq]')?.remove());
 
-    if (this.isBrowser) {
-      this.loadNovidades();
-    }
-
-    afterNextRender(async () => {
-      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const root = this.host.nativeElement as HTMLElement;
-      const items = Array.from(root.querySelectorAll<HTMLElement>('[data-anim]'));
-      if (reduce) {
-        items.forEach((el) => (el.style.opacity = '1'));
-        return;
-      }
-      try {
-        const { gsap } = await import('gsap');
-        gsap.set(items, { opacity: 0, y: 24 });
-        gsap.to(items, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.09, delay: 0.05 });
-      } catch {
-        items.forEach((el) => (el.style.opacity = '1'));
-      }
-    });
+    if (this.isBrowser) this.loadNovidades();
   }
 
-  copyDiscord(): void {
-    if (!this.isBrowser) return;
-    navigator.clipboard?.writeText(this.discord).then(
-      () => {
-        this.copied.set(true);
-        setTimeout(() => this.copied.set(false), 1800);
-      },
-      () => {},
-    );
+  fmtDate(iso?: string): string {
+    if (!iso) return '';
+    try {
+      return new Intl.DateTimeFormat(this.i18n.locale() === 'en' ? 'en-US' : 'pt-BR', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      }).format(new Date(iso + 'T12:00:00'));
+    } catch {
+      return iso;
+    }
   }
 
   private async loadNovidades(): Promise<void> {
@@ -141,6 +126,7 @@ export class Landing {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       '@id': `${SITE_URL}/#faq`,
+      inLanguage: this.i18n.locale() === 'en' ? 'en' : 'pt-BR',
       mainEntity: faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,

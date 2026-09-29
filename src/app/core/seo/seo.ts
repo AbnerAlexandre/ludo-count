@@ -14,6 +14,13 @@ export interface SeoData {
   locale: Locale;
   /** Imagem de compartilhamento absoluta. */
   image?: string;
+  /**
+   * Trilha de navegação (sem a home, que entra sozinha). Vira BreadcrumbList em
+   * JSON-LD. Vazio/ausente = sem trilha (ex.: a própria home).
+   */
+  breadcrumbs?: Array<{ name: string; basePath: string }>;
+  /** Marca a página como não indexável (ex.: 404). */
+  noindex?: boolean;
 }
 
 /**
@@ -51,8 +58,41 @@ export class Seo {
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
 
+    this.meta.updateTag({
+      name: 'robots',
+      content: data.noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    });
+
     this.setCanonical(url);
     this.setAlternates(base);
+    this.setBreadcrumbs(data.breadcrumbs ?? [], data.locale);
+  }
+
+  /** BreadcrumbList: LudoCount › seção › página. */
+  private setBreadcrumbs(items: Array<{ name: string; basePath: string }>, locale: Locale): void {
+    const existing = this.doc.head.querySelector('script[data-breadcrumb]');
+    if (!items.length) {
+      existing?.remove();
+      return;
+    }
+    const trail = [{ name: SITE_NAME, basePath: '' }, ...items];
+    const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: trail.map((it, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: it.name,
+        item: `${SITE_URL}${localizedPath(it.basePath, locale)}`,
+      })),
+    };
+    const script = existing ?? this.doc.createElement('script');
+    script.setAttribute('type', 'application/ld+json');
+    script.setAttribute('data-breadcrumb', '');
+    script.textContent = JSON.stringify(jsonLd);
+    if (!existing) this.doc.head.appendChild(script);
   }
 
   /** Só o título muda (ex.: placar ao vivo), sem mexer no resto do <head>. */
