@@ -48,6 +48,15 @@
   grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
   gap: 10px;
 }
+/* 4 comprimentos (New York): 2×2 no celular, uma linha quando couber — sem tecla sobrando */
+.len-grid.quad {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 520px) {
+  .len-grid.quad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
 .len {
   min-height: 92px;
   display: flex;
@@ -69,6 +78,9 @@
   width: 20px;
   height: 20px;
   color: var(--ttr-text);
+}
+.loco.taxi {
+  width: 26px;
 }
 .len-cars {
   font-size: 0.66rem;

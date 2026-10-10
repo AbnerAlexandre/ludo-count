@@ -53,7 +53,10 @@ export interface TtrVariant {
   logo?: string;
   playersMin: number;
   playersMax: number;
+  /** quantas peças cada jogador tem (vagões, ou táxis no New York) */
   cars: number;
+  /** peça do jogo: vagões (padrão) ou táxis (New York) — muda só os rótulos */
+  pieces?: 'cars' | 'taxis';
   routeTable: RouteTable;
   /**
    * Optional terrain-card doubling (Heart of Africa). When present, the counter
@@ -390,6 +393,34 @@ export const TTR_VARIANTS: TtrVariant[] = [
     bonuses: [LONGEST_PATH, GLOBETROTTER],
     note: 'Cores das rotas definidas em jogo; caminho mais longo e Globetrotter.',
     noteEn: 'Route colors decided during play; longest path and Globetrotter.',
+  },
+  {
+    id: 'new-york',
+    name: 'New York',
+    tag: 'Táxis · 2018',
+    tagEn: 'Taxis · 2018',
+    logo: 'ticket-to-ride/ticket-new-york.webp',
+    playersMin: 2,
+    playersMax: 4,
+    cars: 15,
+    pieces: 'taxis',
+    // rotas de 1 a 4 táxis, com a mesma escala do jogo original
+    routeTable: { 1: 1, 2: 2, 3: 4, 4: 7 },
+    bonuses: [
+      {
+        id: 'attractions',
+        label: 'Atrações turísticas',
+        labelEn: 'Tourist attractions',
+        kind: 'counter',
+        unit: 1,
+        min: 0,
+        max: 20,
+        hint: '+1 por atração ligada a pelo menos uma das suas rotas',
+        hintEn: '+1 for each attraction connected to at least one of your routes',
+      },
+    ],
+    note: 'Manhattan com 15 táxis por jogador: rotas de 1 a 4 e +1 por atração turística alcançada. Sem caminho mais longo.',
+    noteEn: 'Manhattan with 15 taxis per player: routes of 1 to 4 and +1 per tourist attraction reached. No longest path.',
   },
 ];
 

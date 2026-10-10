@@ -460,7 +460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 7,
+      "community": 37,
       "norm_label": "package.json"
     },
     {
@@ -470,7 +470,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 7,
+      "community": 37,
       "norm_label": "name"
     },
     {
@@ -480,7 +480,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_version",
-      "community": 7,
+      "community": 37,
       "norm_label": "version"
     },
     {
@@ -490,7 +490,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 7,
+      "community": 25,
       "norm_label": "scripts"
     },
     {
@@ -500,7 +500,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_scripts_ng",
-      "community": 7,
+      "community": 25,
       "norm_label": "ng"
     },
     {
@@ -510,7 +510,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 7,
+      "community": 25,
       "norm_label": "start"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_seo",
-      "community": 7,
+      "community": 25,
       "norm_label": "seo"
     },
     {
@@ -530,7 +530,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_prebuild",
-      "community": 7,
+      "community": 25,
       "norm_label": "prebuild"
     },
     {
@@ -540,7 +540,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 7,
+      "community": 25,
       "norm_label": "build"
     },
     {
@@ -550,7 +550,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_postbuild",
-      "community": 7,
+      "community": 25,
       "norm_label": "postbuild"
     },
     {
@@ -560,7 +560,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "package_scripts_watch",
-      "community": 7,
+      "community": 25,
       "norm_label": "watch"
     },
     {
@@ -570,7 +570,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "package_scripts_test",
-      "community": 7,
+      "community": 25,
       "norm_label": "test"
     },
     {
@@ -580,7 +580,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_private",
-      "community": 7,
+      "community": 37,
       "norm_label": "private"
     },
     {
@@ -590,7 +590,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "package_packagemanager",
-      "community": 7,
+      "community": 37,
       "norm_label": "packagemanager"
     },
     {
@@ -690,7 +690,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "package_dependencies_angular_platform_browser",
-      "community": 2,
+      "community": 39,
       "norm_label": "@angular/platform-browser"
     },
     {
@@ -700,7 +700,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "angular_platform_browser",
-      "community": 2,
+      "community": 39,
       "norm_label": "@angular/platform-browser"
     },
     {
@@ -790,7 +790,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_rxjs",
-      "community": 2,
+      "community": 40,
       "norm_label": "rxjs"
     },
     {
@@ -800,7 +800,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "rxjs",
-      "community": 2,
+      "community": 40,
       "norm_label": "rxjs"
     },
     {
@@ -840,7 +840,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "package_devdependencies_angular_build",
-      "community": 7,
+      "community": 41,
       "norm_label": "@angular/build"
     },
     {
@@ -850,7 +850,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "angular_build",
-      "community": 7,
+      "community": 41,
       "norm_label": "@angular/build"
     },
     {
@@ -1127,7 +1127,7 @@
       "label": "swVariants",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "scripts_generate_seo_swvariants",
       "community": 10,
@@ -1137,7 +1137,7 @@
       "label": "routes",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "scripts_generate_seo_routes",
       "community": 10,
@@ -1147,7 +1147,7 @@
       "label": "today",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L46",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "scripts_generate_seo_today",
       "community": 10,
@@ -1157,7 +1157,7 @@
       "label": "ptUrl()",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L47",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "scripts_generate_seo_pturl",
       "community": 10,
@@ -1167,7 +1167,7 @@
       "label": "enUrl()",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "scripts_generate_seo_enurl",
       "community": 10,
@@ -1177,7 +1177,7 @@
       "label": "alternates()",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L51",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "scripts_generate_seo_alternates",
       "community": 10,
@@ -1187,7 +1187,7 @@
       "label": "urlEntry()",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L56",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "scripts_generate_seo_urlentry",
       "community": 10,
@@ -1197,7 +1197,7 @@
       "label": "variantNames",
       "file_type": "code",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L88",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "scripts_generate_seo_variantnames",
       "community": 10,
@@ -1300,7 +1300,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_app_routes_server",
-      "community": 35,
+      "community": 11,
       "norm_label": "app.routes.server.ts"
     },
     {
@@ -1310,7 +1310,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_app_routes_server_ttrparams",
-      "community": 35,
+      "community": 11,
       "norm_label": "ttrparams()"
     },
     {
@@ -1320,7 +1320,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_app_routes_server_swparams",
-      "community": 35,
+      "community": 11,
       "norm_label": "swparams()"
     },
     {
@@ -1950,7 +1950,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_core_i18n_dictionary",
-      "community": 9,
+      "community": 31,
       "norm_label": "dictionary.ts"
     },
     {
@@ -1960,7 +1960,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_core_i18n_dictionary_dict",
-      "community": 9,
+      "community": 31,
       "norm_label": "dict"
     },
     {
@@ -1970,7 +1970,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_core_i18n_i18n",
-      "community": 9,
+      "community": 31,
       "norm_label": "i18n.ts"
     },
     {
@@ -1980,7 +1980,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_core_i18n_i18n_locale",
-      "community": 9,
+      "community": 31,
       "norm_label": "locale"
     },
     {
@@ -1990,7 +1990,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_core_i18n_i18n_locales",
-      "community": 9,
+      "community": 31,
       "norm_label": "locales"
     },
     {
@@ -2080,7 +2080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_core_models_audit_models",
-      "community": 3,
+      "community": 38,
       "norm_label": "audit.models.ts"
     },
     {
@@ -2090,7 +2090,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_app_core_models_audit_models_gameid",
-      "community": 3,
+      "community": 38,
       "norm_label": "gameid"
     },
     {
@@ -2110,7 +2110,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_app_core_models_audit_models_playerref",
-      "community": 3,
+      "community": 38,
       "norm_label": "playerref"
     },
     {
@@ -2120,7 +2120,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_app_core_models_audit_models_solo_player",
-      "community": 3,
+      "community": 38,
       "norm_label": "solo_player"
     },
     {
@@ -2140,7 +2140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_core_seo_seo",
-      "community": 9,
+      "community": 31,
       "norm_label": "seo.ts"
     },
     {
@@ -2150,7 +2150,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_core_seo_seo_seodata",
-      "community": 9,
+      "community": 31,
       "norm_label": "seodata"
     },
     {
@@ -2260,7 +2260,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch",
-      "community": 26,
+      "community": 0,
       "norm_label": "azulmatch"
     },
     {
@@ -2270,7 +2270,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_ts_injectable",
-      "community": 26,
+      "community": 0,
       "norm_label": "injectable"
     },
     {
@@ -2280,7 +2280,7 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_constructor",
-      "community": 26,
+      "community": 0,
       "norm_label": ".constructor()"
     },
     {
@@ -2290,7 +2290,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_colorat",
-      "community": 25,
+      "community": 0,
       "norm_label": ".colorat()"
     },
     {
@@ -2300,7 +2300,7 @@
       "source_location": "L212",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_iscommitted",
-      "community": 26,
+      "community": 0,
       "norm_label": ".iscommitted()"
     },
     {
@@ -2310,7 +2310,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_isdraft",
-      "community": 26,
+      "community": 0,
       "norm_label": ".isdraft()"
     },
     {
@@ -2320,7 +2320,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_togglecell",
-      "community": 26,
+      "community": 0,
       "norm_label": ".togglecell()"
     },
     {
@@ -2330,7 +2330,7 @@
       "source_location": "L234",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_setfloor",
-      "community": 26,
+      "community": 0,
       "norm_label": ".setfloor()"
     },
     {
@@ -2340,7 +2340,7 @@
       "source_location": "L239",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_floorpreview",
-      "community": 27,
+      "community": 0,
       "norm_label": ".floorpreview()"
     },
     {
@@ -2350,7 +2350,7 @@
       "source_location": "L243",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_cancommit",
-      "community": 26,
+      "community": 0,
       "norm_label": ".cancommit()"
     },
     {
@@ -2360,7 +2360,7 @@
       "source_location": "L248",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_commitround",
-      "community": 26,
+      "community": 0,
       "norm_label": ".commitround()"
     },
     {
@@ -2370,7 +2370,7 @@
       "source_location": "L265",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_viewround",
-      "community": 26,
+      "community": 0,
       "norm_label": ".viewround()"
     },
     {
@@ -2380,7 +2380,7 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_stephistory",
-      "community": 26,
+      "community": 0,
       "norm_label": ".stephistory()"
     },
     {
@@ -2390,7 +2390,7 @@
       "source_location": "L280",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_finish",
-      "community": 26,
+      "community": 0,
       "norm_label": ".finish()"
     },
     {
@@ -2400,7 +2400,7 @@
       "source_location": "L289",
       "_origin": "ast",
       "id": "src_app_core_services_azul_match_azulmatch_reset",
-      "community": 24,
+      "community": 0,
       "norm_label": ".reset()"
     },
     {
@@ -2440,7 +2440,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_core_services_match_history_historypart",
-      "community": 28,
+      "community": 24,
       "norm_label": "historypart"
     },
     {
@@ -2760,7 +2760,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_app_core_services_sw_match_swplayerlimits",
-      "community": 3,
+      "community": 17,
       "norm_label": "swplayerlimits()"
     },
     {
@@ -2860,7 +2860,7 @@
       "source_location": "L294",
       "_origin": "ast",
       "id": "src_app_core_services_sw_match_sevenwondersmatch_constructor",
-      "community": 19,
+      "community": 3,
       "norm_label": ".constructor()"
     },
     {
@@ -2870,7 +2870,7 @@
       "source_location": "L318",
       "_origin": "ast",
       "id": "src_app_core_services_sw_match_sevenwondersmatch_selectvariant",
-      "community": 19,
+      "community": 3,
       "norm_label": ".selectvariant()"
     },
     {
@@ -3050,7 +3050,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_core_services_theme_themeservice",
-      "community": 33,
+      "community": 11,
       "norm_label": "themeservice"
     },
     {
@@ -3060,7 +3060,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_core_services_theme_ts_injectable",
-      "community": 33,
+      "community": 11,
       "norm_label": "injectable"
     },
     {
@@ -3070,7 +3070,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_app_core_services_theme_themeservice_constructor",
-      "community": 33,
+      "community": 11,
       "norm_label": ".constructor()"
     },
     {
@@ -3080,7 +3080,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_app_core_services_theme_themeservice_toggle",
-      "community": 33,
+      "community": 11,
       "norm_label": ".toggle()"
     },
     {
@@ -3090,7 +3090,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_app_core_services_theme_themeservice_read",
-      "community": 33,
+      "community": 11,
       "norm_label": ".read()"
     },
     {
@@ -3120,7 +3120,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_emptysheet",
-      "community": 21,
+      "community": 33,
       "norm_label": "emptysheet()"
     },
     {
@@ -3150,7 +3150,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_breakdownrow",
-      "community": 17,
+      "community": 5,
       "norm_label": "breakdownrow"
     },
     {
@@ -3197,17 +3197,17 @@
       "label": ".startGroup()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L233",
+      "source_location": "L234",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_startgroup",
-      "community": 17,
+      "community": 21,
       "norm_label": ".startgroup()"
     },
     {
       "label": ".rematch()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L242",
+      "source_location": "L243",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_rematch",
       "community": 21,
@@ -3217,7 +3217,7 @@
       "label": ".finishGroup()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L246",
+      "source_location": "L247",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_finishgroup",
       "community": 21,
@@ -3227,7 +3227,7 @@
       "label": ".pickTieWinner()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L251",
+      "source_location": "L252",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_picktiewinner",
       "community": 21,
@@ -3237,37 +3237,37 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L256",
+      "source_location": "L257",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_constructor",
-      "community": 20,
+      "community": 33,
       "norm_label": ".constructor()"
     },
     {
       "label": ".selectVariant()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L279",
+      "source_location": "L280",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_selectvariant",
-      "community": 21,
+      "community": 33,
       "norm_label": ".selectvariant()"
     },
     {
       "label": ".routePointsFor()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L293",
+      "source_location": "L294",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_routepointsfor",
-      "community": 5,
+      "community": 21,
       "norm_label": ".routepointsfor()"
     },
     {
       "label": ".edit()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L299",
+      "source_location": "L300",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_edit",
       "community": 21,
@@ -3277,7 +3277,7 @@
       "label": ".addRoute()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L307",
+      "source_location": "L308",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_addroute",
       "community": 21,
@@ -3287,7 +3287,7 @@
       "label": ".removeRoute()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L311",
+      "source_location": "L312",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_removeroute",
       "community": 21,
@@ -3297,7 +3297,7 @@
       "label": ".addTicket()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L326",
+      "source_location": "L327",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_addticket",
       "community": 21,
@@ -3307,7 +3307,7 @@
       "label": ".toggleTicket()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L331",
+      "source_location": "L332",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_toggleticket",
       "community": 21,
@@ -3317,7 +3317,7 @@
       "label": ".removeTicket()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L335",
+      "source_location": "L336",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_removeticket",
       "community": 21,
@@ -3327,7 +3327,7 @@
       "label": ".bonusValue()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L341",
+      "source_location": "L342",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_bonusvalue",
       "community": 1,
@@ -3337,7 +3337,7 @@
       "label": ".setBonus()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L347",
+      "source_location": "L348",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_setbonus",
       "community": 21,
@@ -3347,7 +3347,7 @@
       "label": ".adjustBonus()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L351",
+      "source_location": "L352",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_adjustbonus",
       "community": 21,
@@ -3357,7 +3357,7 @@
       "label": ".finish()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L363",
+      "source_location": "L364",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_finish",
       "community": 21,
@@ -3367,10 +3367,10 @@
       "label": ".reset()",
       "file_type": "code",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L367",
+      "source_location": "L368",
       "_origin": "ast",
       "id": "src_app_core_services_ttr_match_ttrmatch_reset",
-      "community": 21,
+      "community": 33,
       "norm_label": ".reset()"
     },
     {
@@ -3380,7 +3380,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_features_azul_azul_page",
-      "community": 28,
+      "community": 24,
       "norm_label": "azul-page.ts"
     },
     {
@@ -3420,7 +3420,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "src_app_features_azul_azul_page_azulpage_cumulativepenalty",
-      "community": 27,
+      "community": 0,
       "norm_label": ".cumulativepenalty()"
     },
     {
@@ -3480,7 +3480,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_features_azul_round_history_round_history",
-      "community": 28,
+      "community": 31,
       "norm_label": "round-history.ts"
     },
     {
@@ -3570,7 +3570,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_features_azul_scoring_azul_scoring_spec_wallwith",
-      "community": 24,
+      "community": 0,
       "norm_label": "wallwith()"
     },
     {
@@ -3590,7 +3590,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_features_azul_scoring_azul_scoring_azulcolor",
-      "community": 25,
+      "community": 0,
       "norm_label": "azulcolor"
     },
     {
@@ -3610,7 +3610,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_app_features_azul_scoring_azul_scoring_floor_penalties",
-      "community": 28,
+      "community": 0,
       "norm_label": "floor_penalties"
     },
     {
@@ -3690,7 +3690,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_app_features_azul_scoring_azul_scoring_emptywall",
-      "community": 24,
+      "community": 0,
       "norm_label": "emptywall()"
     },
     {
@@ -3730,7 +3730,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "src_app_features_azul_scoring_azul_scoring_floorpenalty",
-      "community": 27,
+      "community": 0,
       "norm_label": "floorpenalty()"
     },
     {
@@ -3760,7 +3760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall",
-      "community": 25,
+      "community": 0,
       "norm_label": "azul-wall.ts"
     },
     {
@@ -3770,7 +3770,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall_azulwall",
-      "community": 25,
+      "community": 0,
       "norm_label": "azulwall"
     },
     {
@@ -3780,7 +3780,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall_ts_component",
-      "community": 25,
+      "community": 0,
       "norm_label": "component"
     },
     {
@@ -3790,7 +3790,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall_azulwall_colorat",
-      "community": 25,
+      "community": 0,
       "norm_label": ".colorat()"
     },
     {
@@ -3800,7 +3800,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall_azulwall_badge",
-      "community": 25,
+      "community": 0,
       "norm_label": ".badge()"
     },
     {
@@ -3810,7 +3810,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall_azulwall_ontap",
-      "community": 25,
+      "community": 0,
       "norm_label": ".ontap()"
     },
     {
@@ -3820,7 +3820,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_app_features_azul_wall_azul_wall_azulwall_celllabel",
-      "community": 25,
+      "community": 0,
       "norm_label": ".celllabel()"
     },
     {
@@ -3920,7 +3920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo",
-      "community": 18,
+      "community": 0,
       "norm_label": "live-demo.ts"
     },
     {
@@ -3930,7 +3930,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_sequence",
-      "community": 24,
+      "community": 0,
       "norm_label": "sequence"
     },
     {
@@ -3940,7 +3940,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo",
-      "community": 24,
+      "community": 0,
       "norm_label": "livedemo"
     },
     {
@@ -3950,7 +3950,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_ts_component",
-      "community": 24,
+      "community": 0,
       "norm_label": "component"
     },
     {
@@ -3960,7 +3960,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_constructor",
-      "community": 24,
+      "community": 0,
       "norm_label": ".constructor()"
     },
     {
@@ -3970,7 +3970,7 @@
       "source_location": "L114",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_replay",
-      "community": 24,
+      "community": 0,
       "norm_label": ".replay()"
     },
     {
@@ -3980,7 +3980,7 @@
       "source_location": "L121",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_run",
-      "community": 24,
+      "community": 0,
       "norm_label": ".run()"
     },
     {
@@ -3990,7 +3990,7 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_runinstant",
-      "community": 24,
+      "community": 0,
       "norm_label": ".runinstant()"
     },
     {
@@ -4000,7 +4000,7 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_placecell",
-      "community": 24,
+      "community": 0,
       "norm_label": ".placecell()"
     },
     {
@@ -4010,7 +4010,7 @@
       "source_location": "L170",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_describe",
-      "community": 24,
+      "community": 0,
       "norm_label": ".describe()"
     },
     {
@@ -4020,7 +4020,7 @@
       "source_location": "L183",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_reset",
-      "community": 24,
+      "community": 0,
       "norm_label": ".reset()"
     },
     {
@@ -4030,7 +4030,7 @@
       "source_location": "L191",
       "_origin": "ast",
       "id": "src_app_features_landing_live_demo_livedemo_cleartimers",
-      "community": 24,
+      "community": 0,
       "norm_label": ".cleartimers()"
     },
     {
@@ -4150,7 +4150,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform",
-      "community": 14,
+      "community": 26,
       "norm_label": "swbaseform"
     },
     {
@@ -4160,7 +4160,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_ts_component",
-      "community": 14,
+      "community": 26,
       "norm_label": "component"
     },
     {
@@ -4170,7 +4170,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform_t",
-      "community": 14,
+      "community": 26,
       "norm_label": ".t()"
     },
     {
@@ -4180,7 +4180,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform_pts",
-      "community": 14,
+      "community": 26,
       "norm_label": ".pts()"
     },
     {
@@ -4190,7 +4190,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform_patch",
-      "community": 14,
+      "community": 26,
       "norm_label": ".patch()"
     },
     {
@@ -4200,7 +4200,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform_setmilitary",
-      "community": 14,
+      "community": 26,
       "norm_label": ".setmilitary()"
     },
     {
@@ -4210,7 +4210,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform_setnaval",
-      "community": 14,
+      "community": 26,
       "norm_label": ".setnaval()"
     },
     {
@@ -4220,7 +4220,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_base_form_swbaseform_setscience",
-      "community": 14,
+      "community": 26,
       "norm_label": ".setscience()"
     },
     {
@@ -4260,7 +4260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_counter",
-      "community": 14,
+      "community": 18,
       "norm_label": "sw-counter.ts"
     },
     {
@@ -4300,7 +4300,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_counter_swcounter_historyname",
-      "community": 19,
+      "community": 3,
       "norm_label": ".historyname()"
     },
     {
@@ -4330,7 +4330,7 @@
       "source_location": "L161",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_counter_sw_counter_swcounter_note",
-      "community": 19,
+      "community": 23,
       "norm_label": ".note()"
     },
     {
@@ -4910,7 +4910,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_app_features_seven_wonders_scoring_sw_variants_findswvariant",
-      "community": 19,
+      "community": 3,
       "norm_label": "findswvariant()"
     },
     {
@@ -5067,7 +5067,7 @@
       "label": "TtrCounter",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L60",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "community": 1,
@@ -5087,7 +5087,7 @@
       "label": ".historyName()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L135",
+      "source_location": "L138",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_historyname",
       "community": 1,
@@ -5097,7 +5097,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L140",
+      "source_location": "L143",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_constructor",
       "community": 1,
@@ -5107,7 +5107,7 @@
       "label": ".variantName()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L168",
+      "source_location": "L171",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_variantname",
       "community": 1,
@@ -5117,7 +5117,7 @@
       "label": ".note()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L172",
+      "source_location": "L175",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_note",
       "community": 20,
@@ -5127,7 +5127,7 @@
       "label": ".bonusLabel()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L175",
+      "source_location": "L178",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuslabel",
       "community": 1,
@@ -5137,17 +5137,27 @@
       "label": ".bonusHint()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L178",
+      "source_location": "L181",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonushint",
       "community": 1,
       "norm_label": ".bonushint()"
     },
     {
+      "label": ".pieceLabel()",
+      "file_type": "code",
+      "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
+      "source_location": "L185",
+      "_origin": "ast",
+      "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_piecelabel",
+      "community": 1,
+      "norm_label": ".piecelabel()"
+    },
+    {
       "label": ".points()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L181",
+      "source_location": "L190",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_points",
       "community": 20,
@@ -5157,7 +5167,7 @@
       "label": ".addRoute()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L185",
+      "source_location": "L194",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_addroute",
       "community": 1,
@@ -5167,7 +5177,7 @@
       "label": ".addTicket()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L191",
+      "source_location": "L200",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_addticket",
       "community": 1,
@@ -5177,7 +5187,7 @@
       "label": ".bonusNumber()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L195",
+      "source_location": "L204",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonusnumber",
       "community": 1,
@@ -5187,7 +5197,7 @@
       "label": ".bonusOn()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L199",
+      "source_location": "L208",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuson",
       "community": 1,
@@ -5197,7 +5207,7 @@
       "label": ".signed()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L203",
+      "source_location": "L212",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_signed",
       "community": 1,
@@ -5207,7 +5217,7 @@
       "label": ".confirmFinish()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L207",
+      "source_location": "L216",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmfinish",
       "community": 1,
@@ -5217,7 +5227,7 @@
       "label": ".confirmNewMatch()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L217",
+      "source_location": "L226",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmnewmatch",
       "community": 1,
@@ -5227,7 +5237,7 @@
       "label": ".setMode()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L226",
+      "source_location": "L235",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_setmode",
       "community": 1,
@@ -5237,7 +5247,7 @@
       "label": ".startGroup()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L230",
+      "source_location": "L239",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_startgroup",
       "community": 1,
@@ -5247,7 +5257,7 @@
       "label": ".confirmFinishGroup()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L237",
+      "source_location": "L246",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmfinishgroup",
       "community": 1,
@@ -5257,7 +5267,7 @@
       "label": ".rematch()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L243",
+      "source_location": "L252",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_rematch",
       "community": 1,
@@ -5267,7 +5277,7 @@
       "label": ".changePlayers()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L249",
+      "source_location": "L258",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_changeplayers",
       "community": 1,
@@ -5277,7 +5287,7 @@
       "label": ".confirmChangePlayers()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L254",
+      "source_location": "L263",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmchangeplayers",
       "community": 1,
@@ -5287,7 +5297,7 @@
       "label": ".viewPlayer()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L260",
+      "source_location": "L269",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_viewplayer",
       "community": 1,
@@ -5297,7 +5307,7 @@
       "label": "scrollToTop()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L268",
+      "source_location": "L277",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_counter_ttr_counter_scrolltotop",
       "community": 1,
@@ -5497,7 +5507,7 @@
       "label": "L",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L72",
+      "source_location": "L75",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_l",
       "community": 20,
@@ -5507,17 +5517,17 @@
       "label": "variantName()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L73",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_variantname",
-      "community": 20,
+      "community": 22,
       "norm_label": "variantname()"
     },
     {
       "label": "variantTag()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L74",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_varianttag",
       "community": 20,
@@ -5527,7 +5537,7 @@
       "label": "variantNote()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L75",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_variantnote",
       "community": 20,
@@ -5537,7 +5547,7 @@
       "label": "bonusLabel()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L76",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonuslabel",
       "community": 20,
@@ -5547,7 +5557,7 @@
       "label": "bonusHint()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L77",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonushint",
       "community": 20,
@@ -5557,7 +5567,7 @@
       "label": "STANDARD",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L79",
+      "source_location": "L82",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_standard",
       "community": 20,
@@ -5567,7 +5577,7 @@
       "label": "LONGEST_PATH",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L81",
+      "source_location": "L84",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_longest_path",
       "community": 20,
@@ -5577,7 +5587,7 @@
       "label": "GLOBETROTTER",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L90",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_globetrotter",
       "community": 20,
@@ -5587,20 +5597,20 @@
       "label": "TTR_VARIANTS",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L100",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_ttr_variants",
-      "community": 35,
+      "community": 22,
       "norm_label": "ttr_variants"
     },
     {
       "label": "findVariant()",
       "file_type": "code",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L396",
+      "source_location": "L427",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_scoring_ttr_variants_findvariant",
-      "community": 20,
+      "community": 33,
       "norm_label": "findvariant()"
     },
     {
@@ -5610,7 +5620,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_variant_select_variant_select",
-      "community": 20,
+      "community": 22,
       "norm_label": "variant-select.ts"
     },
     {
@@ -5640,7 +5650,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_app_features_ticket_to_ride_variant_select_variant_select_variantselect_historyname",
-      "community": 20,
+      "community": 33,
       "norm_label": ".historyname()"
     },
     {
@@ -5710,7 +5720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_motion_motion_utils",
-      "community": 18,
+      "community": 0,
       "norm_label": "motion-utils.ts"
     },
     {
@@ -5720,7 +5730,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_shared_motion_motion_utils_ease_out",
-      "community": 18,
+      "community": 0,
       "norm_label": "ease_out"
     },
     {
@@ -5730,7 +5740,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_app_shared_motion_motion_utils_prefersreducedmotion",
-      "community": 18,
+      "community": 0,
       "norm_label": "prefersreducedmotion()"
     },
     {
@@ -5740,7 +5750,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_shared_motion_motion_utils_pop",
-      "community": 18,
+      "community": 0,
       "norm_label": "pop()"
     },
     {
@@ -5750,7 +5760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_motion_reveal_directive",
-      "community": 18,
+      "community": 0,
       "norm_label": "reveal.directive.ts"
     },
     {
@@ -5760,7 +5770,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_app_shared_motion_reveal_directive_reveal",
-      "community": 18,
+      "community": 22,
       "norm_label": "reveal"
     },
     {
@@ -5770,7 +5780,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "directive",
-      "community": 18,
+      "community": 22,
       "norm_label": "directive"
     },
     {
@@ -5780,7 +5790,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_app_shared_motion_reveal_directive_reveal_constructor",
-      "community": 18,
+      "community": 0,
       "norm_label": ".constructor()"
     },
     {
@@ -5790,7 +5800,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_motion_score_ticker",
-      "community": 18,
+      "community": 0,
       "norm_label": "score-ticker.ts"
     },
     {
@@ -5800,7 +5810,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_app_shared_motion_score_ticker_scoreticker",
-      "community": 18,
+      "community": 0,
       "norm_label": "scoreticker"
     },
     {
@@ -5810,7 +5820,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_motion_score_ticker_ts_component",
-      "community": 18,
+      "community": 0,
       "norm_label": "component"
     },
     {
@@ -5820,7 +5830,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_app_shared_motion_score_ticker_scoreticker_constructor",
-      "community": 18,
+      "community": 0,
       "norm_label": ".constructor()"
     },
     {
@@ -5830,7 +5840,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "src_app_shared_motion_score_ticker_scoreticker_update",
-      "community": 18,
+      "community": 0,
       "norm_label": ".update()"
     },
     {
@@ -5840,7 +5850,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "src_app_shared_motion_score_ticker_scoreticker_spawndelta",
-      "community": 18,
+      "community": 0,
       "norm_label": ".spawndelta()"
     },
     {
@@ -5850,7 +5860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_svg_azul_tile",
-      "community": 25,
+      "community": 0,
       "norm_label": "azul-tile.ts"
     },
     {
@@ -5860,7 +5870,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_app_shared_svg_azul_tile_tile_src",
-      "community": 25,
+      "community": 0,
       "norm_label": "tile_src"
     },
     {
@@ -5870,7 +5880,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_app_shared_svg_azul_tile_azultile",
-      "community": 25,
+      "community": 0,
       "norm_label": "azultile"
     },
     {
@@ -5880,7 +5890,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_svg_azul_tile_ts_component",
-      "community": 25,
+      "community": 0,
       "norm_label": "component"
     },
     {
@@ -5930,7 +5940,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_svg_ttr_icons",
-      "community": 18,
+      "community": 35,
       "norm_label": "ttr-icons.ts"
     },
     {
@@ -5940,7 +5950,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_shared_svg_ttr_icons_ttrlocomotive",
-      "community": 18,
+      "community": 35,
       "norm_label": "ttrlocomotive"
     },
     {
@@ -5950,27 +5960,37 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_svg_ttr_icons_ts_component",
-      "community": 18,
+      "community": 35,
       "norm_label": "component"
+    },
+    {
+      "label": "TtrTaxi",
+      "file_type": "code",
+      "source_file": "src/app/shared/svg/ttr-icons.ts",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "src_app_shared_svg_ttr_icons_ttrtaxi",
+      "community": 35,
+      "norm_label": "ttrtaxi"
     },
     {
       "label": "TtrWagon",
       "file_type": "code",
       "source_file": "src/app/shared/svg/ttr-icons.ts",
-      "source_location": "L41",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "src_app_shared_svg_ttr_icons_ttrwagon",
-      "community": 18,
+      "community": 35,
       "norm_label": "ttrwagon"
     },
     {
       "label": "TtrRail",
       "file_type": "code",
       "source_file": "src/app/shared/svg/ttr-icons.ts",
-      "source_location": "L62",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "src_app_shared_svg_ttr_icons_ttrrail",
-      "community": 18,
+      "community": 35,
       "norm_label": "ttrrail"
     },
     {
@@ -5980,7 +6000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_audit_sheet",
-      "community": 3,
+      "community": 24,
       "norm_label": "audit-sheet.ts"
     },
     {
@@ -6000,7 +6020,7 @@
       "source_location": "L249",
       "_origin": "ast",
       "id": "src_app_shared_ui_audit_sheet_auditsheet",
-      "community": 3,
+      "community": 24,
       "norm_label": "auditsheet"
     },
     {
@@ -6010,7 +6030,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_ui_audit_sheet_ts_component",
-      "community": 3,
+      "community": 24,
       "norm_label": "component"
     },
     {
@@ -6020,7 +6040,7 @@
       "source_location": "L257",
       "_origin": "ast",
       "id": "src_app_shared_ui_audit_sheet_auditsheet_constructor",
-      "community": 3,
+      "community": 24,
       "norm_label": ".constructor()"
     },
     {
@@ -6030,7 +6050,7 @@
       "source_location": "L278",
       "_origin": "ast",
       "id": "src_app_shared_ui_audit_sheet_auditsheet_signed",
-      "community": 3,
+      "community": 24,
       "norm_label": ".signed()"
     },
     {
@@ -6040,7 +6060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_choice",
-      "community": 14,
+      "community": 18,
       "norm_label": "choice.ts"
     },
     {
@@ -6050,7 +6070,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_app_shared_ui_choice_choiceoption",
-      "community": 14,
+      "community": 18,
       "norm_label": "choiceoption"
     },
     {
@@ -6060,7 +6080,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "src_app_shared_ui_choice_choice",
-      "community": 14,
+      "community": 18,
       "norm_label": "choice"
     },
     {
@@ -6070,7 +6090,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_ui_choice_ts_component",
-      "community": 14,
+      "community": 18,
       "norm_label": "component"
     },
     {
@@ -6080,7 +6100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_confirm_dialog",
-      "community": 18,
+      "community": 24,
       "norm_label": "confirm-dialog.ts"
     },
     {
@@ -6090,7 +6110,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "src_app_shared_ui_confirm_dialog_confirmdialog",
-      "community": 18,
+      "community": 24,
       "norm_label": "confirmdialog"
     },
     {
@@ -6100,7 +6120,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_ui_confirm_dialog_ts_component",
-      "community": 18,
+      "community": 24,
       "norm_label": "component"
     },
     {
@@ -6110,7 +6130,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_app_shared_ui_confirm_dialog_confirmdialog_constructor",
-      "community": 18,
+      "community": 24,
       "norm_label": ".constructor()"
     },
     {
@@ -6120,7 +6140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_group_group_results",
-      "community": 17,
+      "community": 18,
       "norm_label": "group-results.ts"
     },
     {
@@ -6130,7 +6150,7 @@
       "source_location": "L392",
       "_origin": "ast",
       "id": "src_app_shared_ui_group_group_results_groupresults",
-      "community": 17,
+      "community": 18,
       "norm_label": "groupresults"
     },
     {
@@ -6140,7 +6160,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_app_shared_ui_group_group_results_ts_component",
-      "community": 17,
+      "community": 18,
       "norm_label": "component"
     },
     {
@@ -6280,7 +6300,7 @@
       "source_location": "L374",
       "_origin": "ast",
       "id": "src_app_shared_ui_group_group_setup_groupsetup_submit",
-      "community": 17,
+      "community": 29,
       "norm_label": ".submit()"
     },
     {
@@ -6370,7 +6390,7 @@
       "source_location": "L160",
       "_origin": "ast",
       "id": "src_app_shared_ui_group_player_strip_playerstrip_constructor",
-      "community": 18,
+      "community": 0,
       "norm_label": ".constructor()"
     },
     {
@@ -6380,7 +6400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_group_session_board",
-      "community": 17,
+      "community": 18,
       "norm_label": "session-board.ts"
     },
     {
@@ -6420,7 +6440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_history_panel",
-      "community": 14,
+      "community": 30,
       "norm_label": "history-panel.ts"
     },
     {
@@ -6730,7 +6750,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app_shared_ui_token_tray",
-      "community": 18,
+      "community": 0,
       "norm_label": "token-tray.ts"
     },
     {
@@ -6740,7 +6760,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_app_shared_ui_token_tray_tokenspec",
-      "community": 14,
+      "community": 26,
       "norm_label": "tokenspec"
     },
     {
@@ -8671,7 +8691,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_alternates",
@@ -8691,7 +8711,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_enurl",
@@ -8701,7 +8721,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_pturl",
@@ -8731,7 +8751,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_routes",
@@ -8761,7 +8781,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_swvariants",
@@ -8771,7 +8791,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L46",
+      "source_location": "L47",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_today",
@@ -8781,7 +8801,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_urlentry",
@@ -8811,7 +8831,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L88",
+      "source_location": "L89",
       "weight": 1.0,
       "source": "scripts_generate_seo",
       "target": "scripts_generate_seo_variantnames",
@@ -8832,7 +8852,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "scripts_generate_seo_alternates",
       "target": "scripts_generate_seo_pturl",
@@ -8843,7 +8863,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "scripts_generate_seo_alternates",
       "target": "scripts_generate_seo_enurl",
@@ -8854,7 +8874,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "scripts/generate-seo.mjs",
-      "source_location": "L58",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "scripts_generate_seo_urlentry",
       "target": "scripts_generate_seo_alternates",
@@ -10030,7 +10050,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L233",
+      "source_location": "L234",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_startgroup",
       "target": "src_app_core_group_group_models_draftplayer",
@@ -10074,7 +10094,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L230",
+      "source_location": "L239",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_startgroup",
       "target": "src_app_core_group_group_models_draftplayer",
@@ -15265,7 +15285,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L369",
+      "source_location": "L370",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_reset",
       "target": "src_app_core_services_ttr_match_emptysheet",
@@ -15276,7 +15296,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L283",
+      "source_location": "L284",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_selectvariant",
       "target": "src_app_core_services_ttr_match_emptysheet",
@@ -15298,7 +15318,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L308",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_addroute",
       "target": "src_app_core_services_ttr_match_uid",
@@ -15309,7 +15329,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L328",
+      "source_location": "L329",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_addticket",
       "target": "src_app_core_services_ttr_match_uid",
@@ -15330,7 +15350,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L307",
+      "source_location": "L308",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_addroute",
@@ -15340,7 +15360,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L326",
+      "source_location": "L327",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_addticket",
@@ -15350,7 +15370,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L351",
+      "source_location": "L352",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_adjustbonus",
@@ -15370,7 +15390,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L341",
+      "source_location": "L342",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_bonusvalue",
@@ -15380,7 +15400,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L256",
+      "source_location": "L257",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_constructor",
@@ -15390,7 +15410,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L299",
+      "source_location": "L300",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15400,7 +15420,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L363",
+      "source_location": "L364",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_finish",
@@ -15410,7 +15430,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L246",
+      "source_location": "L247",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_finishgroup",
@@ -15420,7 +15440,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L251",
+      "source_location": "L252",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_picktiewinner",
@@ -15430,7 +15450,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L242",
+      "source_location": "L243",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_rematch",
@@ -15440,7 +15460,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L311",
+      "source_location": "L312",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_removeroute",
@@ -15450,7 +15470,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L335",
+      "source_location": "L336",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_removeticket",
@@ -15460,7 +15480,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L367",
+      "source_location": "L368",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_reset",
@@ -15470,7 +15490,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L293",
+      "source_location": "L294",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_routepointsfor",
@@ -15480,7 +15500,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L279",
+      "source_location": "L280",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_selectvariant",
@@ -15490,7 +15510,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L347",
+      "source_location": "L348",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_setbonus",
@@ -15500,7 +15520,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L233",
+      "source_location": "L234",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_startgroup",
@@ -15510,7 +15530,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L331",
+      "source_location": "L332",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch",
       "target": "src_app_core_services_ttr_match_ttrmatch_toggleticket",
@@ -15555,7 +15575,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L134",
+      "source_location": "L135",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_auditlabels",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonushint"
@@ -15566,7 +15586,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L133",
+      "source_location": "L134",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_auditlabels",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonuslabel"
@@ -15577,7 +15597,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L259",
+      "source_location": "L260",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_constructor",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_findvariant"
@@ -15588,7 +15608,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L280",
+      "source_location": "L281",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_selectvariant",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_findvariant"
@@ -15598,7 +15618,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L293",
+      "source_location": "L294",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_routepointsfor",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_scoring_claimedroute",
@@ -15610,7 +15630,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L295",
+      "source_location": "L296",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_routepointsfor",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_scoring_routepoints"
@@ -15620,7 +15640,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L308",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_addroute",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15631,7 +15651,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L328",
+      "source_location": "L329",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_addticket",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15642,7 +15662,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L312",
+      "source_location": "L313",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_removeroute",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15653,7 +15673,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L336",
+      "source_location": "L337",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_removeticket",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15664,7 +15684,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L348",
+      "source_location": "L349",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_setbonus",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15675,7 +15695,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L332",
+      "source_location": "L333",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_toggleticket",
       "target": "src_app_core_services_ttr_match_ttrmatch_edit",
@@ -15686,7 +15706,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L341",
+      "source_location": "L342",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_bonusvalue",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -15697,7 +15717,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L357",
+      "source_location": "L358",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_adjustbonus",
       "target": "src_app_core_services_ttr_match_ttrmatch_setbonus",
@@ -15708,7 +15728,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L347",
+      "source_location": "L348",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_setbonus",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -15719,7 +15739,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/core/services/ttr-match.ts",
-      "source_location": "L351",
+      "source_location": "L352",
       "weight": 1.0,
       "source": "src_app_core_services_ttr_match_ttrmatch_adjustbonus",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -20211,7 +20231,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L268",
+      "source_location": "L277",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_scrolltotop",
@@ -20221,7 +20241,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L60",
+      "source_location": "L61",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
@@ -20390,6 +20410,17 @@
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter",
       "target": "src_app_shared_svg_ttr_icons_ttrlocomotive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_app_features_ticket_to_ride_counter_ttr_counter",
+      "target": "src_app_shared_svg_ttr_icons_ttrtaxi",
       "confidence_score": 1.0
     },
     {
@@ -20715,7 +20746,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L185",
+      "source_location": "L194",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_addroute",
@@ -20725,7 +20756,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L191",
+      "source_location": "L200",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_addticket",
@@ -20735,7 +20766,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L178",
+      "source_location": "L181",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonushint",
@@ -20745,7 +20776,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L175",
+      "source_location": "L178",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuslabel",
@@ -20755,7 +20786,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L195",
+      "source_location": "L204",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonusnumber",
@@ -20765,7 +20796,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L199",
+      "source_location": "L208",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuson",
@@ -20775,7 +20806,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L249",
+      "source_location": "L258",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_changeplayers",
@@ -20785,7 +20816,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L254",
+      "source_location": "L263",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmchangeplayers",
@@ -20795,7 +20826,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L207",
+      "source_location": "L216",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmfinish",
@@ -20805,7 +20836,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L237",
+      "source_location": "L246",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmfinishgroup",
@@ -20815,7 +20846,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L217",
+      "source_location": "L226",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmnewmatch",
@@ -20825,7 +20856,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L140",
+      "source_location": "L143",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_constructor",
@@ -20835,7 +20866,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L135",
+      "source_location": "L138",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_historyname",
@@ -20845,7 +20876,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L172",
+      "source_location": "L175",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_note",
@@ -20855,7 +20886,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L181",
+      "source_location": "L185",
+      "weight": 1.0,
+      "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
+      "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_piecelabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
+      "source_location": "L190",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_points",
@@ -20865,7 +20906,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L243",
+      "source_location": "L252",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_rematch",
@@ -20875,7 +20916,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L226",
+      "source_location": "L235",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_setmode",
@@ -20885,7 +20926,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L203",
+      "source_location": "L212",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_signed",
@@ -20895,7 +20936,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L230",
+      "source_location": "L239",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_startgroup",
@@ -20905,7 +20946,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L168",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_variantname",
@@ -20915,7 +20956,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L260",
+      "source_location": "L269",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_viewplayer",
@@ -20926,7 +20967,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L137",
+      "source_location": "L140",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_historyname",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_variantname",
@@ -20938,7 +20979,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L136",
+      "source_location": "L139",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_historyname",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_findvariant"
@@ -20948,7 +20989,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L149",
+      "source_location": "L152",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_constructor",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuslabel",
@@ -20959,7 +21000,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L148",
+      "source_location": "L151",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_constructor",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_variantname",
@@ -20971,7 +21012,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L151",
+      "source_location": "L154",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_constructor",
       "target": "src_app_features_ticket_to_ride_variant_select_variant_select_variantselect_name"
@@ -20981,7 +21022,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L172",
+      "source_location": "L175",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_note",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_ttrvariant",
@@ -20993,7 +21034,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L173",
+      "source_location": "L176",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_note",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_variantnote"
@@ -21003,7 +21044,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L175",
+      "source_location": "L178",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuslabel",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -21014,7 +21055,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L178",
+      "source_location": "L181",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonushint",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -21025,7 +21066,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L181",
+      "source_location": "L190",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_points",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_ttrvariant",
@@ -21037,7 +21078,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L188",
+      "source_location": "L197",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_addroute",
       "target": "src_app_shared_motion_motion_utils_pop"
@@ -21047,7 +21088,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L195",
+      "source_location": "L204",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonusnumber",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -21058,7 +21099,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L199",
+      "source_location": "L208",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_bonuson",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonusspec",
@@ -21069,7 +21110,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L234",
+      "source_location": "L243",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_startgroup",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_scrolltotop",
@@ -21080,7 +21121,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L240",
+      "source_location": "L249",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_confirmfinishgroup",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_scrolltotop",
@@ -21091,7 +21132,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L246",
+      "source_location": "L255",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_rematch",
       "target": "src_app_features_ticket_to_ride_counter_ttr_counter_scrolltotop",
@@ -21103,7 +21144,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L263",
+      "source_location": "L272",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_ttrcounter_viewplayer",
       "target": "src_app_shared_motion_motion_utils_prefersreducedmotion"
@@ -21113,7 +21154,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/counter/ttr-counter.ts",
-      "source_location": "L269",
+      "source_location": "L278",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_counter_ttr_counter_scrolltotop",
       "target": "src_app_shared_motion_motion_utils_prefersreducedmotion",
@@ -21506,7 +21547,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L77",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonushint",
@@ -21516,7 +21557,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L76",
+      "source_location": "L79",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_bonuslabel",
@@ -21536,7 +21577,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L396",
+      "source_location": "L427",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_findvariant",
@@ -21546,7 +21587,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L90",
+      "source_location": "L93",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_globetrotter",
@@ -21556,7 +21597,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L72",
+      "source_location": "L75",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_l",
@@ -21566,7 +21607,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L81",
+      "source_location": "L84",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_longest_path",
@@ -21586,7 +21627,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L79",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_standard",
@@ -21596,7 +21637,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L100",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_ttr_variants",
@@ -21616,7 +21657,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L73",
+      "source_location": "L76",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_variantname",
@@ -21626,7 +21667,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L75",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_variantnote",
@@ -21636,7 +21677,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L74",
+      "source_location": "L77",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_varianttag",
@@ -21835,7 +21876,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/features/ticket-to-ride/scoring/ttr-variants.ts",
-      "source_location": "L397",
+      "source_location": "L428",
       "weight": 1.0,
       "source": "src_app_features_ticket_to_ride_scoring_ttr_variants_findvariant",
       "target": "src_app_features_ticket_to_ride_scoring_ttr_variants_ttr_variants"
@@ -22471,7 +22512,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/shared/svg/ttr-icons.ts",
-      "source_location": "L62",
+      "source_location": "L79",
       "weight": 1.0,
       "source": "src_app_shared_svg_ttr_icons",
       "target": "src_app_shared_svg_ttr_icons_ttrrail",
@@ -22481,7 +22522,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/shared/svg/ttr-icons.ts",
-      "source_location": "L41",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_app_shared_svg_ttr_icons",
+      "target": "src_app_shared_svg_ttr_icons_ttrtaxi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/shared/svg/ttr-icons.ts",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "src_app_shared_svg_ttr_icons",
       "target": "src_app_shared_svg_ttr_icons_ttrwagon",
@@ -22502,7 +22553,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "src/app/shared/svg/ttr-icons.ts",
-      "source_location": "L44",
+      "source_location": "L61",
       "weight": 1.0,
       "context": "decorator",
       "source": "src_app_shared_svg_ttr_icons_ttrrail",
@@ -22514,6 +22565,17 @@
       "confidence": "EXTRACTED",
       "source_file": "src/app/shared/svg/ttr-icons.ts",
       "source_location": "L22",
+      "weight": 1.0,
+      "context": "decorator",
+      "source": "src_app_shared_svg_ttr_icons_ttrtaxi",
+      "target": "src_app_shared_svg_ttr_icons_ts_component",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/shared/svg/ttr-icons.ts",
+      "source_location": "L39",
       "weight": 1.0,
       "context": "decorator",
       "source": "src_app_shared_svg_ttr_icons_ttrwagon",
@@ -24067,5 +24129,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f960d05c019967f14bfef2533b3022aa6f33651d"
+  "built_at_commit": "0b48319583f1c079d14cd0bc00780f58d8dbe07a"
 }

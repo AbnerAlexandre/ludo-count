@@ -75,14 +75,18 @@
               </label>
             }
           </div>
-          <div class="len-grid">
+          <div class="len-grid" [class.quad]="routeLengths().length === 4">
             @for (len of routeLengths(); track len) {
               <button type="button" class="key len" (click)="addRoute(len, $event)">
                 <span class="len-top">
-                  <app-ttr-locomotive class="loco" aria-hidden="true" />
+                  @if (taxis()) {
+                    <app-ttr-taxi class="loco taxi" aria-hidden="true" />
+                  } @else {
+                    <app-ttr-locomotive class="loco" aria-hidden="true" />
+                  }
                   <b class="tabular">{{ len }}</b>
                 </span>
-                <span class="len-cars">{{ len === 1 ? i18n.t('ttr.routes.carOne') : i18n.t('ttr.routes.carMany') }}</span>
+                <span class="len-cars">{{ pieceLabel(len) }}</span>
                 <span class="len-pts tabular">+{{ points(v, len) }}</span>
               </button>
             }
@@ -98,7 +102,7 @@
                   class="chip"
                   [disabled]="finished()"
                   (click)="match.removeRoute(r.id)"
-                  [attr.aria-label]="i18n.tp('ttr.routes.removeAria', { n: r.length })"
+                  [attr.aria-label]="i18n.tp(taxis() ? 'ttr.routes.removeAriaTaxi' : 'ttr.routes.removeAria', { n: r.length })"
                 >
                   <span class="tabular">{{ r.length }}</span>
                   @if (r.terrain) {
@@ -227,7 +231,7 @@
         <table>
           <thead>
             <tr>
-              <th scope="col">{{ i18n.t('rules.ttr.len') }}</th>
+              <th scope="col">{{ i18n.t(taxis() ? 'rules.ttr.lenTaxi' : 'rules.ttr.len') }}</th>
               @for (len of routeLengths(); track len) {
                 <td>{{ len }}</td>
               }

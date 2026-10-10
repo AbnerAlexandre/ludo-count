@@ -44,7 +44,7 @@
             <span class="note">{{ note(v) }}</span>
             <span class="chips">
               <span class="tag">{{ i18n.tp('ttr.select.players', { min: v.playersMin, max: v.playersMax }) }}</span>
-              <span class="tag">{{ i18n.tp('ttr.select.cars', { n: v.cars }) }}</span>
+              <span class="tag">{{ i18n.tp(v.pieces === 'taxis' ? 'ttr.select.taxis' : 'ttr.select.cars', { n: v.cars }) }}</span>
               <span class="tag">{{ i18n.tp('ttr.select.routes', { list: lengths(v.routeTable).join('/') }) }}</span>
             </span>
             <span class="bonuses">

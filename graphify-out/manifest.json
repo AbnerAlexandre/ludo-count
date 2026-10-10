@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/app/core/services/ttr-match.ts": {
-    "mtime": 1791595353.6169634,
-    "ast_hash": "89e0c12f59c62836c465035311e4b118",
+    "mtime": 1791605438.5858781,
+    "ast_hash": "c15020b7171950d38c02c01ada48ae22",
     "semantic_hash": ""
   },
   "src/app/features/azul/azul-page.ts": {
@@ -105,13 +105,13 @@
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/counter/ttr-counter.ts": {
-    "mtime": 1791595726.3668394,
-    "ast_hash": "23522741ecd9c12a37a72d5a5323a222",
+    "mtime": 1791605438.5858781,
+    "ast_hash": "44961b9cc31fdaf86beb7f300e28138a",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/scoring/ttr-scoring.spec.ts": {
-    "mtime": 1784782546.4450684,
-    "ast_hash": "d129f2a0d22b49f616ca999be4d73be7",
+    "mtime": 1791605449.631393,
+    "ast_hash": "81eb2625670b92ddce72f3895922c2eb",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/scoring/ttr-scoring.ts": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/scoring/ttr-variants.ts": {
-    "mtime": 1791595869.5215156,
-    "ast_hash": "139507501eae7e4af1d513ea871654c1",
+    "mtime": 1791605438.5842023,
+    "ast_hash": "259cc6e075e4a1a23365b829730fc831",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/variant-select/variant-select.ts": {
@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "src/app/shared/svg/ttr-icons.ts": {
-    "mtime": 1784786042.5140326,
-    "ast_hash": "0094fb8accd91d7d4d5181feba113482",
+    "mtime": 1791605438.5853703,
+    "ast_hash": "3987f6c676fed98cbc36cc55ae20fc93",
     "semantic_hash": ""
   },
   "src/app/shared/ui/audit-sheet.ts": {
@@ -215,18 +215,18 @@
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/counter/ttr-counter.html": {
-    "mtime": 1791595698.8544743,
-    "ast_hash": "b5e550a13371d84f2fb252353b5fa8d5",
+    "mtime": 1791605505.0622435,
+    "ast_hash": "7525296259aaba51148d4b55ea1fc0b8",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/variant-select/variant-select.html": {
-    "mtime": 1791595741.8323991,
-    "ast_hash": "26fa6a8a72dee09ff8fa21b92d9cd44d",
+    "mtime": 1791605438.5869722,
+    "ast_hash": "0dd1e3f31d22cfb36b27835f1494a883",
     "semantic_hash": ""
   },
   "src/index.html": {
-    "mtime": 1791596455.506786,
-    "ast_hash": "6faac92007c823018aeffb955010630e",
+    "mtime": 1791605438.5889897,
+    "ast_hash": "db42fed4a248c0d60644a1a6e921c116",
     "semantic_hash": ""
   },
   "public/azul/azul-logo.webp": {
@@ -290,13 +290,13 @@
     "semantic_hash": ""
   },
   "public/novidades.json": {
-    "mtime": 1791597031.6401584,
-    "ast_hash": "39ecf764bdcae056f4c62eccb050bfc5",
+    "mtime": 1791605438.5889897,
+    "ast_hash": "11b03d0079c20af016451876625a1e19",
     "semantic_hash": ""
   },
   "scripts/generate-seo.mjs": {
-    "mtime": 1791596421.9001498,
-    "ast_hash": "2ef0137f1629145745746f226f576d5e",
+    "mtime": 1791605582.1382978,
+    "ast_hash": "876b7a40b768d7d07780068d79b2dbc6",
     "semantic_hash": ""
   },
   "src/app/app.config.server.ts": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "src/app/core/i18n/dictionary.ts": {
-    "mtime": 1791597049.400993,
-    "ast_hash": "d87bd41acfc8722c247fd7d4e4b47294",
+    "mtime": 1791605438.5884843,
+    "ast_hash": "79ec64f5df25bf04b09b9ea10a6983b0",
     "semantic_hash": ""
   },
   "src/app/core/i18n/i18n.ts": {
@@ -345,12 +345,12 @@
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1791597095.461508,
-    "ast_hash": "d07e373fbbd33711fae23df83929aa03",
+    "mtime": 1791605586.8052332,
+    "ast_hash": "276175f6ed820d964c67ea3979d64008",
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1791597095.4605,
+    "mtime": 1791605586.8052332,
     "ast_hash": "1f34d3c595f672f631b7d533f32889d4",
     "semantic_hash": ""
   },
@@ -612,6 +612,11 @@
   "src/app/features/seven-wonders/counter/sw-counter.html": {
     "mtime": 1791595796.0862796,
     "ast_hash": "d211375247f89c865e946c75c446ff79",
+    "semantic_hash": ""
+  },
+  "public/ticket-to-ride/ticket-new-york.webp": {
+    "mtime": 1791605210.2189138,
+    "ast_hash": "91a2eb99c3ac970e583639eb274de6fb",
     "semantic_hash": ""
   }
 }

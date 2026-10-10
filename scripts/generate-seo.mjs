@@ -29,7 +29,8 @@ if (variantIds.length === 0) throw new Error('Nenhuma edição encontrada em ttr
 
 // --- versões do 7 Wonders -------------------------------------------------
 const swSrc = read('src/app/features/seven-wonders/scoring/sw-variants.ts');
-const swVariants = [...swSrc.matchAll(/^\s{4}id:\s*'([^']+)',\n\s{4}name:\s*'([^']+)'/gm)].map((m) => ({ id: m[1], name: m[2] }));
+// \r?\n: os arquivos podem ter quebra de linha do Windows (CRLF)
+const swVariants = [...swSrc.matchAll(/^\s{4}id:\s*'([^']+)',\r?\n\s{4}name:\s*'([^']+)'/gm)].map((m) => ({ id: m[1], name: m[2] }));
 if (swVariants.length === 0) throw new Error('Nenhuma versão encontrada em sw-variants.ts');
 
 // --- rotas (caminho-base em pt) -------------------------------------------
@@ -85,7 +86,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 // --- llms.txt -------------------------------------------------------------
 // Convenção emergente para buscadores/assistentes de IA descreverem o site.
-const variantNames = [...variantsSrc.matchAll(/^\s{4}id:\s*'([^']+)',\n\s{4}name:\s*'([^']+)'/gm)].map(
+const variantNames = [...variantsSrc.matchAll(/^\s{4}id:\s*'([^']+)',\r?\n\s{4}name:\s*'([^']+)'/gm)].map(
   (m) => ({ id: m[1], name: m[2] }),
 );
 const llms = `# LudoCount

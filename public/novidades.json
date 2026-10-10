@@ -1,7 +1,16 @@
 {
   "titulo": "Novidades do LudoCount",
-  "atualizadoEm": "2026-10-09",
+  "atualizadoEm": "2026-10-10",
   "itens": [
+    {
+      "data": "2026-10-10",
+      "tag": "Ticket to Ride",
+      "tagEn": "Ticket to Ride",
+      "titulo": "Ticket to Ride: New York",
+      "tituloEn": "Ticket to Ride: New York",
+      "descricao": "Nova edição no contador: Manhattan com 15 táxis por jogador, rotas de 1 a 4 táxis (1, 2, 4 e 7 pontos), bilhetes de destino e +1 ponto por atração turística ligada às suas rotas. Funciona também na mesa toda, de 2 a 4 jogadores, com desempate por mais bilhetes completos.",
+      "descricaoEn": "New edition in the counter: Manhattan with 15 taxis per player, routes of 1 to 4 taxis (1, 2, 4 and 7 points), destination tickets and +1 point for each tourist attraction connected to your routes. It also works for the whole table, 2 to 4 players, with ties broken by most completed tickets."
+    },
     {
       "data": "2026-10-09",
       "tag": "Ticket to Ride · 7 Wonders",

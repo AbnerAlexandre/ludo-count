@@ -124,7 +124,8 @@ export class TtrMatch {
       ticketsGroup: t.t('audit.tickets'),
       bonusesGroup: t.t('audit.bonuses'),
       route: (len, terrain) => {
-        const base = len === 1 ? t.tp('audit.routeOne', { n: len }) : t.tp('audit.routeMany', { n: len });
+        const taxi = this.variant()?.pieces === 'taxis' ? 'Taxi' : '';
+        const base = t.tp(`audit.route${len === 1 ? 'One' : 'Many'}${taxi}`, { n: len });
         return terrain ? base + t.t('audit.terrainSuffix') : base;
       },
       ticketComplete: t.t('audit.ticketComplete'),

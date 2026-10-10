@@ -88,3 +88,34 @@ describe('final score', () => {
     expect(scoreMatch(usa, state)).toBe(15 + 4 + 10 - 5 + 10);
   });
 });
+
+describe('New York (táxis)', () => {
+  const ny = findVariant('new-york')!;
+
+  it('rotas de 1 a 4 táxis valem 1/2/4/7, para 2–4 jogadores com 15 táxis', () => {
+    expect(Object.keys(ny.routeTable).map(Number)).toEqual([1, 2, 3, 4]);
+    expect([1, 2, 3, 4].map((n) => ny.routeTable[n])).toEqual([1, 2, 4, 7]);
+    expect([ny.playersMin, ny.playersMax, ny.cars, ny.pieces]).toEqual([2, 4, 15, 'taxis']);
+  });
+
+  it('sem caminho mais longo: só +1 por atração turística', () => {
+    expect(ny.bonuses.map((b) => b.id)).toEqual(['attractions']);
+    expect(bonusesTotal(ny, { attractions: 3 })).toBe(3);
+  });
+
+  it('partida completa: rotas + bilhetes ± + atrações', () => {
+    const state: TtrState = {
+      routes: [
+        { id: 'a', length: 4 }, // +7
+        { id: 'b', length: 3 }, // +4
+        { id: 'c', length: 1 }, // +1
+      ],
+      tickets: [
+        { id: 't1', value: 6, completed: true },
+        { id: 't2', value: 4, completed: false },
+      ],
+      bonuses: { attractions: 2 },
+    };
+    expect(scoreMatch(ny, state)).toBe(7 + 4 + 1 + 6 - 4 + 2);
+  });
+});

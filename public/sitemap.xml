@@ -289,6 +289,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ludo-contador.vercel.app/ticket-to-ride/new-york</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/new-york"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/en/ticket-to-ride/new-york</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/new-york"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ludo-contador.vercel.app/7-wonders</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders"/>

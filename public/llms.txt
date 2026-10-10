@@ -30,6 +30,7 @@
 - [Japan](https://ludo-contador.vercel.app/ticket-to-ride/japan)
 - [Italy](https://ludo-contador.vercel.app/ticket-to-ride/italy)
 - [France](https://ludo-contador.vercel.app/ticket-to-ride/france)
+- [New York](https://ludo-contador.vercel.app/ticket-to-ride/new-york)
 
 ## Versões do 7 Wonders
 

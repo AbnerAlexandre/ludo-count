@@ -14,7 +14,7 @@ import { NumField } from '../../../shared/ui/num-field';
 import { Switch } from '../../../shared/ui/switch';
 import { ScoreTicker } from '../../../shared/motion/score-ticker';
 import { pop, prefersReducedMotion } from '../../../shared/motion/motion-utils';
-import { TtrLocomotive } from '../../../shared/svg/ttr-icons';
+import { TtrLocomotive, TtrTaxi } from '../../../shared/svg/ttr-icons';
 import { Choice, type ChoiceOption } from '../../../shared/ui/choice';
 import { GroupSetup } from '../../../shared/ui/group/group-setup';
 import { PlayerStrip, type StripPlayer } from '../../../shared/ui/group/player-strip';
@@ -47,6 +47,7 @@ import { SITE_URL } from '../../../core/seo/seo.config';
     Switch,
     ScoreTicker,
     TtrLocomotive,
+    TtrTaxi,
     Choice,
     GroupSetup,
     PlayerStrip,
@@ -110,6 +111,8 @@ export class TtrCounter {
   readonly selectPath = computed(() => `${this.i18n.locale() === 'en' ? '/en' : ''}/ticket-to-ride`);
 
   readonly headerLogo = computed(() => this.variant()?.logo ?? TTR_GENERIC_LOGO);
+  /** New York: as peças são táxis, não vagões */
+  readonly taxis = computed(() => this.variant()?.pieces === 'taxis');
   readonly usesGenericLogo = computed(() => !this.variant()?.logo);
 
   readonly routeLengths = computed(() => {
@@ -178,6 +181,12 @@ export class TtrCounter {
   bonusHint(spec: BonusSpec): string | undefined {
     return bonusHint(spec, this.i18n.locale());
   }
+  /** "vagão(ões)" ou "táxi(s)" embaixo do comprimento da rota */
+  pieceLabel(len: number): string {
+    const kind = this.taxis() ? 'taxi' : 'car';
+    return this.i18n.t(`ttr.routes.${kind}${len === 1 ? 'One' : 'Many'}`);
+  }
+
   points(v: TtrVariant, len: number): number {
     return this.terrainEnabled() && v.terrainTable ? v.terrainTable[len] : v.routeTable[len];
   }

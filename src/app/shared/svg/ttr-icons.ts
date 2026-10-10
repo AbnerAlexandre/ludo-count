@@ -18,6 +18,23 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class TtrLocomotive {}
 
+/** Táxi visto de lado (Ticket to Ride: New York), tingido por currentColor. */
+@Component({
+  selector: 'app-ttr-taxi',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <svg viewBox="0 0 100 70" fill="currentColor" role="img" aria-label="táxi">
+      <rect x="39" y="2" width="22" height="9" rx="2.5" />
+      <path fill-rule="evenodd" d="M25 13H75L89 32H11ZM29 17H47V29H20ZM53 17H71L80 29H53Z" />
+      <rect x="3" y="29" width="94" height="23" rx="8" />
+      <path fill-rule="evenodd" d="M15 55a11 11 0 1 0 22 0a11 11 0 1 0-22 0ZM21.5 55a4.5 4.5 0 1 1 9 0a4.5 4.5 0 1 1-9 0Z" />
+      <path fill-rule="evenodd" d="M63 55a11 11 0 1 0 22 0a11 11 0 1 0-22 0ZM69.5 55a4.5 4.5 0 1 1 9 0a4.5 4.5 0 1 1-9 0Z" />
+    </svg>
+  `,
+  styles: [`:host{display:inline-block;line-height:0}svg{width:100%;height:100%;display:block}`],
+})
+export class TtrTaxi {}
+
 /** Inline boxcar / wagon silhouette, tinted via currentColor. */
 @Component({
   selector: 'app-ttr-wagon',
