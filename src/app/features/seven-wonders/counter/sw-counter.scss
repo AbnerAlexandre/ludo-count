@@ -77,6 +77,20 @@
 .exp:disabled {
   cursor: not-allowed;
 }
+/* mudaria o limite de jogadores da mesa atual */
+.exp.blocked {
+  border-style: dashed;
+  opacity: 0.6;
+}
+.exp-note {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--warn) 11%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--warn) 38%, var(--line));
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
 .box {
   width: 20px;
   height: 20px;

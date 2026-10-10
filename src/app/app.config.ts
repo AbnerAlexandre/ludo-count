@@ -15,7 +15,16 @@ export const appConfig: ApplicationConfig = {
     // movimento dinâmico (molas, placar, revelações) com Motion.
     provideRouter(
       routes,
-      withViewTransitions(),
+      withViewTransitions({
+        // aba em segundo plano ou navegação interrompida: a transição é abortada
+        // pelo navegador — sem efeito na tela, então não vira erro no console
+        onViewTransitionCreated: ({ transition }) => {
+          const ignore = () => undefined;
+          transition.ready.catch(ignore);
+          transition.finished.catch(ignore);
+          transition.updateCallbackDone.catch(ignore);
+        },
+      }),
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }),
     ),
   ],

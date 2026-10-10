@@ -1,8 +1,8 @@
 # LudoCount
 
-> Contador de pontos online e gratuito para os jogos de tabuleiro Azul e Ticket to Ride.
-> Roda inteiramente no navegador, sem conta e sem instalação, e mostra a origem de cada
-> ponto do total numa tela de auditoria.
+> Contador de pontos online e gratuito para os jogos de tabuleiro Azul, Ticket to Ride e
+> 7 Wonders. Roda inteiramente no navegador, sem conta e sem instalação, e mostra a origem
+> de cada ponto do total numa tela de auditoria.
 
 ## Contadores
 
@@ -11,6 +11,9 @@
   colunas e cores completas.
 - [Ticket to Ride — escolha a edição](https://ludo-contador.vercel.app/ticket-to-ride): cada edição tem sua própria
   tabela de pontos por rota e seus bônus de fim de jogo.
+- [7 Wonders — escolha a versão](https://ludo-contador.vercel.app/7-wonders): jogo base com Leaders, Cities, Armada,
+  Babel e Edifice; Duel com Pantheon e Agora; e Architects. A ciência escolhe sozinha o melhor
+  uso dos símbolos coringa.
 
 ## Edições do Ticket to Ride
 
@@ -28,7 +31,17 @@
 - [Italy](https://ludo-contador.vercel.app/ticket-to-ride/italy)
 - [France](https://ludo-contador.vercel.app/ticket-to-ride/france)
 
+## Versões do 7 Wonders
+
+- [7 Wonders](https://ludo-contador.vercel.app/7-wonders/base)
+- [7 Wonders Duel](https://ludo-contador.vercel.app/7-wonders/duel)
+- [7 Wonders Architects](https://ludo-contador.vercel.app/7-wonders/architects)
+
 ## Observações
 
 - O app pontua o que o jogador informa; ele não simula o estado do jogo.
+- No Ticket to Ride e no 7 Wonders dá para pontuar a mesa toda: nomes dos jogadores (dentro do
+  limite da regra de cada edição e expansão), ranking final com os desempates oficiais e um
+  ranking da sessão com vitórias e pontos somados entre partidas.
+- Histórico das últimas 10 partidas por jogo, guardado só no navegador.
 - A pontuação final do Ticket to Ride pode ser negativa; a do Azul nunca fica abaixo de zero.

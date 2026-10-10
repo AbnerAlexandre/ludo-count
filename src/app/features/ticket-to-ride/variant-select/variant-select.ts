@@ -36,7 +36,9 @@ export class VariantSelect {
 
   readonly variants = TTR_VARIANTS;
   readonly genericLogo = TTR_GENERIC_LOGO;
-  readonly activeId = computed(() => (this.match.hasProgress() ? (this.match.variant()?.id ?? null) : null));
+  readonly activeId = computed(() => this.match.resume()?.variantId ?? null);
+  /** partida em andamento é da mesa toda (quantos jogadores) */
+  readonly resumeGroup = computed(() => (this.match.resume()?.group ? this.match.table.players().length : 0));
   readonly base = computed(() => (this.i18n.locale() === 'en' ? '/en' : ''));
 
   /** nome da edição salva no histórico */

@@ -33,7 +33,13 @@ import { SW_VARIANTS, findSwVariant, swExpName, swName, swNote, swTag, type SwVa
       @if (active(); as a) {
         <a class="resume" [routerLink]="base() + '/7-wonders/' + a.id">
           <span class="dot" aria-hidden="true"></span>
-          <span>{{ i18n.t('sw.select.resumePre') }} <strong>{{ name(a) }}</strong> {{ i18n.t('sw.select.resumePost') }}</span>
+          <span>
+            {{ i18n.t('sw.select.resumePre') }} <strong>{{ name(a) }}</strong>
+            @if (resumeGroup()) {
+              <span class="tag">{{ i18n.tp('group.resume.tag', { n: resumeGroup() }) }}</span>
+            }
+            {{ i18n.t('sw.select.resumePost') }}
+          </span>
           <span class="resume-go">{{ i18n.t('ttr.select.resumeGo') }} →</span>
         </a>
       }
@@ -128,6 +134,10 @@ import { SW_VARIANTS, findSwVariant, swExpName, swName, swNote, swTag, type SwVa
         color: var(--text-dim);
         text-decoration: none;
         font-size: 0.93rem;
+      }
+      .resume .tag {
+        margin: 0 6px;
+        vertical-align: 1px;
       }
       .resume strong {
         color: var(--text);
@@ -263,7 +273,12 @@ export class SwSelect {
 
   readonly variants = SW_VARIANTS;
   readonly base = computed(() => (this.i18n.locale() === 'en' ? '/en' : ''));
-  readonly active = computed(() => (this.m.hasProgress() && !this.m.finished() ? this.m.variant() : null));
+  readonly active = computed(() => {
+    const r = this.m.resume();
+    return r ? (findSwVariant(r.variantId) ?? null) : null;
+  });
+  /** partida em andamento é da mesa toda (quantos jogadores) */
+  readonly resumeGroup = computed(() => (this.m.resume()?.group ? this.m.table.players().length : 0));
 
   readonly historyName = (id?: string) => {
     const v = id ? findSwVariant(id) : undefined;

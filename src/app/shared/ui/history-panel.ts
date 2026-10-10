@@ -35,10 +35,16 @@ import { Switch } from './switch';
                   <span class="date">{{ fmt(e.date) }}</span>
                   <span class="variant">
                     {{ variantName()(e.variantId) }}
+                    @if (e.players?.length) {
+                      <span class="tag">{{ i18n.tp('history.players', { n: e.players!.length }) }}</span>
+                    }
                     @if (e.outcome) {
                       <span class="tag">{{ i18n.t(e.outcome) }}</span>
                     }
                   </span>
+                  @if (e.players?.length) {
+                    <span class="winner">{{ winnerLine(e) }}</span>
+                  }
                 </span>
                 <span class="total tabular" [class.neg]="e.total < 0">{{ e.total }}</span>
                 <svg class="chev" [class.up]="open() === e.id" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -47,14 +53,32 @@ import { Switch } from './switch';
               </button>
               @if (open() === e.id) {
                 <div class="detail enter">
-                  <ul class="parts" role="list">
-                    @for (p of e.parts; track p.key) {
-                      <li>
-                        <span>{{ i18n.t(p.key) }}</span>
-                        <b class="tabular" [class.pos]="p.points > 0" [class.neg]="p.points < 0">{{ signed(p.points) }}</b>
-                      </li>
-                    }
-                  </ul>
+                  @if (e.players?.length) {
+                    <ol class="parts ranking" role="list">
+                      @for (p of e.players; track $index) {
+                        <li [style.--c]="p.color">
+                          <span class="who">
+                            <span class="rk tabular">{{ p.rank }}º</span>
+                            <span class="dot" aria-hidden="true"></span>
+                            {{ p.name }}
+                            @if (p.outcome) {
+                              <span class="tag">{{ i18n.t(p.outcome) }}</span>
+                            }
+                          </span>
+                          <b class="tabular" [class.neg]="p.total < 0">{{ p.total }}</b>
+                        </li>
+                      }
+                    </ol>
+                  } @else {
+                    <ul class="parts" role="list">
+                      @for (p of e.parts; track p.key) {
+                        <li>
+                          <span>{{ i18n.t(p.key) }}</span>
+                          <b class="tabular" [class.pos]="p.points > 0" [class.neg]="p.points < 0">{{ signed(p.points) }}</b>
+                        </li>
+                      }
+                    </ul>
+                  }
                   <button type="button" class="del" (click)="history.remove(game(), e.id)">{{ i18n.t('history.remove') }}</button>
                 </div>
               }
@@ -173,6 +197,32 @@ import { Switch } from './switch';
       .parts b.neg {
         color: var(--bad);
       }
+      .winner {
+        font-size: 0.82rem;
+        color: var(--text-dim);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .ranking .who {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        color: var(--text);
+        font-weight: 600;
+      }
+      .ranking .rk {
+        min-width: 24px;
+        color: var(--text-faint);
+        font-weight: 800;
+      }
+      .ranking .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 3px;
+        background: var(--c);
+      }
       .del {
         min-height: 40px;
         padding: 0 4px;
@@ -249,5 +299,13 @@ export class HistoryPanel {
 
   signed(n: number): string {
     return n > 0 ? `+${n}` : `${n}`;
+  }
+
+  /** "Vitória de Ana" ou "Empate: Ana e Bia" */
+  winnerLine(e: HistoryEntry): string {
+    const winners = (e.players ?? []).filter((p) => p.rank === 1).map((p) => p.name);
+    if (winners.length <= 1) return this.i18n.tp('history.winner', { name: winners[0] ?? '' });
+    const list = winners.slice(0, -1).join(', ') + this.i18n.t('group.results.and') + winners.at(-1);
+    return this.i18n.tp('history.sharedWin', { names: list });
   }
 }

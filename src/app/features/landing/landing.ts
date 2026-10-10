@@ -38,7 +38,7 @@ interface Novidade {
 }
 
 /** número de perguntas no FAQ (chaves faq.1 … faq.N no dicionário) */
-const FAQ_COUNT = 9;
+const FAQ_COUNT = 10;
 
 /**
  * Landing: identidade, demonstração ao vivo, escolha do jogo e o conteúdo

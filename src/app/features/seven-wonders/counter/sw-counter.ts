@@ -18,6 +18,13 @@ import { type DuelVictory } from '../scoring/sw-scoring';
 import { SwBaseForm } from './sw-base-form';
 import { SwDuelForm } from './sw-duel-form';
 import { SwArchitectsForm } from './sw-architects-form';
+import { GroupSetup } from '../../../shared/ui/group/group-setup';
+import { PlayerStrip, type StripPlayer } from '../../../shared/ui/group/player-strip';
+import { GroupResults } from '../../../shared/ui/group/group-results';
+import { GroupStandings } from '../../../shared/ui/group/group-standings';
+import { SessionBoard } from '../../../shared/ui/group/session-board';
+import { prefersReducedMotion } from '../../../shared/motion/motion-utils';
+import type { DraftPlayer } from '../../../core/group/group-models';
 
 @Component({
   selector: 'app-sw-counter',
@@ -34,6 +41,11 @@ import { SwArchitectsForm } from './sw-architects-form';
     SwBaseForm,
     SwDuelForm,
     SwArchitectsForm,
+    GroupSetup,
+    PlayerStrip,
+    GroupResults,
+    GroupStandings,
+    SessionBoard,
   ],
   templateUrl: './sw-counter.html',
   styleUrl: './sw-counter.scss',
@@ -47,7 +59,9 @@ export class SwCounter {
   readonly i18n = inject(I18n);
 
   readonly showAudit = signal(false);
-  readonly confirm = signal<'finish' | 'new' | null>(null);
+  readonly confirm = signal<'finish' | 'new' | 'finishGroup' | 'changePlayers' | null>(null);
+  /** aviso quando uma expansão não pode mudar por causa do número de jogadores */
+  readonly expNote = signal<string | null>(null);
 
   readonly variant = this.m.variant;
   readonly finished = this.m.finished;
@@ -62,8 +76,52 @@ export class SwCounter {
   readonly victoryOptions = computed<ChoiceOption[]>(() => {
     const opts: DuelVictory[] = ['civilian', 'military', 'science'];
     if (this.m.duel().expansions.agora) opts.push('political');
-    return opts.map((v) => ({ value: v, label: this.i18n.t(`sw.victoryShort.${v}`) }));
+    // no grupo a pergunta é "este jogador venceu por supremacia?"
+    const group = this.m.groupPlaying();
+    return opts.map((v) => ({
+      value: v,
+      label: group && v === 'civilian' ? this.i18n.t('group.duel.none') : this.i18n.t(`sw.victoryShort.${v}`),
+    }));
   });
+
+  /* ---- mesa em grupo ---- */
+  readonly table = this.m.table;
+  readonly activePlayer = computed(() => (this.m.groupPlaying() ? this.table.activePlayer() : null));
+  /** muda a cada troca de jogador: recria a planilha (e zera os placares animados) */
+  readonly sheetKey = computed(() => (this.m.isGroup() ? (this.table.activeId() ?? 'setup') : 'solo'));
+  readonly manualWinner = computed(() => this.table.match()?.manualOrder?.[0] ?? null);
+
+  readonly modeOptions = computed<ChoiceOption[]>(() => {
+    const { min, max } = this.m.limits();
+    const sub = min === max ? this.i18n.tp('group.mode.groupSubExact', { n: max }) : this.i18n.tp('group.mode.groupSub', { min, max });
+    return [
+      { value: 'solo', label: this.i18n.t('group.mode.solo'), sub: this.i18n.t('group.mode.soloSub') },
+      { value: 'group', label: this.i18n.t('group.mode.group'), sub },
+    ];
+  });
+
+  readonly limitsNote = computed(() => {
+    switch (this.variant()?.id) {
+      case 'duel':
+        return this.i18n.t('group.limits.duel');
+      case 'architects':
+        return this.i18n.t('group.limits.architects');
+      default:
+        return this.i18n.tp('group.limits.swBase', { max: this.m.limits().max });
+    }
+  });
+
+  /** 2 jogadores no 7 Wonders base: a variante oficial da 1ª edição */
+  readonly setupHint = (n: number) =>
+    this.variant()?.id === 'base' && n === 2 ? this.i18n.t('group.limits.swBase2') : null;
+
+  readonly stripPlayers = computed<StripPlayer[]>(() => {
+    const totals = this.m.totals();
+    const ranks = this.finished() ? new Map(this.m.standings().map((s) => [s.id, s.rank])) : null;
+    return this.table.players().map((p) => ({ ...p, total: totals[p.id] ?? 0, rank: ranks?.get(p.id) }));
+  });
+
+  private readonly groupHasProgress = computed(() => Object.values(this.m.totals()).some((t) => t !== 0));
 
   /** nome da versão salva no histórico */
   readonly historyName = (id?: string) => {
@@ -127,4 +185,56 @@ export class SwCounter {
     this.m.reset();
     this.confirm.set(null);
   }
+
+  /* ---- mesa em grupo ---- */
+
+  setMode(v: string | number | undefined): void {
+    this.table.setMode(v === 'group' ? 'group' : 'solo');
+    this.expNote.set(null);
+  }
+
+  toggleExpansion(id: string): void {
+    const block = this.m.expansionBlock(id);
+    this.expNote.set(block);
+    if (!block) this.m.toggleExpansion(id);
+  }
+
+  startGroup(players: DraftPlayer[]): void {
+    this.m.startGroup(players);
+    this.expNote.set(null);
+    scrollToTop();
+  }
+
+  confirmFinishGroup(): void {
+    this.m.finishGroup();
+    this.confirm.set(null);
+    scrollToTop();
+  }
+
+  rematch(): void {
+    this.m.rematch();
+    scrollToTop();
+  }
+
+  changePlayers(): void {
+    if (this.finished() || !this.groupHasProgress()) this.table.clearMatch();
+    else this.confirm.set('changePlayers');
+  }
+
+  confirmChangePlayers(): void {
+    this.table.clearMatch();
+    this.confirm.set(null);
+  }
+
+  /** do ranking final para a planilha do jogador */
+  viewPlayer(id: string): void {
+    this.table.select(id);
+    setTimeout(() => {
+      document.querySelector('.sheet-stack')?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+}
+
+function scrollToTop(): void {
+  if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
 }

@@ -18,6 +18,16 @@ export interface HistoryEntry {
   parts: HistoryPart[];
   /** chave de tradução do desfecho, ex.: vitória por supremacia militar */
   outcome?: string;
+  /** partida em grupo: a classificação de todos (o `total` é o do vencedor) */
+  players?: HistoryPlayer[];
+}
+
+export interface HistoryPlayer {
+  name: string;
+  color: string;
+  total: number;
+  rank: number;
+  outcome?: string;
 }
 
 export const HISTORY_LIMIT = 10;
@@ -61,10 +71,20 @@ export class MatchHistory {
   }
 
   /** Registra uma partida terminada (ignorado se o histórico estiver desligado). */
-  record(game: HistoryGame, entry: Omit<HistoryEntry, 'id' | 'date'>): void {
-    if (!this.enabled()) return;
+  record(game: HistoryGame, entry: Omit<HistoryEntry, 'id' | 'date'>): HistoryEntry | null {
+    if (!this.enabled()) return null;
     const full: HistoryEntry = { ...entry, id: uid(), date: new Date().toISOString() };
     this.write(game, pushCapped(this.entries(game), full));
+    return full;
+  }
+
+  /** Corrige uma partida já registrada (ex.: desempate decidido depois). */
+  update(game: HistoryGame, id: string, patch: Partial<Omit<HistoryEntry, 'id' | 'date'>>): void {
+    if (!this.entries(game).some((e) => e.id === id)) return;
+    this.write(
+      game,
+      this.entries(game).map((e) => (e.id === id ? { ...e, ...patch } : e)),
+    );
   }
 
   remove(game: HistoryGame, id: string): void {

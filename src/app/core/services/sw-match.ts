@@ -1,7 +1,12 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { Persistence } from './persistence';
+import { MatchHistory } from './match-history';
 import { I18n } from '../i18n/i18n';
 import type { AuditEntry } from '../models/audit.models';
+import { GroupTable } from '../group/group-table';
+import { rankStandings } from '../group/ranking';
+import type { DraftPlayer, PlayerLimits, Standing } from '../group/group-models';
+import type { BreakdownRow } from './ttr-match';
 import { findSwVariant, type SwVariant, type SwVariantId } from '../../features/seven-wonders/scoring/sw-variants';
 import {
   ARCH_CAT_VP,
@@ -23,20 +28,76 @@ import {
   type SwResult,
 } from '../../features/seven-wonders/scoring/sw-scoring';
 
-interface SwSnapshot {
-  variantId: SwVariantId;
+/** planilha de um jogador (só a parte da versão escolhida importa) */
+export interface SwSheet {
   base: SwBaseState;
   duel: SwDuelState;
   architects: SwArchitectsState;
+}
+
+interface SwSnapshot extends SwSheet {
+  variantId: SwVariantId;
   finished: boolean;
 }
 
+type BaseExp = SwBaseState['expansions'];
+type DuelExp = SwDuelState['expansions'];
+
 const KEY = 'sw';
+
+const emptySheet = (): SwSheet => ({ base: emptyBase(), duel: emptyDuel(), architects: emptyArchitects() });
+const EMPTY = emptySheet();
+
+/** mescla com o vazio para tolerar campos novos em versões futuras */
+function normalizeSheet(raw: Partial<SwSheet> | undefined): SwSheet {
+  return {
+    base: { ...emptyBase(), ...raw?.base, expansions: { ...emptyBase().expansions, ...raw?.base?.expansions } },
+    duel: { ...emptyDuel(), ...raw?.duel, expansions: { ...emptyDuel().expansions, ...raw?.duel?.expansions } },
+    architects: { ...emptyArchitects(), ...raw?.architects },
+  };
+}
+
+function scoreSheet(variant: SwVariantId | undefined, s: SwSheet): SwResult {
+  switch (variant) {
+    case 'duel':
+      return scoreDuel(s.duel);
+    case 'architects':
+      return scoreArchitects(s.architects);
+    default:
+      return scoreBase(s.base);
+  }
+}
+
+/**
+ * Quantos jogadores a regra permite. Base: 3–7 (2 na variante oficial da
+ * 1ª edição); Cities leva a 8, mas o Armada só tem 7 estaleiros.
+ */
+export function swPlayerLimits(variant: SwVariantId, ex?: Partial<BaseExp>): PlayerLimits {
+  switch (variant) {
+    case 'duel':
+      return { min: 2, max: 2 };
+    case 'architects':
+      return { min: 2, max: 7 };
+    default:
+      return { min: 2, max: ex?.cities && !ex?.armada ? 8 : 7 };
+  }
+}
+
+/** aplica as expansões da mesa a uma planilha nova */
+const withExpansions = (baseExp: BaseExp, duelExp: DuelExp) => (s: SwSheet): SwSheet => ({
+  ...s,
+  base: { ...s.base, expansions: { ...baseExp } },
+  duel: { ...s.duel, expansions: { ...duelExp } },
+});
 
 /**
  * Estado da partida de 7 Wonders. A edição é escolhida primeiro; o formulário
  * mostra só as categorias dela e das expansões ligadas. Toda a conta passa
  * pelas funções puras de `sw-scoring.ts`.
+ *
+ * Dois modos usam a mesma tela: individual (uma planilha) e em grupo (uma por
+ * jogador). As leituras abaixo seguem a planilha em edição — no grupo, a do
+ * jogador da vez. No grupo, as expansões valem para a mesa toda.
  */
 @Injectable({ providedIn: 'root' })
 export class SevenWondersMatch {
@@ -44,21 +105,42 @@ export class SevenWondersMatch {
   private readonly i18n = inject(I18n);
 
   readonly variant = signal<SwVariant | null>(null);
-  readonly base = signal<SwBaseState>(emptyBase());
-  readonly duel = signal<SwDuelState>(emptyDuel());
-  readonly architects = signal<SwArchitectsState>(emptyArchitects());
-  readonly finished = signal(false);
+  private readonly solo = signal<SwSheet>(emptySheet());
+  private readonly soloFinished = signal(false);
 
-  readonly result = computed<SwResult>(() => {
-    switch (this.variant()?.id) {
-      case 'duel':
-        return scoreDuel(this.duel());
-      case 'architects':
-        return scoreArchitects(this.architects());
-      default:
-        return scoreBase(this.base());
-    }
+  readonly table = new GroupTable<SwSheet>({
+    store: this.store,
+    history: inject(MatchHistory),
+    game: 'sw',
+    empty: emptySheet,
+    normalize: normalizeSheet,
   });
+
+  readonly isGroup = this.table.isGroup;
+  readonly groupPlaying = computed(() => this.isGroup() && !!this.table.match());
+
+  private readonly groupBaseExp = computed<BaseExp>(() => ({
+    ...EMPTY.base.expansions,
+    ...(this.table.meta()['baseExp'] as Partial<BaseExp> | undefined),
+  }));
+  private readonly groupDuelExp = computed<DuelExp>(() => ({
+    ...EMPTY.duel.expansions,
+    ...(this.table.meta()['duelExp'] as Partial<DuelExp> | undefined),
+  }));
+
+  /** antes de a partida em grupo começar, a planilha vazia já mostra as expansões da mesa */
+  private readonly setupSheet = computed<SwSheet>(() => withExpansions(this.groupBaseExp(), this.groupDuelExp())(EMPTY));
+
+  private readonly sheet = computed<SwSheet>(() =>
+    this.isGroup() ? (this.table.activeSheet() ?? this.setupSheet()) : this.solo(),
+  );
+
+  readonly base = computed(() => this.sheet().base);
+  readonly duel = computed(() => this.sheet().duel);
+  readonly architects = computed(() => this.sheet().architects);
+  readonly finished = computed(() => (this.isGroup() ? this.table.finished() : this.soloFinished()));
+
+  readonly result = computed<SwResult>(() => scoreSheet(this.variant()?.id, this.sheet()));
 
   readonly total = computed(() => this.result().total);
 
@@ -68,6 +150,18 @@ export class SevenWondersMatch {
   }
 
   readonly hasProgress = computed(() => this.result().parts.some((p) => p.points !== 0));
+
+  /** versão com partida em andamento (individual ou em grupo), para oferecer "continuar" */
+  readonly resume = computed<{ variantId: SwVariantId; group: boolean } | null>(() => {
+    const v = this.variant();
+    if (!v) return null;
+    if (this.isGroup()) {
+      const m = this.table.match();
+      return m && !m.finished ? { variantId: m.variantId as SwVariantId, group: true } : null;
+    }
+    const any = scoreSheet(v.id, this.solo()).parts.some((p) => p.points !== 0);
+    return any && !this.soloFinished() ? { variantId: v.id, group: false } : null;
+  });
 
   /** Desfecho do Duel (vitórias imediatas por supremacia). */
   readonly outcomeKey = computed(() => {
@@ -87,60 +181,203 @@ export class SevenWondersMatch {
     }
   });
 
+  /* ---------------- mesa em grupo ---------------- */
+
+  readonly limits = computed<PlayerLimits>(() =>
+    swPlayerLimits(this.variant()?.id ?? 'base', this.isGroup() ? this.groupBaseExp() : this.solo().base.expansions),
+  );
+
+  /** critérios oficiais de desempate (o do Architects depende de algo que o app não registra) */
+  private readonly tiebreaks = computed(() => {
+    const out: Array<{ label: string; value: (s: SwSheet) => number }> = [];
+    switch (this.variant()?.id) {
+      case 'duel':
+        out.push({ label: this.i18n.t('group.tb.civilian'), value: (s) => s.duel.civilian || 0 });
+        break;
+      case 'architects':
+        break;
+      default:
+        out.push({ label: this.i18n.t('group.tb.coins'), value: (s) => s.base.coins || 0 });
+    }
+    return out;
+  });
+  readonly tieLabels = computed(() => this.tiebreaks().map((t) => t.label));
+  /** desempate que a mesa decide (só no Architects: mais etapas da maravilha) */
+  readonly manualTieRule = computed(() =>
+    this.variant()?.id === 'architects' ? this.i18n.t('group.tieRule.architects') : null,
+  );
+  /** o que a regra diz quando nem o desempate separa */
+  readonly sharedTieRule = computed(() => this.i18n.t('group.tieRule.shared'));
+
+  readonly totals = computed<Record<string, number>>(() => {
+    const m = this.table.match();
+    const out: Record<string, number> = {};
+    if (!m) return out;
+    for (const id of m.order) out[id] = scoreSheet(this.variant()?.id, m.sheets[id]).total;
+    return out;
+  });
+
+  readonly standings = computed<Standing[]>(() => {
+    const m = this.table.match();
+    if (!m) return [];
+    const vid = this.variant()?.id;
+    const totals = this.totals();
+    const tbs = this.tiebreaks();
+    const byId = new Map(this.table.players().map((p) => [p.id, p]));
+    return rankStandings(
+      m.order.map((id) => {
+        const s = m.sheets[id];
+        const forced = vid === 'duel' && s.duel.victory !== 'civilian';
+        return { id, total: totals[id] ?? 0, forced, tiebreak: tbs.map((t) => t.value(s)) };
+      }),
+      this.manualTieRule() ? (m.manualOrder ?? []) : [],
+    ).map((r) => {
+      const p = byId.get(r.id)!;
+      const outcome = r.forced ? `sw.victory.${m.sheets[r.id].duel.victory}` : undefined;
+      return { ...r, name: p.name, color: p.color, outcome };
+    });
+  });
+
+  /** pontos de cada categoria por jogador, na ordem do ranking */
+  readonly breakdown = computed<BreakdownRow[]>(() => {
+    const m = this.table.match();
+    if (!m) return [];
+    const vid = this.variant()?.id;
+    const results = this.standings().map((s) => scoreSheet(vid, m.sheets[s.id]));
+    const keys: string[] = [];
+    for (const r of results) for (const p of r.parts) if (!keys.includes(p.key)) keys.push(p.key);
+    return keys.map((key) => ({
+      key,
+      label: this.i18n.t(key),
+      values: results.map((r) => r.parts.find((p) => p.key === key)?.points ?? 0),
+    }));
+  });
+
+  startGroup(players: DraftPlayer[]): void {
+    const v = this.variant();
+    if (!v) return;
+    const { min, max } = this.limits();
+    if (players.length < min || players.length > max) return;
+    this.table.start(v.id, players, withExpansions(this.groupBaseExp(), this.groupDuelExp()));
+  }
+
+  /** nova partida, mesmos jogadores e mesmas expansões */
+  rematch(): void {
+    this.table.rematch(withExpansions(this.groupBaseExp(), this.groupDuelExp()));
+  }
+
+  finishGroup(): void {
+    const st = this.standings();
+    this.table.finish(st, st[0]?.outcome);
+  }
+
+  /** a mesa decidiu um empate que a regra manda resolver por algo fora da planilha */
+  pickTieWinner(id: string | null): void {
+    this.table.setManualOrder(id ? [id] : []);
+    const st = this.standings();
+    this.table.syncResults(st, st[0]?.outcome);
+  }
+
+  /**
+   * Motivo (chave de tradução) que impede ligar/desligar a expansão sem
+   * quebrar o limite de jogadores da mesa atual; null = pode.
+   */
+  expansionBlock(id: string): string | null {
+    if (!this.groupPlaying() || this.variant()?.id !== 'base') return null;
+    const cur = this.groupBaseExp();
+    const next = { ...cur, [id]: !cur[id as keyof BaseExp] };
+    const n = this.table.players().length;
+    if (n <= swPlayerLimits('base', next).max) return null;
+    return id === 'armada' ? 'group.exp.armadaMax' : 'group.exp.citiesNeeded';
+  }
+
   constructor() {
     const snap = this.store.load<SwSnapshot>(KEY);
     if (snap) {
       const v = findSwVariant(snap.variantId);
       if (v) {
         this.variant.set(v);
-        // mescla com o vazio para tolerar campos novos em versões futuras
-        this.base.set({ ...emptyBase(), ...snap.base, expansions: { ...emptyBase().expansions, ...snap.base?.expansions } });
-        this.duel.set({ ...emptyDuel(), ...snap.duel, expansions: { ...emptyDuel().expansions, ...snap.duel?.expansions } });
-        this.architects.set({ ...emptyArchitects(), ...snap.architects });
-        this.finished.set(!!snap.finished);
+        this.solo.set(normalizeSheet(snap));
+        this.soloFinished.set(!!snap.finished);
       }
+    }
+    if (!this.variant()) {
+      const m = this.table.match();
+      const gv = m ? findSwVariant(m.variantId) : undefined;
+      if (gv) this.variant.set(gv);
     }
     effect(() => {
       const v = this.variant();
       if (!v) return;
-      const snap: SwSnapshot = {
-        variantId: v.id,
-        base: this.base(),
-        duel: this.duel(),
-        architects: this.architects(),
-        finished: this.finished(),
-      };
+      const snap: SwSnapshot = { variantId: v.id, ...this.solo(), finished: this.soloFinished() };
       this.store.save(KEY, snap);
     });
   }
 
-  /** Seleciona a versão; trocar de versão começa do zero. */
+  /** Seleciona a versão; trocar de versão começa do zero (a mesa mantém os jogadores). */
   selectVariant(id: string): boolean {
     const v = findSwVariant(id);
     if (!v) return false;
-    if (this.variant()?.id !== v.id) this.clearState();
+    if (this.variant()?.id !== v.id) {
+      this.solo.set(emptySheet());
+      this.soloFinished.set(false);
+    }
+    const m = this.table.match();
+    if (m && m.variantId !== v.id) this.table.clearMatch();
     this.variant.set(v);
     return true;
   }
 
+  /** Escreve na planilha em edição (a sua, ou a do jogador da vez). */
+  private edit(fn: (s: SwSheet) => SwSheet): void {
+    if (this.finished()) return;
+    if (this.isGroup()) this.table.updateActive(fn);
+    else this.solo.update(fn);
+  }
+
   patchBase(patch: Partial<SwBaseState>): void {
-    if (!this.finished()) this.base.update((s) => ({ ...s, ...patch }));
+    this.edit((s) => ({ ...s, base: { ...s.base, ...patch } }));
   }
   patchDuel(patch: Partial<SwDuelState>): void {
-    if (!this.finished()) this.duel.update((s) => ({ ...s, ...patch }));
+    // no grupo só um jogador vence por supremacia: os outros voltam para "pontos"
+    if (this.isGroup() && !this.finished() && patch.victory && patch.victory !== 'civilian') {
+      const active = this.table.activeId();
+      this.table.updateAll((s, id) => (id === active ? s : { ...s, duel: { ...s.duel, victory: 'civilian' } }));
+    }
+    this.edit((s) => ({ ...s, duel: { ...s.duel, ...patch } }));
   }
   patchArchitects(patch: Partial<SwArchitectsState>): void {
-    if (!this.finished()) this.architects.update((s) => ({ ...s, ...patch }));
+    this.edit((s) => ({ ...s, architects: { ...s.architects, ...patch } }));
   }
 
   toggleExpansion(id: string): void {
     if (this.finished()) return;
-    if (this.variant()?.id === 'duel') {
-      const ex = this.duel().expansions as Record<string, boolean>;
-      this.duel.update((s) => ({ ...s, expansions: { ...s.expansions, [id]: !ex[id] } }));
+    const duel = this.variant()?.id === 'duel';
+    if (this.isGroup()) {
+      if (this.expansionBlock(id)) return;
+      if (duel) {
+        const cur = this.groupDuelExp();
+        const ex = { ...cur, [id]: !cur[id as keyof DuelExp] };
+        this.table.setMeta({ duelExp: ex });
+        this.table.updateAll((s) => ({ ...s, duel: { ...s.duel, expansions: ex } }));
+      } else {
+        const cur = this.groupBaseExp();
+        const ex = { ...cur, [id]: !cur[id as keyof BaseExp] };
+        this.table.setMeta({ baseExp: ex });
+        this.table.updateAll((s) => ({ ...s, base: { ...s.base, expansions: ex } }));
+      }
+      return;
+    }
+    if (duel) {
+      this.solo.update((s) => {
+        const ex = s.duel.expansions as Record<string, boolean>;
+        return { ...s, duel: { ...s.duel, expansions: { ...s.duel.expansions, [id]: !ex[id] } } };
+      });
     } else {
-      const ex = this.base().expansions as Record<string, boolean>;
-      this.base.update((s) => ({ ...s, expansions: { ...s.expansions, [id]: !ex[id] } }));
+      this.solo.update((s) => {
+        const ex = s.base.expansions as Record<string, boolean>;
+        return { ...s, base: { ...s.base, expansions: { ...s.base.expansions, [id]: !ex[id] } } };
+      });
     }
   }
 
@@ -149,20 +386,14 @@ export class SevenWondersMatch {
     return !!ex[id];
   }
 
+  /** Termina a partida individual e trava os campos. */
   finish(): void {
-    this.finished.set(true);
+    this.soloFinished.set(true);
   }
 
   reset(): void {
-    this.finished.set(false);
-    this.clearState();
-  }
-
-  private clearState(): void {
-    this.base.set(emptyBase());
-    this.duel.set(emptyDuel());
-    this.architects.set(emptyArchitects());
-    this.finished.set(false);
+    this.solo.set(emptySheet());
+    this.soloFinished.set(false);
     this.store.clear(KEY);
   }
 

@@ -301,7 +301,7 @@ export const TTR_VARIANTS: TtrVariant[] = [
     tag: 'Map Collection 1',
     logo: 'ticket-to-ride/ticket-asia.webp',
     playersMin: 2,
-    playersMax: 6,
+    playersMax: 5, // o 6º jogador da caixa é só do Team Asia (em duplas)
     cars: 45,
     routeTable: STANDARD,
     bonuses: [

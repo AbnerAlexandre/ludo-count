@@ -14,6 +14,9 @@
       <span class="dot" aria-hidden="true"></span>
       <span>
         {{ i18n.t('ttr.select.resumePre') }} <strong>{{ name(match.variant()!) }}</strong>
+        @if (resumeGroup()) {
+          <span class="tag">{{ i18n.tp('group.resume.tag', { n: resumeGroup() }) }}</span>
+        }
         {{ i18n.t('ttr.select.resumePost') }}
       </span>
       <span class="resume-go">{{ i18n.t('ttr.select.resumeGo') }} →</span>

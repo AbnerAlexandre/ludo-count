@@ -30,7 +30,7 @@ interface AuditGroup {
           <div class="grabber" aria-hidden="true"></div>
           <div class="head-row">
             <div>
-              <h2 class="display">{{ i18n.t('audit.title') }}</h2>
+              <h2 class="display">{{ owner() ? i18n.tp('audit.titleOf', { name: owner()! }) : i18n.t('audit.title') }}</h2>
               <p>{{ i18n.t('audit.subtitle') }}</p>
             </div>
             <button type="button" class="icon-btn close" [attr.aria-label]="i18n.t('common.close')" (click)="close.emit()">
@@ -250,6 +250,8 @@ export class AuditSheet {
   readonly i18n = inject(I18n);
   readonly entries = input.required<AuditEntry[]>();
   readonly total = input.required<number>();
+  /** partida em grupo: de quem é esta planilha */
+  readonly owner = input<string | null>(null);
   readonly close = output<void>();
 
   constructor() {

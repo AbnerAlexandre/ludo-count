@@ -13,8 +13,15 @@ import { HistoryPanel } from '../../../shared/ui/history-panel';
 import { NumField } from '../../../shared/ui/num-field';
 import { Switch } from '../../../shared/ui/switch';
 import { ScoreTicker } from '../../../shared/motion/score-ticker';
-import { pop } from '../../../shared/motion/motion-utils';
+import { pop, prefersReducedMotion } from '../../../shared/motion/motion-utils';
 import { TtrLocomotive } from '../../../shared/svg/ttr-icons';
+import { Choice, type ChoiceOption } from '../../../shared/ui/choice';
+import { GroupSetup } from '../../../shared/ui/group/group-setup';
+import { PlayerStrip, type StripPlayer } from '../../../shared/ui/group/player-strip';
+import { GroupResults } from '../../../shared/ui/group/group-results';
+import { GroupStandings } from '../../../shared/ui/group/group-standings';
+import { SessionBoard } from '../../../shared/ui/group/session-board';
+import type { DraftPlayer } from '../../../core/group/group-models';
 import {
   TTR_GENERIC_LOGO,
   bonusHint,
@@ -40,6 +47,12 @@ import { SITE_URL } from '../../../core/seo/seo.config';
     Switch,
     ScoreTicker,
     TtrLocomotive,
+    Choice,
+    GroupSetup,
+    PlayerStrip,
+    GroupResults,
+    GroupStandings,
+    SessionBoard,
   ],
   templateUrl: './ttr-counter.html',
   styleUrl: './ttr-counter.scss',
@@ -53,7 +66,7 @@ export class TtrCounter {
   readonly i18n = inject(I18n);
 
   readonly showAudit = signal(false);
-  readonly confirm = signal<'finish' | 'new' | null>(null);
+  readonly confirm = signal<'finish' | 'new' | 'finishGroup' | 'changePlayers' | null>(null);
 
   /** valor do bilhete sendo registrado */
   readonly ticketValue = signal(8);
@@ -61,6 +74,39 @@ export class TtrCounter {
 
   readonly variant = this.match.variant;
   readonly finished = this.match.finished;
+
+  /* ---- mesa em grupo ---- */
+  readonly table = this.match.table;
+  readonly activePlayer = computed(() => (this.match.groupPlaying() ? this.table.activePlayer() : null));
+  /** muda a cada troca de jogador: recria a planilha (e zera os placares animados) */
+  readonly sheetKey = computed(() => (this.match.isGroup() ? (this.table.activeId() ?? 'setup') : 'solo'));
+  readonly manualWinner = computed(() => this.table.match()?.manualOrder?.[0] ?? null);
+
+  readonly modeOptions = computed<ChoiceOption[]>(() => {
+    const { min, max } = this.match.limits();
+    return [
+      { value: 'solo', label: this.i18n.t('group.mode.solo'), sub: this.i18n.t('group.mode.soloSub') },
+      { value: 'group', label: this.i18n.t('group.mode.group'), sub: this.i18n.tp('group.mode.groupSub', { min, max }) },
+    ];
+  });
+
+  readonly limitsNote = computed(() => {
+    const { min, max } = this.match.limits();
+    return this.i18n.tp('group.limits.ttr', { name: this.variantName(), min, max });
+  });
+
+  readonly stripPlayers = computed<StripPlayer[]>(() => {
+    const totals = this.match.totals();
+    const ranks = this.finished() ? new Map(this.match.standings().map((s) => [s.id, s.rank])) : null;
+    return this.table.players().map((p) => ({ ...p, total: totals[p.id] ?? 0, rank: ranks?.get(p.id) }));
+  });
+
+  /** alguém da mesa já marcou ponto (trocar jogadores descartaria isso) */
+  private readonly groupHasProgress = computed(() => {
+    const m = this.table.match();
+    if (!m) return false;
+    return Object.values(m.sheets).some((s) => s.routes.length || s.tickets.length || Object.keys(s.bonuses).length);
+  });
   readonly selectPath = computed(() => `${this.i18n.locale() === 'en' ? '/en' : ''}/ticket-to-ride`);
 
   readonly headerLogo = computed(() => this.variant()?.logo ?? TTR_GENERIC_LOGO);
@@ -174,4 +220,51 @@ export class TtrCounter {
     this.confirm.set(null);
     this.router.navigateByUrl(this.selectPath());
   }
+
+  /* ---- mesa em grupo ---- */
+
+  setMode(v: string | number | undefined): void {
+    this.table.setMode(v === 'group' ? 'group' : 'solo');
+  }
+
+  startGroup(players: DraftPlayer[]): void {
+    this.match.startGroup(players);
+    this.ticketValue.set(8);
+    this.terrainEnabled.set(false);
+    scrollToTop();
+  }
+
+  confirmFinishGroup(): void {
+    this.match.finishGroup();
+    this.confirm.set(null);
+    scrollToTop();
+  }
+
+  rematch(): void {
+    this.match.rematch();
+    this.terrainEnabled.set(false);
+    scrollToTop();
+  }
+
+  changePlayers(): void {
+    if (this.finished() || !this.groupHasProgress()) this.table.clearMatch();
+    else this.confirm.set('changePlayers');
+  }
+
+  confirmChangePlayers(): void {
+    this.table.clearMatch();
+    this.confirm.set(null);
+  }
+
+  /** do ranking final para a planilha do jogador */
+  viewPlayer(id: string): void {
+    this.table.select(id);
+    setTimeout(() => {
+      document.querySelector('.sheet-stack')?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+}
+
+function scrollToTop(): void {
+  if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
 }

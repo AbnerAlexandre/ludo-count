@@ -16,7 +16,28 @@
 
   <main id="conteudo" class="counter-layout" [class.is-finished]="finished()">
     <div class="counter-main">
-      @if (finished()) {
+      <app-choice class="mode" [options]="modeOptions()" [value]="table.mode()" (valueChange)="setMode($event)" [label]="i18n.t('group.mode.label')" />
+
+      @if (m.groupPlaying() && finished()) {
+        <app-group-results
+          [standings]="m.standings()"
+          [breakdown]="m.breakdown()"
+          [tieLabels]="m.tieLabels()"
+          [manualTieRule]="m.manualTieRule()"
+          [sharedTieRule]="m.sharedTieRule()"
+          [manualWinner]="manualWinner()"
+          [variantName]="name()"
+          (pickWinner)="m.pickTieWinner($event)"
+          (rematch)="rematch()"
+          (changePlayers)="changePlayers()"
+          (view)="viewPlayer($event)"
+        />
+        <div class="panel">
+          <app-session-board [rows]="table.board()" [matches]="table.session().length" (reset)="table.resetSession()" />
+        </div>
+      }
+
+      @if (finished() && !m.isGroup()) {
         <p class="lock-banner">
           <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
           {{ i18n.t('sw.lockBanner') }}
@@ -37,7 +58,8 @@
                 [class.on]="m.expansionOn(e.id)"
                 [attr.aria-pressed]="m.expansionOn(e.id)"
                 [disabled]="finished()"
-                (click)="m.toggleExpansion(e.id)"
+                [class.blocked]="!!m.expansionBlock(e.id)"
+                (click)="toggleExpansion(e.id)"
               >
                 <span class="box" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
@@ -46,13 +68,46 @@
               </button>
             }
           </div>
+          @if (expNote(); as note) {
+            <p class="exp-note" role="status">{{ i18n.t(note) }}</p>
+          }
         </section>
+      }
+
+      @if (m.isGroup() && !m.groupPlaying()) {
+        <app-group-setup
+          [limits]="m.limits()"
+          [roster]="table.roster()"
+          [suggestions]="table.recentNames()"
+          [note]="limitsNote()"
+          [hintFor]="setupHint"
+          (start)="startGroup($event)"
+        />
+        @if (table.session().length) {
+          <div class="panel">
+            <app-session-board [rows]="table.board()" [matches]="table.session().length" (reset)="table.resetSession()" />
+          </div>
+        }
+      } @else {
+      @if (m.groupPlaying()) {
+        <app-player-strip [players]="stripPlayers()" [activeId]="table.activeId()" (select)="table.select($event)" />
+      }
+
+      @for (k of [sheetKey()]; track k) {
+      <div class="sheet-stack" [class.sheet-swap]="m.groupPlaying()">
+      @if (activePlayer(); as p) {
+        <p class="sheet-owner" [style.--c]="p.color"><span class="dot" aria-hidden="true"></span>{{ i18n.t('group.sheetOf') }} <b>{{ p.name }}</b></p>
       }
 
       @if (v.id === 'duel') {
         <section class="panel">
-          <h2 class="panel-title">{{ i18n.t('sw.victory.title') }}</h2>
-          <p class="hint">{{ i18n.t('sw.victory.hint') }}</p>
+          @if (activePlayer(); as p) {
+            <h2 class="panel-title">{{ i18n.tp('group.duel.title', { name: p.name }) }}</h2>
+            <p class="hint">{{ i18n.t('group.duel.hint') }}</p>
+          } @else {
+            <h2 class="panel-title">{{ i18n.t('sw.victory.title') }}</h2>
+            <p class="hint">{{ i18n.t('sw.victory.hint') }}</p>
+          }
           <app-choice [options]="victoryOptions()" [value]="m.duel().victory" (valueChange)="setVictory($event)" [label]="i18n.t('sw.victory.title')" [disabled]="finished()" />
         </section>
       }
@@ -67,6 +122,10 @@
         @default {
           <app-sw-base-form />
         }
+      }
+
+      </div>
+      }
       }
 
       <section class="rules" aria-labelledby="rules-sw">
@@ -110,31 +169,58 @@
     </div>
 
     <aside class="counter-side" [attr.aria-label]="i18n.t('common.summary')">
-      <section class="scoreboard" [class.neg]="m.total() < 0" aria-live="polite">
-        <span class="sb-label">{{ finished() ? i18n.t('sw.finalScore') : i18n.t('sw.total') }}</span>
-        <app-score-ticker class="sb-total" [value]="m.total()" />
-        @if (m.outcomeKey(); as outcome) {
-          <p class="outcome">{{ i18n.t(outcome) }}</p>
+      @if (!m.isGroup() || m.groupPlaying()) {
+        @for (k of [sheetKey()]; track k) {
+          <section class="scoreboard" [class.neg]="m.total() < 0" aria-live="polite">
+            <span class="sb-label">
+              @if (activePlayer(); as p) {
+                {{ p.name }}
+              } @else {
+                {{ finished() ? i18n.t('sw.finalScore') : i18n.t('sw.total') }}
+              }
+            </span>
+            <app-score-ticker class="sb-total" [value]="m.total()" />
+            @if (m.outcomeKey(); as outcome) {
+              <p class="outcome">{{ i18n.t(outcome) }}</p>
+            }
+            <ul class="sb-parts" role="list">
+              @for (p of m.result().parts; track p.key) {
+                <li>
+                  <span>{{ i18n.t(p.key) }}</span>
+                  <b>{{ signed(p.points) }}</b>
+                </li>
+              }
+            </ul>
+            <button type="button" class="btn sb-audit" (click)="showAudit.set(true)">{{ i18n.t('common.auditView') }}</button>
+          </section>
         }
-        <ul class="sb-parts" role="list">
-          @for (p of m.result().parts; track p.key) {
-            <li>
-              <span>{{ i18n.t(p.key) }}</span>
-              <b>{{ signed(p.points) }}</b>
-            </li>
-          }
-        </ul>
-        <button type="button" class="btn sb-audit" (click)="showAudit.set(true)">{{ i18n.t('common.auditView') }}</button>
-      </section>
+      }
 
-      <div class="match-actions" [class.single]="finished()">
-        @if (finished()) {
-          <button type="button" class="btn btn-primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
-        } @else {
-          <button type="button" class="btn btn-quiet" (click)="confirm.set('new')">{{ i18n.t('common.newMatch') }}</button>
-          <button type="button" class="btn btn-primary" (click)="confirm.set('finish')">{{ i18n.t('common.finishMatch') }}</button>
+      @if (m.groupPlaying()) {
+        <div class="panel">
+          <app-group-standings [standings]="m.standings()" [activeId]="table.activeId()" (select)="table.select($event)" />
+        </div>
+        @if (!finished()) {
+          <div class="match-actions">
+            <button type="button" class="btn btn-quiet" (click)="changePlayers()">{{ i18n.t('group.changePlayers') }}</button>
+            <button type="button" class="btn btn-primary" (click)="confirm.set('finishGroup')">{{ i18n.t('common.finishMatch') }}</button>
+          </div>
+          @if (table.session().length) {
+            <div class="panel">
+              <app-session-board [rows]="table.board()" [matches]="table.session().length" (reset)="table.resetSession()" />
+            </div>
+          }
         }
-      </div>
+      } @else if (!m.isGroup()) {
+        <div class="match-actions" [class.single]="finished()">
+          @if (finished()) {
+            <button type="button" class="btn btn-primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
+          } @else {
+            <button type="button" class="btn btn-quiet" (click)="confirm.set('new')">{{ i18n.t('common.newMatch') }}</button>
+            <button type="button" class="btn btn-primary" (click)="confirm.set('finish')">{{ i18n.t('common.finishMatch') }}</button>
+          }
+        </div>
+      }
 
       <div class="panel">
         <app-history-panel [game]="'sw'" [variantName]="historyName" />
@@ -142,23 +228,45 @@
     </aside>
   </main>
 
-  <div class="dock">
-    <button type="button" class="dock-total" (click)="showAudit.set(true)" [attr.aria-label]="i18n.t('common.auditView')">
-      <span class="dock-label">{{ i18n.t('common.total') }}</span>
-      <app-score-ticker class="dock-num" [class.neg]="m.total() < 0" [value]="m.total()" [showDelta]="false" />
-    </button>
-    @if (finished()) {
-      <button type="button" class="btn btn-primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
-    } @else {
-      <button type="button" class="btn btn-quiet" (click)="showAudit.set(true)">{{ i18n.t('common.audit') }}</button>
-      <button type="button" class="btn btn-primary" (click)="confirm.set('finish')">{{ i18n.t('common.finishShort') }}</button>
-    }
-  </div>
+  @if (!m.isGroup()) {
+    <div class="dock">
+      <button type="button" class="dock-total" (click)="showAudit.set(true)" [attr.aria-label]="i18n.t('common.auditView')">
+        <span class="dock-label">{{ i18n.t('common.total') }}</span>
+        <app-score-ticker class="dock-num" [class.neg]="m.total() < 0" [value]="m.total()" [showDelta]="false" />
+      </button>
+      @if (finished()) {
+        <button type="button" class="btn btn-primary" (click)="confirm.set('new')">{{ i18n.t('common.startNewMatch') }}</button>
+      } @else {
+        <button type="button" class="btn btn-quiet" (click)="showAudit.set(true)">{{ i18n.t('common.audit') }}</button>
+        <button type="button" class="btn btn-primary" (click)="confirm.set('finish')">{{ i18n.t('common.finishShort') }}</button>
+      }
+    </div>
+  } @else if (m.groupPlaying()) {
+    <div class="dock">
+      @for (k of [sheetKey()]; track k) {
+        <button type="button" class="dock-total" (click)="showAudit.set(true)" [attr.aria-label]="i18n.t('common.auditView')">
+          <span class="dock-label who">{{ activePlayer()?.name }}</span>
+          <app-score-ticker class="dock-num" [class.neg]="m.total() < 0" [value]="m.total()" [showDelta]="false" />
+        </button>
+      }
+      @if (finished()) {
+        <button type="button" class="btn btn-primary" (click)="rematch()">{{ i18n.t('group.rematchShort') }}</button>
+      } @else {
+        @if (table.nextPlayer(); as n) {
+          <button type="button" class="btn btn-quiet next" (click)="table.next()" [attr.aria-label]="i18n.tp('group.nextAria', { name: n.name })">
+            <span class="next-name">{{ n.name }}</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+        }
+        <button type="button" class="btn btn-primary" (click)="confirm.set('finishGroup')">{{ i18n.t('common.finishShort') }}</button>
+      }
+    </div>
+  }
 
   <app-site-footer />
 
   @if (showAudit()) {
-    <app-audit-sheet [entries]="m.audit()" [total]="m.total()" (close)="showAudit.set(false)" />
+    <app-audit-sheet [entries]="m.audit()" [total]="m.total()" [owner]="activePlayer()?.name ?? null" (close)="showAudit.set(false)" />
   }
   @if (confirm() === 'finish') {
     <app-confirm-dialog
@@ -178,6 +286,27 @@
       [confirmLabel]="i18n.t('ttr.confirmNew.ok')"
       [cancelLabel]="i18n.t('common.cancel')"
       (confirm)="confirmNewMatch()"
+      (cancel)="confirm.set(null)"
+    />
+  }
+  @if (confirm() === 'finishGroup') {
+    <app-confirm-dialog
+      tone="primary"
+      [title]="i18n.t('group.confirmFinish.title')"
+      [message]="i18n.t('group.confirmFinish.msg')"
+      [confirmLabel]="i18n.t('group.confirmFinish.ok')"
+      [cancelLabel]="i18n.t('common.cancel')"
+      (confirm)="confirmFinishGroup()"
+      (cancel)="confirm.set(null)"
+    />
+  }
+  @if (confirm() === 'changePlayers') {
+    <app-confirm-dialog
+      [title]="i18n.t('group.confirmChange.title')"
+      [message]="i18n.t('group.confirmChange.msg')"
+      [confirmLabel]="i18n.t('group.confirmChange.ok')"
+      [cancelLabel]="i18n.t('common.cancel')"
+      (confirm)="confirmChangePlayers()"
       (cancel)="confirm.set(null)"
     />
   }

@@ -4,6 +4,7 @@
  * Fonte única de verdade:
  *   - SITE_URL  -> src/app/core/seo/seo.config.ts
  *   - edições   -> src/app/features/ticket-to-ride/scoring/ttr-variants.ts
+ *   - versões   -> src/app/features/seven-wonders/scoring/sw-variants.ts
  *
  * Assim o sitemap nunca fica desatualizado quando uma edição é adicionada.
  * Roda automaticamente no `npm run build` (prebuild) ou via `npm run seo`.
@@ -26,6 +27,11 @@ const variantsSrc = read('src/app/features/ticket-to-ride/scoring/ttr-variants.t
 const variantIds = [...variantsSrc.matchAll(/^\s{4}id:\s*'([^']+)'/gm)].map((m) => m[1]);
 if (variantIds.length === 0) throw new Error('Nenhuma edição encontrada em ttr-variants.ts');
 
+// --- versões do 7 Wonders -------------------------------------------------
+const swSrc = read('src/app/features/seven-wonders/scoring/sw-variants.ts');
+const swVariants = [...swSrc.matchAll(/^\s{4}id:\s*'([^']+)',\n\s{4}name:\s*'([^']+)'/gm)].map((m) => ({ id: m[1], name: m[2] }));
+if (swVariants.length === 0) throw new Error('Nenhuma versão encontrada em sw-variants.ts');
+
 // --- rotas (caminho-base em pt) -------------------------------------------
 /** @type {{base: string, priority: string, changefreq: string}[]} */
 const routes = [
@@ -33,6 +39,8 @@ const routes = [
   { base: '/azul', priority: '0.9', changefreq: 'monthly' },
   { base: '/ticket-to-ride', priority: '0.9', changefreq: 'monthly' },
   ...variantIds.map((id) => ({ base: `/ticket-to-ride/${id}`, priority: '0.7', changefreq: 'yearly' })),
+  { base: '/7-wonders', priority: '0.9', changefreq: 'monthly' },
+  ...swVariants.map((v) => ({ base: `/7-wonders/${v.id}`, priority: '0.8', changefreq: 'yearly' })),
 ];
 
 const today = new Date().toISOString().slice(0, 10);
@@ -63,16 +71,14 @@ ${routes
 
 // --- robots.txt -----------------------------------------------------------
 const robots = `# robots.txt — LudoCount
-# Contador de pontos para jogos de tabuleiro (Azul e Ticket to Ride).
+# Contador de pontos para jogos de tabuleiro (Azul, Ticket to Ride e 7 Wonders).
 
 User-agent: *
 Allow: /
 
 # Sem área privada, sem login e sem conteúdo duplicado: tudo pode ser indexado.
-# Arquivos de build não trazem valor de busca:
-Disallow: /*.js$
-Disallow: /*.css$
-Disallow: /*.map$
+# JS e CSS ficam liberados de propósito — o Google precisa deles para
+# renderizar a página como o visitante vê.
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;
@@ -84,9 +90,9 @@ const variantNames = [...variantsSrc.matchAll(/^\s{4}id:\s*'([^']+)',\n\s{4}name
 );
 const llms = `# LudoCount
 
-> Contador de pontos online e gratuito para os jogos de tabuleiro Azul e Ticket to Ride.
-> Roda inteiramente no navegador, sem conta e sem instalação, e mostra a origem de cada
-> ponto do total numa tela de auditoria.
+> Contador de pontos online e gratuito para os jogos de tabuleiro Azul, Ticket to Ride e
+> 7 Wonders. Roda inteiramente no navegador, sem conta e sem instalação, e mostra a origem
+> de cada ponto do total numa tela de auditoria.
 
 ## Contadores
 
@@ -95,14 +101,25 @@ const llms = `# LudoCount
   colunas e cores completas.
 - [Ticket to Ride — escolha a edição](${SITE_URL}/ticket-to-ride): cada edição tem sua própria
   tabela de pontos por rota e seus bônus de fim de jogo.
+- [7 Wonders — escolha a versão](${SITE_URL}/7-wonders): jogo base com Leaders, Cities, Armada,
+  Babel e Edifice; Duel com Pantheon e Agora; e Architects. A ciência escolhe sozinha o melhor
+  uso dos símbolos coringa.
 
 ## Edições do Ticket to Ride
 
 ${variantNames.map((v) => `- [${v.name}](${SITE_URL}/ticket-to-ride/${v.id})`).join('\n')}
 
+## Versões do 7 Wonders
+
+${swVariants.map((v) => `- [${v.name}](${SITE_URL}/7-wonders/${v.id})`).join('\n')}
+
 ## Observações
 
 - O app pontua o que o jogador informa; ele não simula o estado do jogo.
+- No Ticket to Ride e no 7 Wonders dá para pontuar a mesa toda: nomes dos jogadores (dentro do
+  limite da regra de cada edição e expansão), ranking final com os desempates oficiais e um
+  ranking da sessão com vitórias e pontos somados entre partidas.
+- Histórico das últimas 10 partidas por jogo, guardado só no navegador.
 - A pontuação final do Ticket to Ride pode ser negativa; a do Azul nunca fica abaixo de zero.
 `;
 
@@ -111,5 +128,5 @@ writeFileSync(resolve(root, 'public/robots.txt'), robots, 'utf8');
 writeFileSync(resolve(root, 'public/llms.txt'), llms, 'utf8');
 
 console.log(
-  `[seo] robots.txt + sitemap.xml + llms.txt gerados — ${routes.length} rotas (${variantIds.length} edições) em ${SITE_URL}`,
+  `[seo] robots.txt + sitemap.xml + llms.txt gerados — ${routes.length} rotas (${variantIds.length} edições TTR, ${swVariants.length} versões 7W) em ${SITE_URL}`,
 );

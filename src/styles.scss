@@ -532,6 +532,59 @@ input {
   grid-template-columns: 1fr;
 }
 
+/* ---------- partida em grupo ---------- */
+.sheet-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  min-width: 0;
+  /* ao pular do ranking para a planilha, ela não fica sob o cabeçalho e a faixa */
+  scroll-margin-top: calc(var(--header-h) + 76px);
+}
+/* troca de jogador: a planilha nova entra de leve, sem deslocar a rolagem */
+.sheet-swap {
+  animation: sheet-swap 220ms var(--ease-out) both;
+}
+@keyframes sheet-swap {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+.sheet-owner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--text-faint);
+}
+.sheet-owner b {
+  color: var(--text);
+  font-weight: 800;
+}
+.sheet-owner .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--c);
+}
+.dock .dock-total .dock-label.who {
+  max-width: 96px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dock .btn.next {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 40%;
+  padding: 0 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* barra fixa no rodapé (celular): total ao vivo + ação principal */
 .dock {
   position: fixed;
