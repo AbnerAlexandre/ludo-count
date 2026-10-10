@@ -1,7 +1,70 @@
 {
   "titulo": "Novidades do LudoCount",
-  "atualizadoEm": "2026-07-28",
+  "atualizadoEm": "2026-10-09",
   "itens": [
+    {
+      "data": "2026-10-09",
+      "tag": "Ticket to Ride · 7 Wonders",
+      "tagEn": "Ticket to Ride · 7 Wonders",
+      "titulo": "Pontue a mesa toda",
+      "tituloEn": "Score the whole table",
+      "descricao": "Escolha “Mesa toda”, digite o nome de cada jogador e alterne entre as planilhas tocando no nome. O app só aceita o número de jogadores que a regra da edição e das expansões permite. No fim sai o ranking com os desempates oficiais e os pontos por categoria; dá para jogar de novo com os mesmos jogadores, e um ranking da sessão soma vitórias e pontos entre as partidas.",
+      "descricaoEn": "Pick “Whole table”, type each player’s name and switch between sheets by tapping a name. The app only accepts the player count the edition and expansions allow. At the end you get the ranking with the official tiebreakers and points by category; you can play again with the same players, and a session ranking adds up wins and points across matches."
+    },
+    {
+      "data": "2026-10-09",
+      "tag": "Correções",
+      "tagEn": "Fixes",
+      "titulo": "Ajustes nas regras e nas buscas",
+      "tituloEn": "Rules and search fixes",
+      "descricao": "O Legendary Asia passa a aceitar de 2 a 5 jogadores, como na regra (o 6º jogador da caixa é só do Team Asia). As páginas do 7 Wonders entraram no mapa do site para os buscadores, e endereços que não existem agora mostram uma página própria com atalhos para os contadores.",
+      "descricaoEn": "Legendary Asia now accepts 2 to 5 players, as in the rules (the box’s 6th player is only for Team Asia). The 7 Wonders pages were added to the sitemap for search engines, and addresses that don’t exist now show a page of their own with shortcuts to the counters."
+    },
+    {
+      "data": "2026-09-29",
+      "tag": "7 Wonders",
+      "tagEn": "7 Wonders",
+      "titulo": "Calculadora de pontos do 7 Wonders",
+      "tituloEn": "7 Wonders score calculator",
+      "descricao": "Jogo base (1ª e 2ª edição) com Leaders, Cities, Armada, Babel e Edifice, o 7 Wonders Duel com Pantheon e Agora e o 7 Wonders Architects. A ciência é calculada sozinha — cada símbolo ao quadrado mais 7 por conjunto — escolhendo o melhor uso dos símbolos coringa.",
+      "descricaoEn": "Base game (1st and 2nd edition) with Leaders, Cities, Armada, Babel and Edifice, 7 Wonders Duel with Pantheon and Agora, and 7 Wonders Architects. Science is scored for you — each symbol squared plus 7 per set — picking the best use of wild symbols."
+    },
+    {
+      "data": "2026-09-29",
+      "tag": "Histórico",
+      "tagEn": "History",
+      "titulo": "Histórico das últimas partidas",
+      "tituloEn": "Recent match history",
+      "descricao": "Ao terminar uma partida, ela fica guardada no histórico do jogo, com o detalhamento dos pontos. São as últimas 10 partidas de cada jogo, salvas só neste navegador; dá para desligar, apagar uma partida ou limpar tudo.",
+      "descricaoEn": "When you finish a match it is kept in that game’s history, with the points breakdown. It holds the last 10 matches per game, saved only in this browser; you can turn it off, delete a match or clear everything."
+    },
+    {
+      "data": "2026-09-29",
+      "tag": "Visual",
+      "tagEn": "Design",
+      "titulo": "Telas novas, com movimento",
+      "tituloEn": "New screens, with motion",
+      "descricao": "Cada jogo ganhou sua cor, o placar rola até o novo valor e mostra quanto entrou (+7, −2), e a página inicial tem uma demonstração animada da parede do Azul. No celular o total fica numa barra fixa embaixo; no computador, o resumo fica ao lado da planilha. Há também um tema claro.",
+      "descricaoEn": "Each game got its own color, the score rolls to the new value and shows how much came in (+7, −2), and the home page has an animated demo of the Azul wall. On phones the total sits in a fixed bar at the bottom; on computers, the summary sits next to the sheet. There is also a light theme."
+    },
+    {
+      "data": "2026-09-29",
+      "tag": "Auditoria",
+      "tagEn": "Audit",
+      "titulo": "Auditoria mais clara",
+      "tituloEn": "Clearer audit",
+      "descricao": "No Azul, a auditoria passa a mostrar quando a pontuação de uma rodada para no zero, para a soma sempre bater com o total. As contas do 7 Wonders aparecem passo a passo, e os textos usam singular e plural certos.",
+      "descricaoEn": "In Azul, the audit now shows when a round’s score stops at zero, so the sum always matches the total. The 7 Wonders math is shown step by step, and texts use singular and plural correctly."
+    },
+    {
+      "data": "2026-07-28",
+      "tag": "Visual",
+      "tagEn": "Design",
+      "titulo": "Nova tipografia",
+      "tituloEn": "New typography",
+      "descricao": "A fonte serifada saiu: os títulos agora usam a Gabarito e os textos a Plus Jakarta Sans, mais modernas e fáceis de ler na mesa de jogo.",
+      "descricaoEn": "The serif font is gone: headings now use Gabarito and body text uses Plus Jakarta Sans, more modern and easier to read at the game table."
+    },
     {
       "data": "2026-07-22",
       "tag": "Azul",

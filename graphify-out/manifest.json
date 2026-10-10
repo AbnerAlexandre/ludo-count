@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/app/features/landing/landing.ts": {
-    "mtime": 1791595865.2468112,
-    "ast_hash": "6cf19389a90063d8226b8a1f34abd28b",
+    "mtime": 1791597049.3994844,
+    "ast_hash": "ca9d9d22bb7f4dde2872f93da5b91af5",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/counter/ttr-counter.ts": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "src/app/features/landing/landing.html": {
-    "mtime": 1790661003.3389654,
-    "ast_hash": "fd0d39b58281d5bb1cbfa7d1944f90df",
+    "mtime": 1791597049.3994844,
+    "ast_hash": "91e1383eabc6030b239b527dff139d96",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/counter/ttr-counter.html": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "public/novidades.json": {
-    "mtime": 1785216827.925701,
-    "ast_hash": "8e56a97b9821eaecac5e79b8ffec5f93",
+    "mtime": 1791597031.6401584,
+    "ast_hash": "39ecf764bdcae056f4c62eccb050bfc5",
     "semantic_hash": ""
   },
   "scripts/generate-seo.mjs": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "src/app/core/i18n/dictionary.ts": {
-    "mtime": 1791596470.6916568,
-    "ast_hash": "199d893b106831dbe9a15671ac569097",
+    "mtime": 1791597049.400993,
+    "ast_hash": "d87bd41acfc8722c247fd7d4e4b47294",
     "semantic_hash": ""
   },
   "src/app/core/i18n/i18n.ts": {
@@ -345,12 +345,12 @@
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1791596475.8307621,
+    "mtime": 1791597095.461508,
     "ast_hash": "d07e373fbbd33711fae23df83929aa03",
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1791596475.8302581,
+    "mtime": 1791597095.4605,
     "ast_hash": "1f34d3c595f672f631b7d533f32889d4",
     "semantic_hash": ""
   },

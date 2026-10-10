@@ -1,7 +1,7 @@
 # Graph Report - LudoCount  (2026-10-09)
 
 ## Corpus Check
-- 87 files · ~113,685 words
+- 87 files · ~114,644 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `334398e6`
+- Built from commit: `f960d05c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

@@ -180,6 +180,11 @@
           </li>
         }
       </ol>
+      @if (newsTotal() > novidades().length || showAllNews()) {
+        <button type="button" class="btn btn-quiet news-more" [attr.aria-expanded]="showAllNews()" (click)="showAllNews.set(!showAllNews())">
+          {{ showAllNews() ? i18n.t('landing.novidades.less') : i18n.tp('landing.novidades.all', { n: newsTotal() }) }}
+        </button>
+      }
     </section>
   }
 </main>

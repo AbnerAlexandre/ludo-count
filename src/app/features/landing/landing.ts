@@ -37,6 +37,9 @@ interface Novidade {
   descricaoEn?: string;
 }
 
+/** novidades visíveis antes de "ver todas" */
+const NEWS_PREVIEW = 5;
+
 /** número de perguntas no FAQ (chaves faq.1 … faq.N no dicionário) */
 const FAQ_COUNT = 10;
 
@@ -68,9 +71,22 @@ export class Landing {
   );
 
   private readonly rawNovidades = signal<Novidade[]>([]);
+  /** a linha do tempo abre com as mais recentes; o resto fica a um toque */
+  readonly showAllNews = signal(false);
+  readonly newsTotal = computed(() => this.rawNovidades().length);
   readonly novidades = computed(() => {
     const en = this.i18n.locale() === 'en';
-    return this.rawNovidades().map((n) => ({
+    // planejadas primeiro, depois da mais nova para a mais antiga (a ordem do arquivo desempata)
+    const sorted = this.rawNovidades()
+      .map((n, i) => ({ n, i }))
+      .sort((a, b) => {
+        const pa = a.n.status === 'planejado' ? 0 : 1;
+        const pb = b.n.status === 'planejado' ? 0 : 1;
+        return pa - pb || (b.n.data ?? '').localeCompare(a.n.data ?? '') || a.i - b.i;
+      })
+      .map(({ n }) => n);
+    const list = this.showAllNews() ? sorted : sorted.slice(0, NEWS_PREVIEW);
+    return list.map((n) => ({
       data: n.data,
       status: n.status,
       tag: (en && n.tagEn) || n.tag,
@@ -115,7 +131,7 @@ export class Landing {
       const res = await fetch('novidades.json', { cache: 'no-cache' });
       if (!res.ok) return;
       const data = (await res.json()) as { itens?: Novidade[] };
-      this.rawNovidades.set((data.itens ?? []).slice(0, 5));
+      this.rawNovidades.set(data.itens ?? []);
     } catch {
       /* novidades são complementares — falha não quebra a página */
     }
