@@ -7,11 +7,18 @@
   gap: 10px;
   min-width: 0;
 }
-.mark {
-  width: 30px;
-  height: 30px;
+/* ao lado do nome da versão o logo fica menor, para caber no celular */
+.sw-logo {
+  height: 34px;
   flex-shrink: 0;
-  color: var(--sw-text);
+}
+@media (max-width: 400px) {
+  .sw-logo {
+    height: 26px;
+  }
+  .identity .title {
+    font-size: 1.05rem;
+  }
 }
 .title {
   font-size: 1.2rem;
@@ -20,19 +27,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.names {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  line-height: 1.05;
-}
-.kicker {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--sw-text);
 }
 
 .exp-head {

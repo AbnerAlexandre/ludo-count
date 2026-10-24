@@ -1,7 +1,16 @@
 {
   "titulo": "Novidades do LudoCount",
-  "atualizadoEm": "2026-10-10",
+  "atualizadoEm": "2026-10-24",
   "itens": [
+    {
+      "data": "2026-10-24",
+      "tag": "Azul",
+      "tagEn": "Azul",
+      "titulo": "Variantes do Azul: Sintra, Pavilhão de Verão e Jardim da Rainha",
+      "tituloEn": "Azul variants: Sintra, Summer Pavilion and Queen's Garden",
+      "descricao": "Três contadores novos, com os tabuleiros redesenhados a partir das fotos e dos manuais da editora para você copiar o que está na mesa. Vitrais de Sintra: o palácio de 8 janelas com a faixa de padrão em cima de cada uma — janela + janelas à direita, bônus da cor da rodada, vidro quebrado e lados A e B. Pavilhão de Verão: as 7 estrelas se tocando pelas pontas, com os números onde a caixa imprime; o app soma os azulejos ligados e avisa quando você cerca um pilar, uma estátua ou uma janela (pegue 1, 2 ou 3 azulejos). Jardim da Rainha: monte o jardim tocando nos hexágonos e o app conta sozinho a roda, os pavilhões e os grupos do fim de jogo. As peças foram desenhadas em HTML e CSS com as cores e os desenhos de verdade.",
+      "descricaoEn": "Three new counters, with boards redrawn from the publisher's photos and rulebooks so you can copy what's on your table. Stained Glass of Sintra: the 8-window palace with the pattern strip above each window — window plus windows to the right, the round's color bonus, broken glass and sides A and B. Summer Pavilion: the 7 stars touching at their tips, with the numbers where the box prints them; the app adds up connected tiles and tells you when you surround a pillar, a statue or a window (take 1, 2 or 3 tiles). Queen's Garden: build the garden by tapping hexagons and the app counts the wheel, the pavilions and the end-game groups for you. The pieces were drawn in HTML and CSS with their real colors and designs."
+    },
     {
       "data": "2026-10-10",
       "tag": "Ticket to Ride",

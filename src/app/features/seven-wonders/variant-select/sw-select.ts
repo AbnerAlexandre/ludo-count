@@ -7,20 +7,16 @@ import { PageHeader } from '../../../shared/ui/page-header';
 import { SiteFooter } from '../../../shared/ui/site-footer';
 import { HistoryPanel } from '../../../shared/ui/history-panel';
 import { Reveal } from '../../../shared/motion/reveal.directive';
-import { SwMark } from '../../../shared/svg/marks';
 import { SW_VARIANTS, findSwVariant, swExpName, swName, swNote, swTag, type SwVariant } from '../scoring/sw-variants';
 
 /** Escolha da versão do 7 Wonders (base, Duel ou Architects). */
 @Component({
   selector: 'app-sw-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, PageHeader, SiteFooter, HistoryPanel, Reveal, SwMark],
+  imports: [RouterLink, PageHeader, SiteFooter, HistoryPanel, Reveal],
   template: `
     <app-page-header [back]="base() || '/'">
-      <span class="identity">
-        <app-sw-mark class="mark" />
-        <span class="title display">7 Wonders</span>
-      </span>
+      <img class="head-logo" src="7-wonders/7wonders-logo.png" alt="7 Wonders" width="1200" height="356" />
     </app-page-header>
 
     <main id="conteudo" class="wrap">
@@ -80,21 +76,6 @@ import { SW_VARIANTS, findSwVariant, swExpName, swName, swNote, swTag, type SwVa
     `
       :host {
         display: block;
-      }
-      .identity {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .mark {
-        width: 30px;
-        height: 30px;
-        color: var(--sw-text);
-      }
-      .title {
-        font-size: 1.2rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
       }
       .wrap {
         max-width: 1180px;

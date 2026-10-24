@@ -2,14 +2,9 @@
   <app-page-header [back]="selectPath()" [backLabel]="i18n.t('sw.changeVersion')">
     <h1 class="sr-only">{{ i18n.tp('sw.h1', { name: name() }) }}</h1>
     <span class="identity">
-      <app-sw-mark class="mark" />
+      <img class="head-logo sw-logo" src="7-wonders/7wonders-logo.png" alt="7 Wonders" width="1200" height="356" />
       @if (subName()) {
-        <span class="names">
-          <span class="kicker">7 Wonders</span>
-          <span class="title display">{{ subName() }}</span>
-        </span>
-      } @else {
-        <span class="title display">{{ name() }}</span>
+        <span class="title display">{{ subName() }}</span>
       }
     </span>
   </app-page-header>

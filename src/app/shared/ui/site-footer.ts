@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { I18n } from '../../core/i18n/i18n';
 import { TTR_VARIANTS, variantName } from '../../features/ticket-to-ride/scoring/ttr-variants';
 import { SW_VARIANTS, swName } from '../../features/seven-wonders/scoring/sw-variants';
+import { AZUL_VERSIONS } from '../../features/azul/variants/azul-versions';
 import { BrandMark } from '../svg/marks';
 
 /**
@@ -37,6 +38,9 @@ import { BrandMark } from '../svg/marks';
           <div class="col">
             <h2 class="col-title">Azul</h2>
             <a [routerLink]="base() + '/azul'">{{ i18n.t('footer.azulCounter') }}</a>
+            @for (v of azul(); track v.path) {
+              <a [routerLink]="base() + v.path">{{ v.name }}</a>
+            }
           </div>
           <div class="col">
             <h2 class="col-title">Ticket to Ride</h2>
@@ -177,6 +181,10 @@ export class SiteFooter {
   readonly copied = signal(false);
 
   readonly ttr = computed(() => TTR_VARIANTS.map((v) => ({ id: v.id, name: variantName(v, this.i18n.locale()) })));
+  /** variantes do Azul (o clássico já tem link próprio acima) */
+  readonly azul = computed(() =>
+    AZUL_VERSIONS.filter((v) => v.id !== 'classic').map((v) => ({ path: v.path, name: this.i18n.locale() === 'en' ? v.nameEn : v.name })),
+  );
   readonly sw = computed(() => SW_VARIANTS.map((v) => ({ id: v.id, name: swName(v, this.i18n.locale()) })));
 
   copyDiscord(): void {

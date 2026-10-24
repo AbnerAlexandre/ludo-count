@@ -16,6 +16,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withViewTransitions({
+        // a primeira navegação não anima: com a aba em segundo plano o navegador
+        // não pinta quadros e a transição seguraria a hidratação até a aba aparecer
+        skipInitialTransition: true,
         // aba em segundo plano ou navegação interrompida: a transição é abortada
         // pelo navegador — sem efeito na tela, então não vira erro no console
         onViewTransitionCreated: ({ transition }) => {

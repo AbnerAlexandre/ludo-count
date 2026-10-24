@@ -9,6 +9,12 @@
 - [Contador de pontos do Azul](https://ludo-contador.vercel.app/azul): parede 5x5 interativa, pontuação por ligação
   (horizontal + vertical), penalidades da linha do chão e bônus de fim de partida por linhas,
   colunas e cores completas.
+- [Azul: Vitrais de Sintra](https://ludo-contador.vercel.app/azul/sintra): palácio de 8 janelas — a janela e as janelas
+  à direita pontuam, bônus de cor, vidro quebrado e bônus dos lados A e B.
+- [Azul: Pavilhão de Verão](https://ludo-contador.vercel.app/azul/summer-pavilion): 7 estrelas de losangos, pontos por
+  azulejos ligados, penalidades e bônus de estrelas completas e de números 1 a 4.
+- [Azul: Jardim da Rainha](https://ludo-contador.vercel.app/azul/queens-garden): 4 rodadas (roda, pavilhões e custos) e
+  os grupos de hexágonos do fim de jogo.
 - [Ticket to Ride — escolha a edição](https://ludo-contador.vercel.app/ticket-to-ride): cada edição tem sua própria
   tabela de pontos por rota e seus bônus de fim de jogo.
 - [7 Wonders — escolha a versão](https://ludo-contador.vercel.app/7-wonders): jogo base com Leaders, Cities, Armada,

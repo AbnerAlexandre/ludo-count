@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "seo": "node scripts/generate-seo.mjs",
+    "tiles": "node scripts/render-tiles.mjs",
     "prebuild": "node scripts/generate-seo.mjs",
     "build": "ng build",
     "postbuild": "node scripts/postbuild.mjs",

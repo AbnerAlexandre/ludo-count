@@ -13,11 +13,12 @@ import { SiteFooter } from '../../shared/ui/site-footer';
 import { HistoryPanel } from '../../shared/ui/history-panel';
 import { ScoreTicker } from '../../shared/motion/score-ticker';
 import { FLOOR_PENALTIES, floorPenalty } from './scoring/azul-scoring';
+import { AzulVersions, azulVersionName } from './variants/azul-versions';
 
 @Component({
   selector: 'app-azul-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AzulWall, RoundHistory, AuditSheet, ConfirmDialog, PageHeader, SiteFooter, HistoryPanel, ScoreTicker],
+  imports: [AzulWall, RoundHistory, AuditSheet, ConfirmDialog, PageHeader, SiteFooter, HistoryPanel, ScoreTicker, AzulVersions],
   templateUrl: './azul-page.html',
   styleUrl: './azul-page.scss',
 })
@@ -37,6 +38,9 @@ export class AzulPage {
   readonly home = computed(() => (this.i18n.locale() === 'en' ? '/en' : '/'));
 
   readonly floorSlots = FLOOR_PENALTIES.map((_, i) => i + 1);
+
+  /** nome da versão salva no histórico (partidas antigas não têm versão = Azul) */
+  readonly historyName = (id?: string) => azulVersionName(id, this.i18n.locale());
 
   /** partes exibidas no placar (a soma sempre bate com o total) */
   readonly parts = computed(() => {

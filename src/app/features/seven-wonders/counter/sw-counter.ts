@@ -12,7 +12,6 @@ import { SiteFooter } from '../../../shared/ui/site-footer';
 import { HistoryPanel } from '../../../shared/ui/history-panel';
 import { Choice, type ChoiceOption } from '../../../shared/ui/choice';
 import { ScoreTicker } from '../../../shared/motion/score-ticker';
-import { SwMark } from '../../../shared/svg/marks';
 import { findSwVariant, swExpName, swName, swNote, type SwExpansion } from '../scoring/sw-variants';
 import { type DuelVictory } from '../scoring/sw-scoring';
 import { SwBaseForm } from './sw-base-form';
@@ -37,7 +36,6 @@ import type { DraftPlayer } from '../../../core/group/group-models';
     HistoryPanel,
     Choice,
     ScoreTicker,
-    SwMark,
     SwBaseForm,
     SwDuelForm,
     SwArchitectsForm,
@@ -70,7 +68,7 @@ export class SwCounter {
     const v = this.variant();
     return v ? swName(v, this.i18n.locale()) : '7 Wonders';
   });
-  /** "Duel", "Architects"… — o cabeçalho mostra "7 Wonders" pequeno em cima, para caber no celular */
+  /** "Duel", "Architects"… — o cabeçalho mostra o logo do 7 Wonders e este nome ao lado */
   readonly subName = computed(() => this.name().replace(/^7 Wonders\s*/, ''));
 
   readonly victoryOptions = computed<ChoiceOption[]>(() => {

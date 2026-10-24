@@ -1,0 +1,203 @@
+/* palácio da caixa: 8 torres de pedra verde-azulada; em cima de cada uma, a faixa
+   de padrão; embaixo, a janela com 2 molduras em losango e o valor */
+.palace {
+  --st-stone: #2f6f79;
+  --st-arch: #3f8f99;
+  --st-cream: #ece2cb;
+  --st-glass: #a9d7db;
+  --st-lead: #23434a;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: clamp(3px, 1vw, 8px);
+  padding: clamp(8px, 2vw, 14px) clamp(6px, 2vw, 14px) 10px;
+  border-radius: var(--radius-lg);
+  background: var(--st-stone);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.18);
+}
+.col {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: clamp(4px, 1.2vw, 8px);
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform var(--dur-press) var(--ease-out);
+}
+.col:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.col:disabled {
+  cursor: default;
+}
+.strip {
+  display: grid;
+  justify-items: center;
+  gap: clamp(3px, 0.9vw, 6px);
+  padding: clamp(14px, 3.4vw, 20px) 0 clamp(5px, 1.4vw, 8px);
+  background: var(--st-cream);
+  /* torre com ponta, como as faixas encaixadas no palácio */
+  clip-path: polygon(50% 0, 100% 9%, 100% 100%, 0 100%, 0 9%);
+  transition: background-color var(--dur-fast) ease;
+}
+.sd {
+  width: 46%;
+  aspect-ratio: 1;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  background: #cfe3e6;
+  box-shadow: inset 0 0 0 1.5px #8fb6bc;
+}
+.col.full .strip {
+  opacity: 0.55;
+}
+.win {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  gap: clamp(4px, 1.2vw, 8px);
+  padding: clamp(10px, 2.6vw, 16px) 0 0;
+  border-radius: 999px 999px var(--radius-sm) var(--radius-sm);
+  background: var(--st-arch);
+  box-shadow: inset 0 0 0 2px var(--st-cream);
+  transition: box-shadow var(--dur-fast) ease;
+}
+.col.sel .win {
+  box-shadow:
+    inset 0 0 0 2px var(--st-cream),
+    0 0 0 3px #fff;
+}
+.col.sel .strip {
+  background: #fff;
+}
+.frame {
+  position: relative;
+  /* girado 45°: a diagonal (62% × √2 ≈ 88%) cabe na largura da janela */
+  width: 62%;
+  aspect-ratio: 1;
+  transform: rotate(45deg);
+  border-radius: 3px;
+  background: var(--st-glass);
+  box-shadow: inset 0 0 0 2px var(--st-lead);
+}
+.frame.target {
+  box-shadow:
+    inset 0 0 0 2px var(--st-lead),
+    0 0 0 2px #fff;
+}
+.pane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+.pane.ghost {
+  opacity: 0.5;
+}
+.val {
+  width: 100%;
+  padding: 3px 0 4px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--st-cream);
+  color: #3a2a1a;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.82rem, 3.2vw, 1.05rem);
+  text-align: center;
+}
+@media (hover: hover) and (pointer: fine) {
+  .col:not(:disabled):hover .win {
+    box-shadow:
+      inset 0 0 0 2px #fff,
+      0 0 0 2px var(--game-text);
+  }
+}
+.bonus-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* lado A: os 4 ornamentos ficam entre os pares de janelas */
+.orn-row {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+.orn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text-faint);
+  font-size: 0.82rem;
+}
+.orn.got {
+  background: color-mix(in srgb, var(--good) 14%, var(--surface));
+  color: var(--text);
+}
+.orn b {
+  color: var(--text);
+}
+.orn-mark {
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  background: #3a3f44;
+  box-shadow: 0 0 0 2px #d9d2c4;
+}
+.sideb-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 0;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+.sideb-line b {
+  color: var(--text);
+}
+.mini {
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+}
+
+/* escolha da peça que fica na janela */
+.colors {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.color {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  max-height: 64px;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: transform var(--dur-press) var(--ease-out), border-color var(--dur-fast) ease;
+}
+.color img {
+  width: 58%;
+  transform: rotate(45deg);
+}
+.color:active {
+  transform: scale(0.94);
+}
+.color.on {
+  border-color: var(--game-text);
+  background: var(--surface-3);
+}

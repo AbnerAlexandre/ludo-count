@@ -196,22 +196,9 @@ h1 {
 .game-logo.ttr-logo {
   height: 160px;
 }
-.sw-lockup {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  color: var(--sw-text);
-}
-.sw-mark {
-  width: 72px;
-  height: 72px;
-}
-.sw-word {
-  font-size: clamp(2.4rem, 9vw, 3.4rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.035em;
-  color: var(--text);
+.game-logo.sw-logo {
+  height: auto;
+  width: min(100%, 420px);
 }
 
 .info {

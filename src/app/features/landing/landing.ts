@@ -17,7 +17,7 @@ import { I18n } from '../../core/i18n/i18n';
 import { PageHeader } from '../../shared/ui/page-header';
 import { SiteFooter } from '../../shared/ui/site-footer';
 import { Reveal } from '../../shared/motion/reveal.directive';
-import { BrandMark, SwMark } from '../../shared/svg/marks';
+import { BrandMark } from '../../shared/svg/marks';
 import { LiveDemo } from './live-demo';
 import { TTR_VARIANTS } from '../ticket-to-ride/scoring/ttr-variants';
 
@@ -50,7 +50,7 @@ const FAQ_COUNT = 10;
 @Component({
   selector: 'app-landing',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, PageHeader, SiteFooter, Reveal, BrandMark, SwMark, LiveDemo],
+  imports: [RouterLink, PageHeader, SiteFooter, Reveal, BrandMark, LiveDemo],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })

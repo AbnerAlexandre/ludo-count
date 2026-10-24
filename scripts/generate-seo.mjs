@@ -38,6 +38,9 @@ if (swVariants.length === 0) throw new Error('Nenhuma versão encontrada em sw-v
 const routes = [
   { base: '', priority: '1.0', changefreq: 'monthly' },
   { base: '/azul', priority: '0.9', changefreq: 'monthly' },
+  { base: '/azul/sintra', priority: '0.8', changefreq: 'yearly' },
+  { base: '/azul/summer-pavilion', priority: '0.8', changefreq: 'yearly' },
+  { base: '/azul/queens-garden', priority: '0.8', changefreq: 'yearly' },
   { base: '/ticket-to-ride', priority: '0.9', changefreq: 'monthly' },
   ...variantIds.map((id) => ({ base: `/ticket-to-ride/${id}`, priority: '0.7', changefreq: 'yearly' })),
   { base: '/7-wonders', priority: '0.9', changefreq: 'monthly' },
@@ -100,6 +103,12 @@ const llms = `# LudoCount
 - [Contador de pontos do Azul](${SITE_URL}/azul): parede 5x5 interativa, pontuação por ligação
   (horizontal + vertical), penalidades da linha do chão e bônus de fim de partida por linhas,
   colunas e cores completas.
+- [Azul: Vitrais de Sintra](${SITE_URL}/azul/sintra): palácio de 8 janelas — a janela e as janelas
+  à direita pontuam, bônus de cor, vidro quebrado e bônus dos lados A e B.
+- [Azul: Pavilhão de Verão](${SITE_URL}/azul/summer-pavilion): 7 estrelas de losangos, pontos por
+  azulejos ligados, penalidades e bônus de estrelas completas e de números 1 a 4.
+- [Azul: Jardim da Rainha](${SITE_URL}/azul/queens-garden): 4 rodadas (roda, pavilhões e custos) e
+  os grupos de hexágonos do fim de jogo.
 - [Ticket to Ride — escolha a edição](${SITE_URL}/ticket-to-ride): cada edição tem sua própria
   tabela de pontos por rota e seus bônus de fim de jogo.
 - [7 Wonders — escolha a versão](${SITE_URL}/7-wonders): jogo base com Leaders, Cities, Armada,

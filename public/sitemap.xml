@@ -5,7 +5,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,7 +14,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -23,7 +23,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -32,16 +32,70 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/azul/sintra</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul/sintra"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul/sintra"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul/sintra"/>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/en/azul/sintra</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul/sintra"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul/sintra"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul/sintra"/>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/azul/summer-pavilion</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul/summer-pavilion"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul/summer-pavilion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul/summer-pavilion"/>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/en/azul/summer-pavilion</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul/summer-pavilion"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul/summer-pavilion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul/summer-pavilion"/>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/azul/queens-garden</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul/queens-garden"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul/queens-garden"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul/queens-garden"/>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ludo-contador.vercel.app/en/azul/queens-garden</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/azul/queens-garden"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/azul/queens-garden"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/azul/queens-garden"/>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ludo-contador.vercel.app/ticket-to-ride</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -50,7 +104,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -59,7 +113,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/usa"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/usa"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/usa"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -68,7 +122,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/usa"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/usa"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/usa"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -77,7 +131,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/europa"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/europa"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/europa"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -86,7 +140,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/europa"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/europa"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/europa"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -95,7 +149,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/nordic"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/nordic"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/nordic"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -104,7 +158,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/nordic"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/nordic"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/nordic"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -113,7 +167,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/marklin"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/marklin"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/marklin"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -122,7 +176,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/marklin"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/marklin"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/marklin"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -131,7 +185,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/switzerland"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/switzerland"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/switzerland"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -140,7 +194,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/switzerland"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/switzerland"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/switzerland"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -149,7 +203,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/india"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/india"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/india"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -158,7 +212,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/india"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/india"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/india"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -167,7 +221,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/africa"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/africa"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/africa"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -176,7 +230,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/africa"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/africa"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/africa"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -185,7 +239,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/nederland"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/nederland"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/nederland"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -194,7 +248,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/nederland"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/nederland"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/nederland"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -203,7 +257,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/pennsylvania"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/pennsylvania"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/pennsylvania"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -212,7 +266,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/pennsylvania"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/pennsylvania"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/pennsylvania"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -221,7 +275,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/legendary-asia"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/legendary-asia"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/legendary-asia"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -230,7 +284,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/legendary-asia"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/legendary-asia"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/legendary-asia"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -239,7 +293,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/japan"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/japan"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/japan"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -248,7 +302,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/japan"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/japan"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/japan"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -257,7 +311,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/italy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/italy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/italy"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -266,7 +320,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/italy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/italy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/italy"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -275,7 +329,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/france"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/france"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/france"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -284,7 +338,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/france"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/france"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/france"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -293,7 +347,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/new-york"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -302,7 +356,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/ticket-to-ride/new-york"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/ticket-to-ride/new-york"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -311,7 +365,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -320,7 +374,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -329,7 +383,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders/base"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders/base"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders/base"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -338,7 +392,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders/base"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders/base"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders/base"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -347,7 +401,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders/duel"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders/duel"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders/duel"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -356,7 +410,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders/duel"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders/duel"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders/duel"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -365,7 +419,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders/architects"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders/architects"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders/architects"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -374,7 +428,7 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ludo-contador.vercel.app/7-wonders/architects"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ludo-contador.vercel.app/en/7-wonders/architects"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ludo-contador.vercel.app/7-wonders/architects"/>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>

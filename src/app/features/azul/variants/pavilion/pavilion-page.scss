@@ -1,0 +1,162 @@
+.wild {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.wild img {
+  width: 30px;
+  height: auto;
+}
+
+.center-pick {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.center-pick .fld-label {
+  margin-top: 0;
+}
+.pick-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+}
+.pick {
+  display: grid;
+  place-items: center;
+  min-height: 52px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: transform var(--dur-press) var(--ease-out), opacity var(--dur-fast) ease;
+}
+.pick img {
+  width: 78%;
+}
+.pick:active:not(:disabled) {
+  transform: scale(0.94);
+}
+.pick:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+.cancel {
+  margin-top: 10px;
+  min-height: 40px;
+}
+
+.placed {
+  list-style: none;
+  margin: 12px 0 4px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 10px 0 6px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.chip .n {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #10131a;
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+.chip b {
+  color: var(--good);
+}
+
+.desk-only {
+  display: none;
+}
+@media (min-width: 960px) {
+  .desk-only {
+    display: inline-flex;
+  }
+}
+
+.eg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+}
+.eg-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text-faint);
+  font-size: 0.86rem;
+}
+.eg-list li.got {
+  background: color-mix(in srgb, var(--good) 14%, var(--surface));
+  color: var(--text);
+}
+.eg-list li.got b {
+  color: var(--good);
+}
+
+.wild-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.wild-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+}
+.wild-step img {
+  width: 26px;
+}
+
+/* bônus cercado nesta rodada: lembrete de pegar os azulejos */
+.bonus-call {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid #2c5f93;
+}
+.bonus-call .fld-label {
+  margin-top: 0;
+}
+.bonus-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bonus-list .chip {
+  padding: 0 10px;
+}

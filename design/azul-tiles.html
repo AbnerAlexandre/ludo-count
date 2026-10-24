@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Azul — peças das variantes (fonte da arte)</title>
+<!--
+  Arte das peças das variantes do Azul, feita só com HTML e CSS.
+  `node scripts/render-tiles.mjs` abre esta página num Chrome sem janela e
+  salva cada elemento com [data-out] como WebP transparente em public/.
+  Cores sólidas por faceta (sem gradiente), como vidro lapidado e azulejo pintado.
+-->
+<style>
+  :root { --u: 120px; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: transparent; }
+  body { padding: 24px; display: grid; gap: 32px; font-family: system-ui, sans-serif; }
+  h2 { margin: 0; font: 600 14px system-ui; color: #888; }
+  .row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+
+  /* ---------- Vitrais de Sintra: peças de vidro lapidado (quadradas) ---------- */
+  .pane {
+    position: relative;
+    width: var(--u);
+    height: var(--u);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--d2);
+  }
+  .pane > i { position: absolute; inset: 0; }
+  .pane .ft { background: var(--l1); clip-path: polygon(0 0, 100% 0, 80% 20%, 20% 20%); }
+  .pane .fr { background: var(--d1); clip-path: polygon(100% 0, 100% 100%, 80% 80%, 80% 20%); }
+  .pane .fb { background: var(--d2); clip-path: polygon(0 100%, 100% 100%, 80% 80%, 20% 80%); }
+  .pane .fl { background: var(--l2); clip-path: polygon(0 0, 20% 20%, 20% 80%, 0 100%); }
+  .pane .tb { inset: 20%; background: var(--c); }
+  /* brilho de luz entrando pelo vidro (uma forma sólida, sem degradê) */
+  .pane .gl { inset: 24% auto auto 24%; width: 22%; height: 10%; background: #fff; opacity: 0.62; border-radius: 3px; transform: skewX(-20deg); }
+  .pane .gl2 { inset: 37% auto auto 24%; width: 8%; height: 8%; background: #fff; opacity: 0.5; border-radius: 50%; }
+  /* símbolo gravado: o jogo usa formas para quem confunde as cores */
+  .pane svg { position: absolute; left: 32%; top: 32%; width: 36%; height: 36%; color: var(--d2); opacity: 0.55; }
+
+  .s-pink   { --c: #d22a5e; --l1: #ec8aa9; --l2: #e05a80; --d1: #a81f49; --d2: #7f1637; }
+  .s-orange { --c: #ef8424; --l1: #f8b874; --l2: #f49f4b; --d1: #c9661a; --d2: #9c4c11; }
+  .s-yellow { --c: #f1c232; --l1: #f9e08b; --l2: #f5d25f; --d1: #cc9e1f; --d2: #9e7814; }
+  .s-white  { --c: #e4eaee; --l1: #ffffff; --l2: #f4f7f9; --d1: #b9c4cc; --d2: #8d9aa4; }
+  .s-blue   { --c: #138f93; --l1: #6cc6c8; --l2: #3eabae; --d1: #0e7276; --d2: #0a5558; }
+
+  /* ---------- Pavilhão de Verão: losangos de 60° ---------- */
+  .rh {
+    position: relative;
+    width: calc(var(--u) * 1.7320508);
+    height: var(--u);
+  }
+  .rh > i { position: absolute; inset: 0; }
+  .rh .r0 { background: var(--d); clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%); }
+  .rh .r1 { background: var(--c); clip-path: polygon(3.2% 50%, 50% 2.8%, 96.8% 50%, 50% 97.2%); }
+  .rh .r2 { background: var(--l); clip-path: polygon(13% 50%, 50% 13.5%, 87% 50%, 50% 86.5%); }
+  .rh .r3 { background: var(--c); clip-path: polygon(17% 50%, 50% 18%, 83% 50%, 50% 82%); }
+  .rh svg { position: absolute; left: 50%; top: 50%; width: 34%; height: 58%; transform: translate(-50%, -50%); color: var(--d); }
+
+  .p-red    { --c: #d6463a; --l: #f3b3a8; --d: #8f2a22; }
+  .p-blue   { --c: #2a8cc6; --l: #a9d6f0; --d: #195a83; }
+  .p-yellow { --c: #efc03a; --l: #fbe7a6; --d: #a77f17; }
+  .p-orange { --c: #ec8a2c; --l: #f9cf9d; --d: #a3561a; }
+  .p-green  { --c: #6db43f; --l: #cde8b4; --d: #43772a; }
+  .p-purple { --c: #9a4fb2; --l: #dcbde8; --d: #643177; }
+
+  /* ---------- Jardim da Rainha: hexágonos (cor × padrão) ---------- */
+  .hx {
+    position: relative;
+    width: calc(var(--u) * 1.1547005);
+    height: var(--u);
+  }
+  .hx > i { position: absolute; inset: 0; }
+  .hx .h0 { background: var(--d); clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+  .hx .h1 { background: var(--c); clip-path: polygon(26.25% 2.5%, 73.75% 2.5%, 97.5% 50%, 73.75% 97.5%, 26.25% 97.5%, 2.5% 50%); }
+  .hx .h2 { background: var(--l); clip-path: polygon(29.25% 8.5%, 70.75% 8.5%, 91.5% 50%, 70.75% 91.5%, 29.25% 91.5%, 8.5% 50%); }
+  .hx .h3 { background: var(--c); clip-path: polygon(30.75% 11.5%, 69.25% 11.5%, 88.5% 50%, 69.25% 88.5%, 30.75% 88.5%, 11.5% 50%); }
+  .hx svg { position: absolute; left: 50%; top: 50%; width: 50%; height: 58%; transform: translate(-50%, -50%); color: #f8f1df; }
+
+  .g-blue       { --c: #37a9dc; --l: #a9dcf3; --d: #1f77a3; }
+  .g-purple     { --c: #4f2f86; --l: #b3a1d6; --d: #33195c; }
+  .g-lilac      { --c: #9c4dc4; --l: #dcbbee; --d: #6c2f8c; }
+  .g-yellow     { --c: #f0bd22; --l: #f9e29a; --d: #a87d0e; }
+  .g-lightgreen { --c: #79bf3c; --l: #cfe9b2; --d: #4f8a22; }
+  .g-darkgreen  { --c: #22704a; --l: #a2cfb4; --d: #134a2f; }
+</style>
+</head>
+<body>
+  <!-- símbolos reaproveitados pelas peças -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Sintra: formas gravadas -->
+      <symbol id="sym-flower" viewBox="0 0 100 100"><path fill="currentColor" d="M50 8c9 0 15 9 13 19 10-4 21 1 23 11s-7 18-17 18c7 8 6 20-3 25s-19 0-23-10c-4 10-14 15-23 10s-10-17-3-25C7 56-2 48 0 38s13-15 23-11C21 17 41 8 50 8Zm0 33a11 11 0 1 0 0 22 11 11 0 0 0 0-22Z"/></symbol>
+      <symbol id="sym-sun" viewBox="0 0 100 100"><g fill="currentColor"><circle cx="50" cy="50" r="20"/><path d="M47 4h6l3 18H44ZM47 96h6l3-18H44ZM4 47v6l18 3V44ZM96 47v6l-18 3V44ZM16 20l4-4 15 11-8 8ZM84 80l-4 4-15-11 8-8ZM80 16l4 4-11 15-8-8ZM20 84l-4-4 11-15 8 8Z"/></g></symbol>
+      <symbol id="sym-drop" viewBox="0 0 100 100"><path fill="currentColor" d="M50 4 82 50 50 96 18 50Zm0 22L33 50l17 24 17-24Z"/></symbol>
+      <symbol id="sym-snow" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"><path d="M50 8v84M14 29l72 42M86 29 14 71"/><path d="m38 16 12 10 12-10M38 84l12-10 12 10M15 46l15-5-3-15M85 54l-15 5 3 15M85 46l-15-5 3-15M15 54l15 5-3 15"/></g></symbol>
+      <symbol id="sym-star" viewBox="0 0 100 100"><path fill="currentColor" d="m50 4 12 32 34 2-27 21 10 33-29-19-29 19 10-33L4 38l34-2Z"/></symbol>
+
+      <!-- Pavilhão: engrenagem (azul) e quadrado (verde); o sol (laranja) é o mesmo do Sintra -->
+      <symbol id="sym-gear" viewBox="0 0 100 100"><path fill="currentColor" fill-rule="evenodd" d="M44 4h12l2 12 9 4 10-7 8 8-7 10 4 9 12 2v12l-12 2-4 9 7 10-8 8-10-7-9 4-2 12H44l-2-12-9-4-10 7-8-8 7-10-4-9-12-2V44l12-2 4-9-7-10 8-8 10 7 9-4Zm6 30a16 16 0 1 0 0 32 16 16 0 0 0 0-32Z"/></symbol>
+      <symbol id="sym-square" viewBox="0 0 100 100"><path fill="currentColor" fill-rule="evenodd" d="M50 4 96 50 50 96 4 50Zm0 20L24 50l26 26 26-26Z"/></symbol>
+
+      <!-- Jardim da Rainha: os 6 padrões (o desenho lembra o valor) -->
+      <symbol id="qg-tree" viewBox="0 0 100 100"><g fill="currentColor"><circle cx="50" cy="30" r="20"/><circle cx="31" cy="44" r="16"/><circle cx="69" cy="44" r="16"/><circle cx="50" cy="50" r="17"/><path d="M45 56h10v30h-10z"/><path d="M33 86h34a4 4 0 0 1 0 8H33a4 4 0 0 1 0-8Z"/></g></symbol>
+      <symbol id="qg-bird" viewBox="0 0 100 100"><g fill="currentColor">
+        <path d="M47 50C37 30 23 20 5 17c6 6 8 12 16 16-6 0-10 2-13 6 8 2 13 4 18 7-4 1-7 3-9 6 12 2 21 3 30 4Z"/>
+        <path d="M53 50c10-20 24-30 42-33-6 6-8 12-16 16 6 0 10 2 13 6-8 2-13 4-18 7 4 1 7 3 9 6-12 2-21 3-30 4Z"/>
+        <ellipse cx="50" cy="56" rx="8" ry="14"/>
+        <circle cx="50" cy="38" r="7"/>
+        <path d="M43 66h14l-7 20Z"/>
+      </g></symbol>
+      <symbol id="qg-butterfly" viewBox="0 0 100 100"><g fill="currentColor">
+        <g transform="translate(50 26) scale(.85)"><path d="M0 2C-4-10-22-16-24-4c-2 8 8 12 20 8C-14 10-16 22-6 22 0 22 0 12 0 6c0 6 0 16 6 16 10 0 8-12-2-18 12 4 22 0 20-8C22-16 4-10 0 2Z"/></g>
+        <g transform="translate(26 66) scale(.72) rotate(-18)"><path d="M0 2C-4-10-22-16-24-4c-2 8 8 12 20 8C-14 10-16 22-6 22 0 22 0 12 0 6c0 6 0 16 6 16 10 0 8-12-2-18 12 4 22 0 20-8C22-16 4-10 0 2Z"/></g>
+        <g transform="translate(74 66) scale(.72) rotate(18)"><path d="M0 2C-4-10-22-16-24-4c-2 8 8 12 20 8C-14 10-16 22-6 22 0 22 0 12 0 6c0 6 0 16 6 16 10 0 8-12-2-18 12 4 22 0 20-8C22-16 4-10 0 2Z"/></g>
+      </g></symbol>
+      <symbol id="qg-flower" viewBox="0 0 100 100"><path fill="currentColor" fill-rule="evenodd" d="M50 4c12 0 18 14 12 26 12-6 26 0 26 12 0 4-2 6-4 8 2 2 4 4 4 8 0 12-14 18-26 12 6 12 0 26-12 26S32 82 38 70c-12 6-26 0-26-12 0-4 2-6 4-8-2-2-4-4-4-8 0-12 14-18 26-12C32 18 38 4 50 4Zm0 36a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"/></symbol>
+      <symbol id="qg-sprig" viewBox="0 0 100 100"><g fill="currentColor">
+        <path d="M48 96c-2-26 0-52 6-80l5 1c-6 28-8 53-6 79Z"/>
+        <path d="M57 14c6-10 16-12 22-10-2 10-10 16-22 14Z"/>
+        <path d="M54 36c8-8 20-8 26-4-4 8-14 12-26 8Z"/>
+        <path d="M52 34C44 24 32 22 26 26c4 8 14 12 26 10Z"/>
+        <path d="M52 58c8-8 20-8 26-4-4 8-14 12-26 8Z"/>
+        <path d="M50 56c-8-10-20-12-26-8 4 8 14 12 26 10Z"/>
+      </g></symbol>
+      <symbol id="qg-bells" viewBox="0 0 100 100"><g fill="currentColor">
+        <circle cx="50" cy="50" r="6"/>
+        <g id="qg-bell"><path d="M50 4c5 0 7 4 7 9v7c0 2 2 4 3 5H40c1-1 3-3 3-5v-7c0-5 2-9 7-9Zm0 23a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></g>
+        <use href="#qg-bell" transform="rotate(60 50 50)"/><use href="#qg-bell" transform="rotate(120 50 50)"/>
+        <use href="#qg-bell" transform="rotate(180 50 50)"/><use href="#qg-bell" transform="rotate(240 50 50)"/>
+        <use href="#qg-bell" transform="rotate(300 50 50)"/>
+      </g></symbol>
+    </defs>
+  </svg>
+
+  <h2>Vitrais de Sintra — peças de vidro</h2>
+  <div class="row" id="sintra"></div>
+
+  <h2>Pavilhão de Verão — losangos</h2>
+  <div class="row" id="pavilion"></div>
+
+  <h2>Jardim da Rainha — hexágonos</h2>
+  <div class="row" id="garden"></div>
+
+<script>
+  // gera as peças a partir dos dados (mesmos ids usados no app)
+  const sintra = { pink: 'flower', orange: 'sun', yellow: 'drop', white: 'snow', blue: 'star' };
+  // desenho de cada cor (null = lisa), como nas peças da caixa
+  const pavilion = { red: null, blue: 'gear', yellow: null, orange: 'sun', green: 'square', purple: null };
+  const gardenColors = ['blue', 'purple', 'lilac', 'yellow', 'lightgreen', 'darkgreen'];
+  const gardenPatterns = ['tree', 'bird', 'butterfly', 'flower', 'sprig', 'bells'];
+
+  const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; };
+
+  for (const [color, sym] of Object.entries(sintra)) {
+    document.getElementById('sintra').append(el(`
+      <div class="pane s-${color}" data-out="azul/sintra/pane-${color}.webp">
+        <i class="ft"></i><i class="fr"></i><i class="fb"></i><i class="fl"></i><i class="tb"></i>
+        <svg viewBox="0 0 100 100"><use href="#sym-${sym}"/></svg>
+        <i class="gl"></i><i class="gl2"></i>
+      </div>`));
+  }
+  for (const [color, sym] of Object.entries(pavilion)) {
+    document.getElementById('pavilion').append(el(`
+      <div class="rh p-${color}" data-out="azul/summer-pavilion/tile-${color}.webp">
+        <i class="r0"></i><i class="r1"></i><i class="r2"></i><i class="r3"></i>
+        ${sym ? `<svg viewBox="0 0 100 100"><use href="#sym-${sym}"/></svg>` : ''}
+      </div>`));
+  }
+  for (const color of gardenColors) {
+    for (const pattern of gardenPatterns) {
+      document.getElementById('garden').append(el(`
+        <div class="hx g-${color}" data-out="azul/queens-garden/${color}-${pattern}.webp">
+          <i class="h0"></i><i class="h1"></i><i class="h2"></i><i class="h3"></i>
+          <svg viewBox="0 0 100 100"><use href="#qg-${pattern}"/></svg>
+        </div>`));
+    }
+  }
+  document.body.dataset.ready = '1';
+</script>
+</body>
+</html>

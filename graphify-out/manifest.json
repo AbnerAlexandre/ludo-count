@@ -30,18 +30,18 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1791596430.7122126,
-    "ast_hash": "d7ffd87f61dc86823cb9d2403e609cb4",
+    "mtime": 1792829886.838153,
+    "ast_hash": "d96c32a6ad074d88ae3db8b03661e099",
     "semantic_hash": ""
   },
   "src/app/app.config.ts": {
-    "mtime": 1791596367.5874295,
-    "ast_hash": "680204a877ba041bea7de19c12df5dcf",
+    "mtime": 1792829790.03896,
+    "ast_hash": "77d7aaef381a2db90e9b2bca74493766",
     "semantic_hash": ""
   },
   "src/app/app.routes.ts": {
-    "mtime": 1790661705.5064323,
-    "ast_hash": "27aef3229006644c18e2a1c612ad0675",
+    "mtime": 1792829354.9059696,
+    "ast_hash": "cd5fa8035b98b75476759b22227e41de",
     "semantic_hash": ""
   },
   "src/app/app.spec.ts": {
@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "src/app/features/azul/azul-page.ts": {
-    "mtime": 1790661164.6680684,
-    "ast_hash": "0fb762b7c2973e4fc5edfcdfe0a456f9",
+    "mtime": 1792829354.93976,
+    "ast_hash": "65ada3eda383fa1e6d65e7c67ee6695b",
     "semantic_hash": ""
   },
   "src/app/features/azul/round-history/round-history.ts": {
@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/app/features/landing/landing.ts": {
-    "mtime": 1791597049.3994844,
-    "ast_hash": "ca9d9d22bb7f4dde2872f93da5b91af5",
+    "mtime": 1792852667.5516684,
+    "ast_hash": "8cce40a2d5ccb24506ee1dce850bf950",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/counter/ttr-counter.ts": {
@@ -200,8 +200,8 @@
     "semantic_hash": ""
   },
   "src/app/features/azul/azul-page.html": {
-    "mtime": 1790661200.3002174,
-    "ast_hash": "39928c25ecca29436cff2177cd89b56e",
+    "mtime": 1792829354.9176104,
+    "ast_hash": "3eef7ee3ebddf7df49a4eecbd829474e",
     "semantic_hash": ""
   },
   "src/app/features/azul/round-history/round-history.html": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "src/app/features/landing/landing.html": {
-    "mtime": 1791597049.3994844,
-    "ast_hash": "91e1383eabc6030b239b527dff139d96",
+    "mtime": 1792852667.5511706,
+    "ast_hash": "b6348b38c796f53cec2945882bd7a667",
     "semantic_hash": ""
   },
   "src/app/features/ticket-to-ride/counter/ttr-counter.html": {
@@ -225,8 +225,8 @@
     "semantic_hash": ""
   },
   "src/index.html": {
-    "mtime": 1791605438.5889897,
-    "ast_hash": "db42fed4a248c0d60644a1a6e921c116",
+    "mtime": 1792829866.8141627,
+    "ast_hash": "273e3fdc1ad75096ac06cff532be3785",
     "semantic_hash": ""
   },
   "public/azul/azul-logo.webp": {
@@ -290,13 +290,13 @@
     "semantic_hash": ""
   },
   "public/novidades.json": {
-    "mtime": 1791605438.5889897,
-    "ast_hash": "11b03d0079c20af016451876625a1e19",
+    "mtime": 1792848598.3253129,
+    "ast_hash": "5b42002667b7f360cbd533ee2d8f4902",
     "semantic_hash": ""
   },
   "scripts/generate-seo.mjs": {
-    "mtime": 1791605582.1382978,
-    "ast_hash": "876b7a40b768d7d07780068d79b2dbc6",
+    "mtime": 1792829857.5144339,
+    "ast_hash": "e5670b1fdda199811dd79c2e1b6824e7",
     "semantic_hash": ""
   },
   "src/app/app.config.server.ts": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "src/app/core/i18n/dictionary.ts": {
-    "mtime": 1791605438.5884843,
-    "ast_hash": "79ec64f5df25bf04b09b9ea10a6983b0",
+    "mtime": 1792848606.705599,
+    "ast_hash": "a89526c8c5e211404fa312f1609f432c",
     "semantic_hash": ""
   },
   "src/app/core/i18n/i18n.ts": {
@@ -345,12 +345,12 @@
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1791605586.8052332,
-    "ast_hash": "276175f6ed820d964c67ea3979d64008",
+    "mtime": 1792852742.4403749,
+    "ast_hash": "9feff3e2c38e3f88d6b8863d633aa7a1",
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1791605586.8052332,
+    "mtime": 1792852742.4403749,
     "ast_hash": "1f34d3c595f672f631b7d533f32889d4",
     "semantic_hash": ""
   },
@@ -490,8 +490,8 @@
     "semantic_hash": ""
   },
   "src/app/features/seven-wonders/counter/sw-counter.ts": {
-    "mtime": 1791595796.0872824,
-    "ast_hash": "4ed7f7b2e59a4939348b3c9d6251d2d5",
+    "mtime": 1792852667.5501635,
+    "ast_hash": "dba6e83981207fa3151d75dfc9df94aa",
     "semantic_hash": ""
   },
   "src/app/features/seven-wonders/counter/sw-duel-form.ts": {
@@ -520,8 +520,8 @@
     "semantic_hash": ""
   },
   "src/app/features/seven-wonders/variant-select/sw-select.ts": {
-    "mtime": 1791596352.4916458,
-    "ast_hash": "015ea850cf63437de8fb06107094e2dc",
+    "mtime": 1792852667.5511706,
+    "ast_hash": "4b7a6a507fc9add9c9a051f276a2dc9f",
     "semantic_hash": ""
   },
   "src/app/shared/motion/motion-utils.ts": {
@@ -540,8 +540,8 @@
     "semantic_hash": ""
   },
   "src/app/shared/svg/marks.ts": {
-    "mtime": 1790660888.5660088,
-    "ast_hash": "6e15a47afd14214ef1df0923ebe7ae4c",
+    "mtime": 1792852667.5531824,
+    "ast_hash": "d8c9b67593950775af07e2a10b15afe0",
     "semantic_hash": ""
   },
   "src/app/shared/ui/choice.ts": {
@@ -590,8 +590,8 @@
     "semantic_hash": ""
   },
   "src/app/shared/ui/site-footer.ts": {
-    "mtime": 1790660956.0260649,
-    "ast_hash": "98096406e3be9630cede7d82cbf9513d",
+    "mtime": 1792829857.499825,
+    "ast_hash": "0cdafeee1c46777b3cf1696098498a90",
     "semantic_hash": ""
   },
   "src/app/shared/ui/switch.ts": {
@@ -610,13 +610,358 @@
     "semantic_hash": ""
   },
   "src/app/features/seven-wonders/counter/sw-counter.html": {
-    "mtime": 1791595796.0862796,
-    "ast_hash": "d211375247f89c865e946c75c446ff79",
+    "mtime": 1792852667.549279,
+    "ast_hash": "4e8aea9dd82542e3452fa8f89f5147e4",
     "semantic_hash": ""
   },
   "public/ticket-to-ride/ticket-new-york.webp": {
     "mtime": 1791605210.2189138,
     "ast_hash": "91a2eb99c3ac970e583639eb274de6fb",
+    "semantic_hash": ""
+  },
+  "scripts/render-tiles.mjs": {
+    "mtime": 1792828715.1420693,
+    "ast_hash": "bf06012743b2ee797a40bb4ba92c68cf",
+    "semantic_hash": ""
+  },
+  "src/app/core/services/azul-garden-match.ts": {
+    "mtime": 1792848139.035387,
+    "ast_hash": "a43659698cc04b15e02940dd4888fa39",
+    "semantic_hash": ""
+  },
+  "src/app/core/services/azul-pavilion-match.ts": {
+    "mtime": 1792847877.2820332,
+    "ast_hash": "60c7d5249bfdf18df31877e1a172c046",
+    "semantic_hash": ""
+  },
+  "src/app/core/services/azul-sintra-match.ts": {
+    "mtime": 1792848510.6126707,
+    "ast_hash": "6692765bc5ba67083a343f57f26bb009",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/azul-versions.ts": {
+    "mtime": 1792828940.3761053,
+    "ast_hash": "418966fa87ad934df233fe549b7fc884",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/garden-scoring.ts": {
+    "mtime": 1792848087.0389495,
+    "ast_hash": "5c0b5070c3663aba8628ad6e2f55eed8",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/garden/garden-page.ts": {
+    "mtime": 1792848195.9302075,
+    "ast_hash": "b9792241745642cabc400a6440b9c1e0",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/pavilion-scoring.ts": {
+    "mtime": 1792828813.5896516,
+    "ast_hash": "0ec8ea54aff5d1e4876aaa7a9652035d",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/pavilion/pavilion-board.ts": {
+    "mtime": 1792847972.864413,
+    "ast_hash": "404f955f0251e33d0b27bff2917bd864",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/pavilion/pavilion-page.ts": {
+    "mtime": 1792847931.0566597,
+    "ast_hash": "0cc69ecc7b7d3d0af488ed13ec066e64",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/sintra-scoring.ts": {
+    "mtime": 1792828794.4967277,
+    "ast_hash": "5505d3ed65c89c40a4e30854b5e8666c",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/sintra/sintra-page.ts": {
+    "mtime": 1792848510.6131709,
+    "ast_hash": "f887fa0e11c6f685d6a32d223cb7f57b",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/variants-scoring.spec.ts": {
+    "mtime": 1792848087.039449,
+    "ast_hash": "4e3443409260c3356e5e36389baf502c",
+    "semantic_hash": ""
+  },
+  "design/azul-tiles.html": {
+    "mtime": 1792847576.0143082,
+    "ast_hash": "879ca121174055c508efbfdb0cf7fc10",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/garden/garden-page.html": {
+    "mtime": 1792848264.0597296,
+    "ast_hash": "b704283aa89c26ffea248df021fd6add",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/pavilion/pavilion-page.html": {
+    "mtime": 1792847931.0561595,
+    "ast_hash": "b808a49939f26902d9333fda5d0efb8b",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/sintra/sintra-page.html": {
+    "mtime": 1792848510.6131709,
+    "ast_hash": "519b4dc42a55b3b42b16d1a1672e8d9e",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/blue-bells.webp": {
+    "mtime": 1792847578.7842207,
+    "ast_hash": "6cf274e334b53f97984c18dab231ae2e",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/blue-bird.webp": {
+    "mtime": 1792847578.6325216,
+    "ast_hash": "a9601461ede9d3d7a1620f6442c66af3",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/blue-butterfly.webp": {
+    "mtime": 1792847578.669194,
+    "ast_hash": "8ca9699811b50191f3b1eb8aa33e329e",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/blue-flower.webp": {
+    "mtime": 1792847578.7089372,
+    "ast_hash": "15b764fba7b9ee9c089ba52f7a8a6b9b",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/blue-sprig.webp": {
+    "mtime": 1792847578.739936,
+    "ast_hash": "d2248fa2d1f313f782db9e7b6e2bbb38",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/blue-tree.webp": {
+    "mtime": 1792847578.590607,
+    "ast_hash": "073065887979267d35af4e595e116fbb",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/darkgreen-bells.webp": {
+    "mtime": 1792847579.815872,
+    "ast_hash": "4223cf05dfbe265486adb51eb1333c74",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/darkgreen-bird.webp": {
+    "mtime": 1792847579.6707149,
+    "ast_hash": "d4efa2293b73057366cd45aecd87832c",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/darkgreen-butterfly.webp": {
+    "mtime": 1792847579.7139018,
+    "ast_hash": "269c50e8e7e035a0d9499b7d0a18e149",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/darkgreen-flower.webp": {
+    "mtime": 1792847579.748535,
+    "ast_hash": "a348d01babc23b93adbac60c82c25de4",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/darkgreen-sprig.webp": {
+    "mtime": 1792847579.7822063,
+    "ast_hash": "95123aab2eb71ca7618171425de70529",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/darkgreen-tree.webp": {
+    "mtime": 1792847579.6291788,
+    "ast_hash": "e52f2cf81d14fc778ec366b8e07354fd",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lightgreen-bells.webp": {
+    "mtime": 1792847579.5959408,
+    "ast_hash": "1806268532e6a340043e951808874506",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lightgreen-bird.webp": {
+    "mtime": 1792847579.455401,
+    "ast_hash": "ea7bb11f5bcf1a6c92ea975881772928",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lightgreen-butterfly.webp": {
+    "mtime": 1792847579.4879892,
+    "ast_hash": "4c2cd166b96d98af3ce1ff0a5fbe6ad2",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lightgreen-flower.webp": {
+    "mtime": 1792847579.5246522,
+    "ast_hash": "36162264709609c7521cdf578c0dd742",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lightgreen-sprig.webp": {
+    "mtime": 1792847579.5603085,
+    "ast_hash": "ff9e503ce924bfad1ece57ef65eabc48",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lightgreen-tree.webp": {
+    "mtime": 1792847579.4121614,
+    "ast_hash": "4d2c105ca35468867d7e97c8047c1226",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lilac-bells.webp": {
+    "mtime": 1792847579.1920922,
+    "ast_hash": "22e448ddcc464a569c0cdba83bac13a0",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lilac-bird.webp": {
+    "mtime": 1792847579.0606108,
+    "ast_hash": "e509f888536580dc2f575898b7daaee7",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lilac-butterfly.webp": {
+    "mtime": 1792847579.0962222,
+    "ast_hash": "2c38f45670699cafb43c9abd50bf8cfc",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lilac-flower.webp": {
+    "mtime": 1792847579.1298883,
+    "ast_hash": "a4948a769699fb242ea0c6e60b656401",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lilac-sprig.webp": {
+    "mtime": 1792847579.16102,
+    "ast_hash": "ceba35d6152eab5e17989c44911b4bd8",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/lilac-tree.webp": {
+    "mtime": 1792847579.0325305,
+    "ast_hash": "997ed82d1033a5bce08c32a7a1073bb4",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/purple-bells.webp": {
+    "mtime": 1792847578.9983547,
+    "ast_hash": "22c7b7f5aa82c24aaff7218adb93fc94",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/purple-bird.webp": {
+    "mtime": 1792847578.858141,
+    "ast_hash": "3d83a53f6f522165b099f41783570fff",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/purple-butterfly.webp": {
+    "mtime": 1792847578.8932962,
+    "ast_hash": "9aaaa07dc8d2e7d2c5445050891ee74d",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/purple-flower.webp": {
+    "mtime": 1792847578.9260037,
+    "ast_hash": "6b6e02ee4a210ceb9e77bda4ebeaa035",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/purple-sprig.webp": {
+    "mtime": 1792847578.9636652,
+    "ast_hash": "c2df3701cb5685e6d22c0fe32700792a",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/purple-tree.webp": {
+    "mtime": 1792847578.8193853,
+    "ast_hash": "6daa8a0880c8431a16274bf4bd36f9d7",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/yellow-bells.webp": {
+    "mtime": 1792847579.3805604,
+    "ast_hash": "19c474f320554f726333718fd3a4948f",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/yellow-bird.webp": {
+    "mtime": 1792847579.2550404,
+    "ast_hash": "0018124e5562d1259256f881954b765f",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/yellow-butterfly.webp": {
+    "mtime": 1792847579.2831047,
+    "ast_hash": "57f52cb5adc14f439fb123ce5d679cc9",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/yellow-flower.webp": {
+    "mtime": 1792847579.317263,
+    "ast_hash": "b3680b4089885c523a1df61770298be0",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/yellow-sprig.webp": {
+    "mtime": 1792847579.3474028,
+    "ast_hash": "39cd201e6657cf4472b44399fb51df99",
+    "semantic_hash": ""
+  },
+  "public/azul/queens-garden/yellow-tree.webp": {
+    "mtime": 1792847579.2236435,
+    "ast_hash": "a35aa9c52104e127b0f2455052904051",
+    "semantic_hash": ""
+  },
+  "public/azul/sintra/pane-blue.webp": {
+    "mtime": 1792847578.252807,
+    "ast_hash": "d02ad0381c3898eb44e3f6a9572e83de",
+    "semantic_hash": ""
+  },
+  "public/azul/sintra/pane-orange.webp": {
+    "mtime": 1792847578.1575336,
+    "ast_hash": "8d68feaeb94eff72aee587bf0868ca30",
+    "semantic_hash": ""
+  },
+  "public/azul/sintra/pane-pink.webp": {
+    "mtime": 1792847578.0962307,
+    "ast_hash": "f96d7563c8784dbe463292c8aab1c0d9",
+    "semantic_hash": ""
+  },
+  "public/azul/sintra/pane-white.webp": {
+    "mtime": 1792847578.2236464,
+    "ast_hash": "f60ec7bb954f44257ff0241b5e76bcd8",
+    "semantic_hash": ""
+  },
+  "public/azul/sintra/pane-yellow.webp": {
+    "mtime": 1792847578.1903472,
+    "ast_hash": "1784ce3a85d666865fc48ca567c1449b",
+    "semantic_hash": ""
+  },
+  "public/azul/summer-pavilion/tile-blue.webp": {
+    "mtime": 1792847578.3573022,
+    "ast_hash": "cbfc0d4b589e5d75c75c46a1dc7c7c22",
+    "semantic_hash": ""
+  },
+  "public/azul/summer-pavilion/tile-green.webp": {
+    "mtime": 1792847578.4888096,
+    "ast_hash": "90a6dd70b6fda236d25c6e883f033b7c",
+    "semantic_hash": ""
+  },
+  "public/azul/summer-pavilion/tile-orange.webp": {
+    "mtime": 1792847578.4460745,
+    "ast_hash": "c6233a66b707c224698b390420580b3b",
+    "semantic_hash": ""
+  },
+  "public/azul/summer-pavilion/tile-purple.webp": {
+    "mtime": 1792847578.5373821,
+    "ast_hash": "b3e00b1a270a851d4dae78686875e491",
+    "semantic_hash": ""
+  },
+  "public/azul/summer-pavilion/tile-red.webp": {
+    "mtime": 1792847578.3050468,
+    "ast_hash": "daa7d5118307b3b67ba4881d3b6f33e9",
+    "semantic_hash": ""
+  },
+  "public/azul/summer-pavilion/tile-yellow.webp": {
+    "mtime": 1792847578.4030066,
+    "ast_hash": "cf5f9fe5453dc1664d9bcef7a24341a6",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/garden-grid.ts": {
+    "mtime": 1792848058.4013956,
+    "ast_hash": "af672d32d994315f13af9b7a23787edc",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/garden/garden-board.ts": {
+    "mtime": 1792848431.5264165,
+    "ast_hash": "45626f42fbaa1d9c3c5280e7b9e21226",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/pavilion-geometry.spec.ts": {
+    "mtime": 1792847673.237559,
+    "ast_hash": "a12a84c8f64347be9bd3fef90f0326b7",
+    "semantic_hash": ""
+  },
+  "src/app/features/azul/variants/pavilion-geometry.ts": {
+    "mtime": 1792847829.5175037,
+    "ast_hash": "50bec8d10b9a5e9c11a730041fb39d88",
+    "semantic_hash": ""
+  },
+  "public/7-wonders/7wonders-logo.png": {
+    "mtime": 1792852523.4090397,
+    "ast_hash": "b2bdb5cd01a7e0df19ef135737dca9da",
     "semantic_hash": ""
   }
 }

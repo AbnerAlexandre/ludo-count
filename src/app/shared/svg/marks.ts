@@ -19,19 +19,3 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styles: [`:host{display:inline-block;width:28px;height:28px;line-height:0}svg{width:100%;height:100%}`],
 })
 export class BrandMark {}
-
-/** Ícone genérico para o 7 Wonders: um zigurate em degraus (não é o logo oficial). */
-@Component({
-  selector: 'app-sw-mark',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <rect x="8" y="46" width="48" height="10" rx="2" fill="currentColor" />
-      <rect x="15" y="34" width="34" height="10" rx="2" fill="currentColor" opacity="0.85" />
-      <rect x="22" y="22" width="20" height="10" rx="2" fill="currentColor" opacity="0.7" />
-      <rect x="28" y="10" width="8" height="10" rx="2" fill="currentColor" opacity="0.55" />
-    </svg>
-  `,
-  styles: [`:host{display:inline-block;line-height:0}svg{width:100%;height:100%}`],
-})
-export class SwMark {}
