@@ -59,6 +59,11 @@ import { BrandMark } from '../svg/marks';
           </div>
         </nav>
       </div>
+      <!-- /r/ludocount é o link rastreável do portfólio: não troque o código -->
+      <p class="credit">
+        © {{ year }} LudoCount · {{ i18n.t('footer.builtBy') }}
+        <a href="https://abner-alexandre.vercel.app/r/ludocount" target="_blank" rel="noopener">Abner Alexandre</a>
+      </p>
     </footer>
   `,
   styles: [
@@ -122,6 +127,21 @@ import { BrandMark } from '../svg/marks';
         text-underline-offset: 4px;
         cursor: pointer;
       }
+      .credit {
+        max-width: 1180px;
+        margin: 32px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--text-faint);
+        font-size: 0.86rem;
+      }
+      .credit a {
+        color: var(--text);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-color: var(--line-strong);
+        text-underline-offset: 4px;
+      }
       .nav {
         display: grid;
         gap: 28px;
@@ -166,7 +186,8 @@ import { BrandMark } from '../svg/marks';
       @media (hover: hover) and (pointer: fine) {
         .col a:hover,
         .links a:hover,
-        .links button:hover {
+        .links button:hover,
+        .credit a:hover {
           color: var(--text);
           text-decoration-color: currentColor;
         }
@@ -178,6 +199,7 @@ export class SiteFooter {
   readonly i18n = inject(I18n);
   readonly base = computed(() => (this.i18n.locale() === 'en' ? '/en' : ''));
   readonly discord = '@graaay.sh';
+  readonly year = new Date().getFullYear();
   readonly copied = signal(false);
 
   readonly ttr = computed(() => TTR_VARIANTS.map((v) => ({ id: v.id, name: variantName(v, this.i18n.locale()) })));

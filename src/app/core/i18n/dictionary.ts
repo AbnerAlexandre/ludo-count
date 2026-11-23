@@ -38,7 +38,7 @@ export const DICT: Record<Locale, Record<string, string>> = {
     'landing.novidades.all': 'Ver todas as novidades ({n})',
     'landing.novidades.less': 'Mostrar só as recentes',
     'landing.foot.note': 'Roda no navegador · sem contas · progresso salvo automaticamente',
-    'landing.contact.label': 'Feito por Abner da Silva',
+    'landing.contact.label': 'Contato',
     'landing.contact.copied': 'Copiado!',
     'landing.contact.copyDiscord': 'Copiar usuário do Discord',
 
@@ -256,6 +256,7 @@ export const DICT: Record<Locale, Record<string, string>> = {
     'faq.9.a': "Ao terminar uma partida, ela vai para o histórico daquele jogo: as últimas 10 partidas ficam guardadas só neste navegador. Você pode desligar o histórico, apagar uma partida ou limpar tudo a qualquer momento.",
     'footer.privacy': "Tudo roda no seu navegador: sem conta, sem rastreamento, e nenhum dado da partida sai do aparelho.",
     'footer.nav': "Todos os contadores",
+    'footer.builtBy': "Desenvolvido por",
     'footer.azulCounter': "Contador de pontos",
     'footer.allEditions': "Todas as edições",
     'history.title': "Últimas partidas",
@@ -856,7 +857,7 @@ export const DICT: Record<Locale, Record<string, string>> = {
     'landing.novidades.all': 'See all updates ({n})',
     'landing.novidades.less': 'Show only the latest',
     'landing.foot.note': 'Runs in the browser · no accounts · progress saved automatically',
-    'landing.contact.label': 'Made by Abner da Silva',
+    'landing.contact.label': 'Contact',
     'landing.contact.copied': 'Copied!',
     'landing.contact.copyDiscord': 'Copy Discord username',
 
@@ -1070,6 +1071,7 @@ export const DICT: Record<Locale, Record<string, string>> = {
     'faq.9.a': "When you finish a match it goes into that game’s history: the last 10 matches are kept only in this browser. You can turn history off, delete a match or clear everything at any time.",
     'footer.privacy': "Everything runs in your browser: no account, no tracking, and no match data ever leaves your device.",
     'footer.nav': "All counters",
+    'footer.builtBy': "Built by",
     'footer.azulCounter': "Score counter",
     'footer.allEditions': "All editions",
     'history.title': "Recent matches",
